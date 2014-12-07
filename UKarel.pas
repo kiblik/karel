@@ -1,7 +1,5 @@
 unit UKarel;
 
-{$MODE Delphi}
-
  //nejdu parametre - padne na deleteproject - treba dat if
 //obcas padne na sipke dole v command line
 interface

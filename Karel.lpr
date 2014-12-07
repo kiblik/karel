@@ -1,12 +1,9 @@
 program Karel;
 
-{$MODE Delphi}
-
 uses
   Forms, Interfaces,
   UKarel in 'UKarel.pas' {Form1},
   UCmdForm in 'UcmdForm.pas';
-{$R *.res}
  var
   Form1: TForm1;
 

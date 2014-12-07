@@ -1,7 +1,5 @@
 unit ULang;
 
-{$MODE Delphi}
-
 interface
 uses UUtils;
 var _lMsgKarel_NoPic: string='Nenaiel som obrázok Karla! Karel nebude zobrazený!';

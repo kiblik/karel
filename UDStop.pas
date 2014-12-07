@@ -1,7 +1,5 @@
 unit UDStop;
 
-{$MODE Delphi}
-
 interface
 
 uses LCLIntf, LCLType, LMessages, SysUtils, Classes, Graphics, Forms, Controls, StdCtrls,

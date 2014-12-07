@@ -1,7 +1,5 @@
 unit UcmdForm;
 
-{$MODE Delphi}
-
 interface
 
 uses

@@ -1,7 +1,5 @@
 unit UStack;
 
-{$MODE Delphi}
-
 interface
 uses Classes;
 type TItem = string;

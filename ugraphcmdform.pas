@@ -1,7 +1,5 @@
 unit ugraphcmdform;
 
-{$MODE Delphi}
-
 interface
 
 uses
