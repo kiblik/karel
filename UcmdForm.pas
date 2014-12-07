@@ -1,9 +1,11 @@
-unit UCmdForm;
+unit UcmdForm;
+
+{$MODE Delphi}
 
 interface
 
 uses
-  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  LCLIntf, LCLType, LMessages, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, StdCtrls, ComCtrls, UMyEditor, Buttons, Menus, ImgList,UGraphCmdForm;
 
 type
@@ -48,7 +50,7 @@ var CmdForm: TCmdForm;
 
 implementation
 uses UUtils,ULang;
-{$R *.dfm}
+{$R *.lfm}
 (*
 function TCmdForm.CheckCmd(Cmd : array of string):Boolean;
   function PrikazOK(var S:string) : Boolean;forward;
@@ -391,7 +393,7 @@ begin
   CmdList.Canvas.FillRect(MyRect);
   if Index<CmdList.Count then
     begin
-      Flags:=DrawTextBiDiModeFlags(DT_SINGLELINE or DT_VCENTER or DT_NOPREFIX);
+//      Flags:=DrawTextBiDiModeFlags(DT_SINGLELINE or DT_VCENTER or DT_NOPREFIX);
       DrawText(CmdList.Canvas.Handle,PChar(CmdList.Items[Index]),Length(CmdList.Items[Index]),Rect,Flags);
     end;
 
@@ -416,4 +418,4 @@ begin
     end;
 end;
 
-end.
+end.

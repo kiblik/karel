@@ -1,9 +1,11 @@
 unit ugraphcmdform;
 
+{$MODE Delphi}
+
 interface
 
 uses
-  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  LCLIntf, LCLType, LMessages, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, ImgList, Grids,UUtils, ExtCtrls;
 
 type
@@ -40,7 +42,7 @@ begin
   DrawPrikaz(0,Cmd,0,Img.ClientWidth);
 end;
                          
-{$R *.dfm}
+{$R *.lfm}
 procedure TGraphCmdForm.DrawPrikaz(Iter : Integer;Cmd : string;Left,Right : Integer);
 var FW : string;
     

@@ -80,7 +80,7 @@ const DefO : TPoint = (X:0;Y:0);
 
       Colors : array[0..15] of TColor =
        (clRed, clGreen, clYellow, clBlue, clWhite, clGray, clFuchsia, clTeal, clNavy, clMaroon, clLime, clOlive, clPurple, clSilver, clAqua, clBlack);
-      um_RefreshCmdList=wm_User+10;
+//      um_RefreshCmdList=wm_User+10;
 
 procedure Konvertuj(Point3 : T3DPoint;var Point : TPoint);
 procedure DrawLine(P1,P2 : T3DPoint; Canvas : TCanvas);
@@ -308,4 +308,4 @@ finalization
   BasicCmds.Free;
   BasicCnds.Free;
   DefColors.Free;
-end.
+end.

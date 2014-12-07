@@ -1,10 +1,14 @@
-unit UKarel; //nejdu parametre - padne na deleteproject - treba dat if
+unit UKarel;
+
+{$MODE Delphi}
+
+ //nejdu parametre - padne na deleteproject - treba dat if
 //obcas padne na sipke dole v command line
 interface
 uses
-  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, StdCtrls, ExtCtrls, UUtils, Menus, UCmdForm,UStack, ComCtrls,
-  ImgList, Buttons, UDStop, ToolWin, AppEvnts;
+  LCLIntf, LCLType, LMessages, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, StdCtrls, ExtCtrls, UUtils, Menus, UcmdForm,UStack, ComCtrls,
+  ImgList, Buttons, UDStop, ToolWin, FileUtil{, AppEvnts};
 
 const Version='2.1';
 
@@ -80,8 +84,8 @@ type
     ShowGraphic : Boolean;
     LHistory : array of string;
 
-    procedure WMWindowPosChanging(var Msg : TWMWindowPosChanging);message WM_WindowPosChanging;
-    procedure UMRefreshCmdList(var Msg : TWMWindowPosChanging);message um_RefreshCmdList;
+//    procedure WMWindowPosChanging(var Msg : TWMWindowPosChanging);message WM_WindowPosChanging;
+//    procedure UMRefreshCmdList(var Msg : TWMWindowPosChanging);message um_RefreshCmdList;
     procedure DrawAxis;
     procedure ReDrawAll(const FromY : Integer=0);
     procedure DrawColumn(X,Y : Integer);
@@ -116,10 +120,10 @@ type
 
 
 implementation
-{$R *.dfm}
+{$R *.lfm}
 uses UDMiestnost,UDPosun,UDLimits,UDZoom, ULang;
 
-
+{
 procedure TForm1.WMWindowPosChanging(var Msg : TWMWindowPosChanging);
 begin
   if ((SWP_NOMOVE or SWP_NOSIZE) and Msg.WindowPos^.Flags)<>(SWP_NOMOVE or SWP_NOSIZE) then
@@ -130,7 +134,7 @@ begin
     end;
     inherited;
 end;
-
+ }
 procedure TForm1.ReadKarelIni;
 var T : TextFile;
     Line : string;
@@ -158,7 +162,7 @@ var T : TextFile;
   end;
 
 begin
-  if not FileExists('karel.ini') then Exit;
+  if not FileExistsUTF8('karel.ini') { *Converted from FileExists* } then Exit;
   AssignFile(T,'karel.ini');
   Reset(T);
   while not EOF(T) do
@@ -287,7 +291,7 @@ begin
       FN:=FN+'pics\karel.pts';
     end
   else FN:='pics\karel.pts';
-  if not FileExists(FN) then
+  if not FileExistsUTF8(FN) { *Converted from FileExists* } then
     begin
       MyMessageDlg(_lMsgRunError,_lMsgKarel_NoPic,mtWarning,[mbOK],mrOK,0);
       Exit
@@ -325,7 +329,7 @@ begin
   CloseFile(F);
   DecimalSeparator:=DecSep;
 end;
-
+{
 procedure TForm1.UMRefreshCmdList(var Msg: TWMWindowPosMsg);
 var I : Integer;
 begin
@@ -334,7 +338,7 @@ begin
     LBCmds.AddItem(CmdForm.CmdList.Items[I],nil);
 
 end;
-
+ }
 procedure TForm1.EInputKeyPress(Sender: TObject; var Key: Char);
 var S : string;
 begin
@@ -350,7 +354,7 @@ begin
     end;
   ELine:=Length(LHistory);
   MHistory.Lines.Add(S);
-  PostMessage(MHistory.Handle,WM_KEYUP,vk_down,vk_down);
+//  PostMessage(MHistory.Handle,WM_KEYUP,vk_down,vk_down);
   CmdForm.Close;
   ShowGraphic:=True;
   WasChanged:=True;
@@ -1516,7 +1520,7 @@ begin
   WasChanged:=False;
   CmdForm.Caption:=_lPrikazCmd+' '+CmdForm.CmdList.Items[0];
   ReDrawAll;
-  PostMessage(Handle,um_RefreshCmdList,0,0);
+//  PostMessage(Handle,um_RefreshCmdList,0,0);
 end;
 
 procedure TForm1.LBCmdsDrawItem(Control: TWinControl; Index: Integer;
@@ -1611,7 +1615,7 @@ begin
   if WasChanged and (MyMessageDlg(_lMsgNeulozeny,_lMsgNoSavedWarn,mtWarning,[mbYes,mbNo,mbCancel],mrCancel,0)<>mrYes) then Exit;
   DeleteProject;
   WasChanged:=False;
-  PostMessage(Handle,um_RefreshCmdList,0,0);
+//  PostMessage(Handle,um_RefreshCmdList,0,0);
 end;
 
 procedure TForm1.MIKoniecClick(Sender: TObject);
@@ -1623,7 +1627,7 @@ begin
   else Ser:=0;
   MessageDlg(IntToStr(Ser),mtinformation,[mbOK],0);
  }
-  PostMessage(Application.Handle,WM_CLOSE,0,0);
+//  PostMessage(Application.Handle,WM_CLOSE,0,0);
 end;
 
 procedure TForm1.Otvoritprojekt1Click(Sender: TObject);
@@ -1636,4 +1640,4 @@ begin
   SaveProjectClick(sender);
 end;
 
-end.
+end.

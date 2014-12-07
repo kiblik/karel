@@ -1,9 +1,11 @@
 unit UDMiestnost;
 
+{$MODE Delphi}
+
 interface
 
-uses Windows, SysUtils, Classes, Graphics, Forms, Controls, StdCtrls, 
-  Buttons, ExtCtrls, Mask, ComCtrls;
+uses LCLIntf, LCLType, LMessages, SysUtils, Classes, Graphics, Forms, Controls, StdCtrls,
+  Buttons, ExtCtrls, MaskEdit, ComCtrls;
 
 type
   TDMiestnost = class(TForm)
@@ -36,7 +38,7 @@ type
 
 implementation
 uses ULang;
-{$R *.dfm}
+{$R *.lfm}
 
 procedure TDMiestnost.UDVyskaClick(Sender: TObject; Button: TUDBtnType);
 begin
@@ -64,4 +66,4 @@ begin
   BNenastav.Caption:=_lButtonNenastav;
 end;
 
-end.
+end.

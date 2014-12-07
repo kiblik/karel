@@ -1,8 +1,10 @@
 unit UDLimits;
 
+{$MODE Delphi}
+
 interface
 
-uses Windows, SysUtils, Classes, Graphics, Forms, Controls, StdCtrls, 
+uses LCLIntf, LCLType, LMessages, SysUtils, Classes, Graphics, Forms, Controls, StdCtrls,
   Buttons, ExtCtrls, ComCtrls;
 
 type
@@ -26,7 +28,7 @@ type
 
 implementation
 uses ULang;
-{$R *.dfm}
+{$R *.lfm}
 
 procedure TDLimitKarel.FormCreate(Sender: TObject);
 begin
@@ -49,4 +51,4 @@ begin
   EUp.Text:=IntToStr(StrToInt(EUp.Text)+1);
 end;
 
-end.
+end.

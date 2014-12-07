@@ -1,8 +1,10 @@
 unit UDStop;
 
+{$MODE Delphi}
+
 interface
 
-uses Windows, SysUtils, Classes, Graphics, Forms, Controls, StdCtrls, 
+uses LCLIntf, LCLType, LMessages, SysUtils, Classes, Graphics, Forms, Controls, StdCtrls,
   Buttons, ExtCtrls,Messages;
 
 type
@@ -18,7 +20,7 @@ type
 
 implementation
 uses ULang;
-{$R *.dfm}
+{$R *.lfm}
 
 procedure TDStop.FormCreate(Sender: TObject);
 begin
@@ -26,4 +28,4 @@ begin
   BStop.Caption:=_LBStopCaption;
 end;
 
-end.
+end.

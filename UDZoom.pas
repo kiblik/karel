@@ -1,8 +1,10 @@
 unit UDZoom;
 
+{$MODE Delphi}
+
 interface
 
-uses Windows, SysUtils, Classes, Graphics, Forms, Controls, StdCtrls, 
+uses LCLIntf, LCLType, LMessages, SysUtils, Classes, Graphics, Forms, Controls, StdCtrls,
   Buttons, ExtCtrls;
 
 type
@@ -18,11 +20,11 @@ type
 
 implementation
 uses ULang;
-{$R *.dfm}
+{$R *.lfm}
 
 procedure TDZoom.FormCreate(Sender: TObject);
 begin
   Caption:=_lZoomCaption;
 end;
 
-end.
+end.

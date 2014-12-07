@@ -1,9 +1,11 @@
 unit UMyEditor;
 
+{$MODE Delphi}
+
 interface
 
 uses
-  Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
+  LCLIntf, LCLType, LMessages, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
   StdCtrls, ComCtrls;
 
 type TLexInfo = class (TObject)
@@ -12,7 +14,7 @@ type TLexInfo = class (TObject)
        constructor Create(AColor : TColor; AStyle : TFontStyles);
      end;
 type
-  TMyEditor = class(TRichEdit)
+  TMyEditor = class(TMemo)
   private
     LKey : Char;
     LLineCount: Integer;
@@ -96,12 +98,12 @@ begin
 
   LKey:=#0;
   LLineCount:=0;
-  with DefAttributes do
+{  with DefAttributes do
     begin
       Color:=clWindowText;
       Height:=16;
       Style:=[];
-    end;
+    end;}
   SelLength:=0;
 
 
@@ -205,8 +207,8 @@ var OldColor   : TColor;
     Lex : string;
 begin
   OldSel:=SelStart;
-  OldColor:=DefAttributes.Color;
-  OldStyle:=DefAttributes.Style;
+//  OldColor:=DefAttributes.Color;
+//  OldStyle:=DefAttributes.Style;
 
   Z:=1;
   Lex:=DajLexemu(Z,D,Lines);
@@ -219,13 +221,13 @@ begin
     if Lexemas.IndexOf(Lex)>-1 then
       begin
         Obj:=TLexInfo(Lexemas.Objects[Lexemas.IndexOf(Lex)]);
-        SelAttributes.Color:=Obj.Color;
-        SelAttributes.Style:=Obj.Style;
+//        SelAttributes.Color:=Obj.Color;
+//        SelAttributes.Style:=Obj.Style;
       end
     else
       begin
-        SelAttributes.Color:=OldColor;
-        SelAttributes.Style:=OldStyle;
+//        SelAttributes.Color:=OldColor;
+//        SelAttributes.Style:=OldStyle;
       end;
     Z:=Z+D;
     Lex:=DajLexemu(Z,D,Lines);
@@ -253,13 +255,13 @@ var OldColor : TColor;
    if Lexemas.IndexOf(Lex)>-1 then
      begin
        Obj:=TLexInfo(Lexemas.Objects[Lexemas.IndexOf(Lex)]);
-       SelAttributes.Color:=Obj.Color;
-       SelAttributes.Style:=Obj.Style;
+//       SelAttributes.Color:=Obj.Color;
+//       SelAttributes.Style:=Obj.Style;
      end
    else
      begin
-       SelAttributes.Color:=OldColor;
-       SelAttributes.Style:=OldStyle;
+//       SelAttributes.Color:=OldColor;
+//       SelAttributes.Style:=OldStyle;
      end;
  end;
 
@@ -269,8 +271,8 @@ var A : Integer;
 begin
   Z:=SelStart;
   OldSel:=SelStart;
-  OldColor:=DefAttributes.Color;
-  OldStyle:=DefAttributes.Style;
+//  OldColor:=DefAttributes.Color;
+//  OldStyle:=DefAttributes.Style;
   OldHideSelection:=HideSelection;
   HideSelection:=True;
 
@@ -307,8 +309,8 @@ begin
   Re.SelLength:=0;}
   SelStart:=OldSel;
   SelLength:=0;
-  SelAttributes.Color:=OldColor;
-  SelAttributes.Style:=OldStyle;
+//  SelAttributes.Color:=OldColor;
+//  SelAttributes.Style:=OldStyle;
   LLineCount:=Lines.Count;
   HideSelection:=OldHideSelection;
 end;
@@ -322,4 +324,4 @@ begin
 end;
 
 
-end.
+end.

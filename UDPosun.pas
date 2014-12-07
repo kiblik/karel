@@ -1,8 +1,10 @@
 unit UDPosun;
 
+{$MODE Delphi}
+
 interface
 
-uses Windows, SysUtils, Classes, Graphics, Forms, Controls, StdCtrls, 
+uses LCLIntf, LCLType, LMessages, SysUtils, Classes, Graphics, Forms, Controls, StdCtrls,
   Buttons, ExtCtrls;
 
 type
@@ -24,7 +26,7 @@ type
 
 implementation
 uses ULang;
-{$R *.dfm}
+{$R *.lfm}
 
 procedure TDRoomMove.FormCreate(Sender: TObject);
 var Rgn : HRgn;
@@ -59,4 +61,4 @@ begin
   if Key=#27 then Close
 end;
 
-end.
+end.
