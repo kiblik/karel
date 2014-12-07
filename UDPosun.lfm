@@ -9,12 +9,10 @@ object DRoomMove: TDRoomMove
   Color = clBtnFace
   ParentFont = True
   KeyPreview = True
-  OldCreateOrder = True
   Position = poMainFormCenter
   OnCreate = FormCreate
   OnKeyPress = FormKeyPress
   PixelsPerInch = 96
-  TextHeight = 13
   object BRight: TBitBtn
     Left = 62
     Top = 31
@@ -328,4 +326,4 @@ object DRoomMove: TDRoomMove
       3400000000343434020000000000000000000000003434343400000000000000
       0000}
   end
-end
+end

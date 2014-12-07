@@ -8,12 +8,10 @@ object DStop: TDStop
   Color = clBtnFace
   ParentFont = True
   FormStyle = fsStayOnTop
-  OldCreateOrder = True
   Position = poScreenCenter
   Visible = True
   OnCreate = FormCreate
   PixelsPerInch = 96
-  TextHeight = 13
   object BStop: TBitBtn
     Left = 0
     Top = 0
@@ -89,4 +87,4 @@ object DStop: TDStop
       0202020202020202020202020202020202020202020202020202}
     Layout = blGlyphTop
   end
-end
+end

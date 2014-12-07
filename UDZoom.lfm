@@ -7,11 +7,9 @@ object DZoom: TDZoom
   ClientWidth = 222
   Color = clBtnFace
   ParentFont = True
-  OldCreateOrder = True
   Position = poScreenCenter
   OnCreate = FormCreate
   PixelsPerInch = 96
-  TextHeight = 13
   object SBSize: TScrollBar
     Left = 8
     Top = 24
@@ -23,4 +21,4 @@ object DZoom: TDZoom
     Position = 1
     TabOrder = 0
   end
-end
+end

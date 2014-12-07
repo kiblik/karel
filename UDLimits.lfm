@@ -7,11 +7,9 @@ object DLimitKarel: TDLimitKarel
   ClientWidth = 230
   Color = clBtnFace
   ParentFont = True
-  OldCreateOrder = True
   Position = poScreenCenter
   OnCreate = FormCreate
   PixelsPerInch = 96
-  TextHeight = 13
   object LVykrocit: TLabel
     Left = 41
     Top = 0
@@ -186,4 +184,4 @@ object DLimitKarel: TDLimitKarel
       FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF80
       0000800000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
   end
-end
+end

@@ -6,11 +6,9 @@ object DMiestnost: TDMiestnost
   ClientWidth = 268
   Color = clBtnFace
   ParentFont = True
-  OldCreateOrder = True
   Position = poScreenCenter
   OnCreate = FormCreate
   PixelsPerInch = 96
-  TextHeight = 13
   object GroupBox1: TGroupBox
     Left = 4
     Top = 8
@@ -1202,4 +1200,4 @@ object DMiestnost: TDMiestnost
     TabOrder = 2
     Kind = bkCancel
   end
-end
+end

@@ -4,7 +4,7 @@ object Form1: TForm1
   Width = 817
   Height = 600
   AlphaBlendValue = 100
-  Caption = 'Neulo'#382'en'#253' projekt'
+  Caption = 'NeuloÅ¾ený projekt'
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -12,17 +12,12 @@ object Form1: TForm1
   Font.Name = 'MS Sans Serif'
   Font.Style = []
   Menu = MainMenu
-  OldCreateOrder = False
   Position = poScreenCenter
   OnClose = FormClose
   OnCloseQuery = FormCloseQuery
   OnCreate = FormCreate
   OnResize = FormResize
-  DesignSize = (
-    801
-    542)
   PixelsPerInch = 96
-  TextHeight = 13
   object Img: TImage
     Left = 0
     Top = 40
@@ -156,7 +151,7 @@ object Form1: TForm1
     object TBCommands: TToolButton
       Left = 222
       Top = 2
-      Hint = 'Pr'#237'kazy Karla'
+      Hint = 'Príkazy Karla'
       Caption = 'TBCommands'
       ImageIndex = 7
       ParentShowHint = False
@@ -679,4 +674,4 @@ object Form1: TForm1
       8001FFFFC0070FF0FFFFFFFFFFFF07E000000000000000000000000000000000
       000000000000}
   end
-end
+end
