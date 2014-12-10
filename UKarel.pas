@@ -283,12 +283,12 @@ begin
   FN:=ParamStr(0);
   BkCol:=clWhite;
   FgCol:=clBlack;
-  if Pos('\',FN)<>0 then
+  if Pos(DirectorySeparator,FN)<>0 then
     begin
-      while FN[Length(FN)]<>'\' do FN:=Copy(FN,1,Length(FN)-1);
-      FN:=FN+'pics\karel.pts';
+      while FN[Length(FN)]<>DirectorySeparator do FN:=Copy(FN,1,Length(FN)-1);
+      FN:=FN+'pics'+DirectorySeparator+'karel.pts';
     end
-  else FN:='pics\karel.pts';
+  else FN:='pics'+DirectorySeparator+'karel.pts';
   if not FileExistsUTF8(FN) { *Converted from FileExists* } then
     begin
       MyMessageDlg(_lMsgRunError,_lMsgKarel_NoPic,mtWarning,[mbOK],mrOK,0);
@@ -1638,4 +1638,5 @@ begin
   SaveProjectClick(sender);
 end;
 
-end.
+end.
+
