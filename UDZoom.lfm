@@ -2,7 +2,7 @@ object DZoom: TDZoom
   Left = 243
   Top = 228
   BorderStyle = bsToolWindow
-  Caption = 'Klikni na sipky na krajoch posuvnika'
+  Caption = 'Klikni na šípky na krajoch posuvníka'
   ClientHeight = 59
   ClientWidth = 222
   Color = clBtnFace

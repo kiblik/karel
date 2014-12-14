@@ -4,7 +4,7 @@ object Form1: TForm1
   Top = 140
   Width = 817
   AlphaBlendValue = 100
-  Caption = 'NeuloÅ¾ený projekt'
+  Caption = 'Neuložený projekt'
   ClientHeight = 580
   ClientWidth = 817
   Color = clBtnFace
@@ -63,7 +63,7 @@ object Form1: TForm1
     TabOrder = 1
     object TBNew: TToolButton
       Left = 10
-      Hint = 'Vytvorit novy projekt'
+      Hint = 'Vytvoriť nový projekt'
       Top = 2
       Caption = 'TBNew'
       ImageIndex = 2
@@ -73,7 +73,7 @@ object Form1: TForm1
     end
     object TBOpen: TToolButton
       Left = 38
-      Hint = 'Otvorit ulozeny projekt'
+      Hint = 'Otvoriť uložený projekt'
       Top = 2
       Caption = 'TBOpen'
       ImageIndex = 1
@@ -83,7 +83,7 @@ object Form1: TForm1
     end
     object TBSave: TToolButton
       Left = 66
-      Hint = 'Ulozit projekt'
+      Hint = 'Uložiť projekt'
       Top = 2
       Caption = 'TBSave'
       ImageIndex = 0
@@ -101,7 +101,7 @@ object Form1: TForm1
     end
     object TBResize: TToolButton
       Left = 104
-      Hint = 'Zmenit rozmery miestnosti'
+      Hint = 'Zmeniť rozmery miestnosti'
       Top = 2
       Caption = 'TBResize'
       ImageIndex = 3
@@ -111,7 +111,7 @@ object Form1: TForm1
     end
     object TBMove: TToolButton
       Left = 132
-      Hint = 'Posunut miestnost'
+      Hint = 'Posunúť miestnost'
       Top = 2
       Caption = 'TBMove'
       ImageIndex = 6
@@ -121,7 +121,7 @@ object Form1: TForm1
     end
     object TBKarelLimit: TToolButton
       Left = 160
-      Hint = 'Obmedzit Karla'
+      Hint = 'Obmedziť Karla'
       Top = 2
       Caption = 'TBKarelLimit'
       ImageIndex = 4
@@ -131,7 +131,7 @@ object Form1: TForm1
     end
     object TBZoom: TToolButton
       Left = 188
-      Hint = 'Zvacsit a zmensit miestnost'
+      Hint = 'Zväčšiť a zmenšiť miestnost'
       Top = 2
       Caption = 'TBZoom'
       ImageIndex = 5
@@ -204,7 +204,7 @@ object Form1: TForm1
     object Subor1: TMenuItem
       Caption = 'Projekt na disku'
       object Novyprojekt1: TMenuItem
-        Caption = 'Novy projekt'
+        Caption = 'Nový projekt'
         Bitmap.Data = {
           36040000424D3604000000000000360000002800000010000000100000000100
           2000000000000004000064000000640000000000000000000000000000000000
@@ -246,7 +246,7 @@ object Form1: TForm1
         OnClick = Novyprojekt1Click
       end
       object Otvoritprojekt1: TMenuItem
-        Caption = 'Otvorit projekt'
+        Caption = 'Otvoriť projekt'
         Bitmap.Data = {
           36040000424D3604000000000000360000002800000010000000100000000100
           2000000000000004000064000000640000000000000000000000000000000000
@@ -288,7 +288,7 @@ object Form1: TForm1
         OnClick = Otvoritprojekt1Click
       end
       object Ulozitprojekt1: TMenuItem
-        Caption = 'Ulozit projekt'
+        Caption = 'Uložiť projekt'
         Bitmap.Data = {
           36040000424D3604000000000000360000002800000010000000100000000100
           2000000000000004000064000000640000000000000000000000000000000000
@@ -338,7 +338,7 @@ object Form1: TForm1
       end
     end
     object Nastavenia1: TMenuItem
-      Caption = 'Nastavenia vzhladu'
+      Caption = 'Nastavenia vzhľadu'
       object Rozmerymiestnosti1: TMenuItem
         Caption = 'Rozmery miestnosti'
         Bitmap.Data = {
@@ -463,7 +463,7 @@ object Form1: TForm1
         OnClick = ObmedzenieKarla1Click
       end
       object Lupa1: TMenuItem
-        Caption = 'Zvacsenie/zmensenie'
+        Caption = 'Zväčšenie/zmenšenie'
         Bitmap.Data = {
           36040000424D3604000000000000360000002800000010000000100000000100
           2000000000000004000064000000640000000000000000000000000000000000

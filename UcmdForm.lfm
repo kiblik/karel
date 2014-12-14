@@ -274,7 +274,7 @@ object CmdForm: TCmdForm
     Top = 15
     Width = 75
     Height = 33
-    Caption = 'Vyvojovy diagram'
+    Caption = 'Vývojový diagram'
     TabOrder = 0
     Visible = False
     OnClick = BGrapCmdClick

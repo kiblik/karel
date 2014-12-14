@@ -16,7 +16,7 @@ object DLimitKarel: TDLimitKarel
     Width = 145
     Height = 32
     Alignment = taCenter
-    Caption = 'Pocet tehal, na ktore vie Karel vykrocit'
+    Caption = 'Počet tehál, na ktoré vie Karel vykročiť'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -13

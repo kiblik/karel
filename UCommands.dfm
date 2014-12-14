@@ -3,7 +3,7 @@ object FCommands: TFCommands
   Top = 184
   Width = 614
   Height = 352
-  Caption = 'Prikazy'
+  Caption = 'Príkazy'
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -18,7 +18,7 @@ object FCommands: TFCommands
     Top = 8
     Width = 81
     Height = 13
-    Caption = 'Zoznam prikazov'
+    Caption = 'Zoznam príkazov'
   end
   object ListBox1: TListBox
     Left = 24
@@ -39,4 +39,4 @@ object FCommands: TFCommands
     TabOrder = 1
     WordWrap = False
   end
-end
+end

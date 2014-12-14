@@ -3,7 +3,7 @@ object DRoomMove: TDRoomMove
   Top = 108
   BorderIcons = [biSystemMenu]
   BorderStyle = bsToolWindow
-  Caption = 'Klikaj na sipky'
+  Caption = 'Klikaj na šípky'
   ClientHeight = 95
   ClientWidth = 115
   Color = clBtnFace

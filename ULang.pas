@@ -2,25 +2,25 @@ unit ULang;
 
 interface
 uses UUtils;
-var _lMsgKarel_NoPic: string='Nenaiel som obrázok Karla! Karel nebude zobrazený!';
-    _lMsgCloseAppl : string ='Projekt bol zmenený a nie je uloený. Mám napriek tomu program ukonèi?';
+var _lMsgKarel_NoPic: string='Nenašiel som obrázok Karla! Karel nebude zobrazený!';
+    _lMsgCloseAppl : string ='Projekt bol zmenený a nie je uložený. Mám napriek tomu program ukončiť?';
     _lMsgErrorUnknownCmd : string = 'Nepoznám príkaz ';
-    _lMsgErrorOpakuj : string = 'Chybná truktúra príkazu opakuj';
-    _lMsgErrorOpakujCislo : string = 'za slovom opakuj by malo nasledova èíslo';
-    _lMsgErrorOpakujKrat : string ='chýba slovo ''krat'' v truktúre príkazu opakuj';
-    _lMsgErrorOpakujEnd : string ='chybná truktúra príkazu opakuj - nenaiel som ukonèenie';
-    _lMsgErrorKym : string ='chybná truktúra príkazu kym';
-    _lMsgErrorKymJe : string = 'za slovom kym musí nasledova "je" alebo "nie je"';
-    _lMsgErrorKymJezanie : string = 'za slovom nie musí nasledova "je"';
-    _lMsgErrorKymRob : string ='oèakával som slovo rob';
-    _lMsgErrorKymEnd : string ='chybná truktúra príkazu kym - nenaiel som ukonèenie';
-    _lMsgErrorAk : string ='chybná truktúra príkazu ak';
-    _lMsgErrorAkJe : string = 'za slovom ak musí nasledova "je" alebo "nie je"';
-    _lMsgErrorAkJezanie : string = 'za slovom nie musí nasledova "je"';
-    _lMsgErrorAkTak : string = 'oèakával som slovo tak';
-    _lMsgErrorPresun : string ='Za príkazom presun oèakávam dve èísla';
-    _lMsgErrorPrikaz : string ='Chybná truktúra príkazu ';
-    _lMsgErrorPolozF : string ='Za príkazom polozf som oèakával farbu.';
+    _lMsgErrorOpakuj : string = 'Chybná štruktúra príkazu opakuj';
+    _lMsgErrorOpakujCislo : string = 'za slovom opakuj by malo nasledovať číslo';
+    _lMsgErrorOpakujKrat : string ='chýba slovo ''krat'' v štruktúre príkazu opakuj';
+    _lMsgErrorOpakujEnd : string ='chybná štruktúra príkazu opakuj - nenašiel som ukončenie';
+    _lMsgErrorKym : string ='chybná štruktúra príkazu kym';
+    _lMsgErrorKymJe : string = 'za slovom kym musí nasledovať "je" alebo "nie je"';
+    _lMsgErrorKymJezanie : string = 'za slovom nie musí nasledovať "je"';
+    _lMsgErrorKymRob : string ='očakával som slovo rob';
+    _lMsgErrorKymEnd : string ='chybná štruktúra príkazu kym - nenašiel som ukončenie';
+    _lMsgErrorAk : string ='chybná štruktúra príkazu ak';
+    _lMsgErrorAkJe : string = 'za slovom ak musí nasledovať "je" alebo "nie je"';
+    _lMsgErrorAkJezanie : string = 'za slovom nie musí nasledovať "je"';
+    _lMsgErrorAkTak : string = 'očakával som slovo tak';
+    _lMsgErrorPresun : string ='Za príkazom presun očakávam dve čísla';
+    _lMsgErrorPrikaz : string ='Chybná štruktúra príkazu ';
+    _lMsgErrorPolozF : string ='Za príkazom polozf som očakával farbu.';
     _lPrikazEndCmd : string = '*prikaz';
     _lInakCmd : string = 'inak';
     _lAkEndCmd : string = '*ak';
@@ -52,60 +52,60 @@ var _lMsgKarel_NoPic: string='Nenaiel som obrázok Karla! Karel nebude zobraze
     _lMsgSaveTitle : string='Uloenie projektu';
     _lMsgSaveError : string='Chyba pri ukladaní súboru.';
     _lMsgOpenError : string ='Chybný formát súboru.';
-    _lMsgNoSavedWarn : string = 'Aktuálny projekt bude vymazaný. Mám pokraèova?';
+    _lMsgNoSavedWarn : string = 'Aktuálny projekt bude vymazaný. Mám pokračovať?';
     _lMsgNoSavedTitle : string='Neuloený projekt';
     _lMsgOpenTitle : string = 'Otvorenie projektu.';
     _lMsgReadingError : string ='Problém s otvorením súboru';
     _lMenuSubor : string ='Projekt';
     _lMenuNovyProjekt : string = 'Nový projekt';
-    _lMenuOtvoritProjekt : string = 'Otvori projekt';
-    _lMenuUlozitProjekt : string = 'Uloi projekt';
+    _lMenuOtvoritProjekt : string = 'Otvoriť projekt';
+    _lMenuUlozitProjekt : string = 'Uložiť projekt';
     _lMenuNastavenia : string = 'Nastavenia';
     _lMenuRozmeryMiestnosti : string = 'Rozmery miestnosti';
     _lMenuPosunMiestnosti : string = 'Posun miestnosti';
     _lMenuObmedzenieKarla : string = 'Obmedzenia Karla';
-    _lMenuLupa : string = 'Zväèenie/zmenenie';
+    _lMenuLupa : string = 'Zväčšenie/zmenšenie';
     _lMenuSlovnik : string = 'Príkazy Karla';
-    _lMenuMIKoniec : string = 'Ukonèenie programu';
+    _lMenuMIKoniec : string = 'Ukončenie programu';
     _lTBNew : string = 'Nový projekt';
-    _lTBOpen : string = 'Otvori projekt';
-    _lTBSave : string = 'Uloi projekt';
-    _lTBResize : string = 'Zmeni rozmery miestnosti';
-    _lTBMove : string = 'Posunú miestnos';
-    _lTBKarelLimit : string = 'Nastavi rôzne obmedzenia Karla';
-    _lTBCommands : string = 'Otvori slovník s príkazmi Karla';
+    _lTBOpen : string = 'Otvoriť projekt';
+    _lTBSave : string = 'Uložiť projekt';
+    _lTBResize : string = 'Zmeniť rozmery miestnosti';
+    _lTBMove : string = 'Posunúť miestnosť';
+    _lTBKarelLimit : string = 'Nastaviť rôzne obmedzenia Karla';
+    _lTBCommands : string = 'Otvoriť slovník s príkazmi Karla';
     _lBNewCaption : string = 'Nový'#13'príkaz';
-    _lBDeleteCaption : string ='Zma'#13'príkaz';
+    _lBDeleteCaption : string ='Zmaž'#13'príkaz';
     _lBRenameCaption : string ='Premenuj'#13'príkaz';
     _lNovyPrikaz : string = 'Nový príkaz';
     _lMsgZadajMeno : string = 'Zadaj meno nového príkazu';
-    _lMsgErrorRezSlovo1 : string =' nemôe poui ako meno príkazu. ';
-    _lMsgErrorRezSlovo2 : string =' je zakladný príkaz alebo je jeho súèasou.';
-    _lMsgErrorJednoSlovo : string ='Meno príkazu musí by jedno slovo (bez medzier)';
-    _lZmazatPrikaz : string = 'Mám zmaza príkaz';
+    _lMsgErrorRezSlovo1 : string =' nemôžeš použiť ako meno príkazu. ';
+    _lMsgErrorRezSlovo2 : string =' je zakladný príkaz alebo je jeho súčasťou.';
+    _lMsgErrorJednoSlovo : string ='Meno príkazu musí byť jedno slovo (bez medzier)';
+    _lZmazatPrikaz : string = 'Mám zmazať príkaz';
     _lPremenovaniePrikazu : string = 'Premenovanie príkazu ';
     _lZadajMeno : string ='Zadaj nové meno príkazu:';
     _MsgErrorRovnakeMeno : string = 'Pôvodné a nové meno su rovnaké.';
-    _MsgErrorUzExistuje : string = 'Nemôem zmeni meno na meno u existujúceho príkazu';
+    _MsgErrorUzExistuje : string = 'Nemôžem zmeniť meno na meno už existujúceho príkazu';
     _lRozmeryCaption : string = 'Nastavenie rozmerov miestnosti';
     _lRozmeryLBCaption : string = 'Rozmery miestnosti';
-    _lRozmeryVyska : string ='Výka';
-    _lRozmerySirka : string ='írka';
-    _lRozmeryDlzka : string ='Dåka';
-    _lButtonNastav : string = 'Nastavi';
-    _lButtonNenastav : string = 'Zrui';
-    _lMoveCaption : string = 'Klikaj na ípky';
+    _lRozmeryVyska : string ='Výška';
+    _lRozmerySirka : string ='Šírka';
+    _lRozmeryDlzka : string ='Dĺžka';
+    _lButtonNastav : string = 'Nastaviť';
+    _lButtonNenastav : string = 'Zrušiť';
+    _lMoveCaption : string = 'Klikaj na šípky';
     _lBStopCaption : string = 'zastavenie'#13#10'programu';
     _lLimitsCaption : string ='Obmedzenia Karla';
-    _lLimitsVykrocit : string ='Poèet tehál, na ktoré vie Karel vykroèi';
-    _lLimitsSpomalit : string ='Rýchlos Karla';
-    _lZoomCaption : string ='Klikni na ípky na okrajoch posuvníka';
+    _lLimitsVykrocit : string ='Počet tehál, na ktoré vie Karel vykročiť';
+    _lLimitsSpomalit : string ='Rýchlosť Karla';
+    _lZoomCaption : string ='Klikni na šípky na okrajoch posuvníka';
     _lMsgErrorPresun2 : string = 'Nesprávne súradnice za príkazom presun';
     _lMsgStop : string ='program zastavený';
-    _lMsgErrorKrok : string ='Karel nemá vo¾no, nemôe urobi krok.';
-    _lMsgErrorPolozPriStene : string = 'Karel stojí pred stenou, nemá kam poloi tehlu.';
-    _lMsgErrorPolozVyska : string = 'Karel nemôe poloi tehlu vyie ako je výka miestnosti.';
-    _lMsgErrorZoberNietco : string ='Pred Karlom nie je iadna tehla na zobratie.';
+    _lMsgErrorKrok : string ='Karel nemá voľno, nemôže urobiť krok.';
+    _lMsgErrorPolozPriStene : string = 'Karel stojí pred stenou, nemá kam položiť tehlu.';
+    _lMsgErrorPolozVyska : string = 'Karel nemôže položiť tehlu vyššie ako je výška miestnosti.';
+    _lMsgErrorZoberNietco : string ='Pred Karlom nie je žiadna tehla na zobratie.';
     _lOznacCmd : string ='oznac';
     _lOdznacCmd : string ='odznac';
     _lZnackaCmd : string ='znacka';
@@ -120,13 +120,13 @@ var _lMsgKarel_NoPic: string='Nenaiel som obrázok Karla! Karel nebude zobraze
     _lPolozFCmd : string ='polozf';
     _lYesButton : string ='Án&o';
     _lNoButton : string ='&Nie';
-    _lCancelButton : string ='&Zrui';
-    _lMsgUkoncenieProgramu : string ='Ukonèenie programu';
+    _lCancelButton : string ='&Zrušiť';
+    _lMsgUkoncenieProgramu : string ='Ukončenie programu';
     _lMsgRunError : string ='Chyba pri spustení programu.';
     _lErrorMsgRuntime : string ='Chyba v programe';
     _lMsgUkladanie : string ='Ukladanie projektu';
-    _lMsgNacitanie : string ='Naèítanie projektu';
-    _lMsgNeulozeny : string ='Neuloený projekt';
+    _lMsgNacitanie : string ='Načítanie projektu';
+    _lMsgNeulozeny : string ='Neuložený projekt';
 
 function GetOpakuj(var Cmd : string; var OK : Boolean) : TOpakuj;
 function GetPresun(var Cmd : string; var OK : Boolean) : TPresun;
@@ -150,13 +150,13 @@ begin
   UnSpace(S);
   if LowerCase(First(S))<>'podmienka' then
     begin
-      ErrorMsg:='Chybna truktúra podmienky';
+      ErrorMsg:='Chybna štruktúra podmienky';
       Exit
     end;
   First(S);
   if Last(S)<>'*podmienka' then
     begin
-      ErrorMsg:='Chybná truktúra podmienky';
+      ErrorMsg:='Chybná štruktúra podmienky';
       Exit
     end;
   OK:=True;
@@ -431,4 +431,4 @@ begin
 end;
 
 
-end.
+end.
