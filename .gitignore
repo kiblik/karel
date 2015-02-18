@@ -23,7 +23,7 @@
 #
 
 # Delphi compiler-generated binaries (safe to delete)
-*.exe
+#*.exe
 *.dll
 *.bpl
 *.bpi
@@ -58,8 +58,8 @@ __history/
 *.o
 *.or
 *.ppu
-Karel
+#Karel
 
-*.lpi
-*.lps
+#*.lpi
+#*.lps
 
