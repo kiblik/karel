@@ -8,12 +8,17 @@ uses
   Dialogs, StdCtrls, ExtCtrls, UUtils, Menus, UcmdForm,UStack, ComCtrls,
   ImgList, Buttons, UDStop, ToolWin, FileUtil{, AppEvnts};
 
-const Version='2.1';
+const version='2.2';
 
 type
+
+  { TForm1 }
+
   TForm1 = class(TForm)
     EInput: TEdit;
     Img: TImage;
+    ListBox1: TListBox;
+    MLevelDescription: TMemo;
     Timer1: TTimer;
     ILMainMenu: TImageList;
 
@@ -42,13 +47,13 @@ type
     MIKoniec: TMenuItem;
     MHistory: TMemo;
     TBCmdList: TToolButton;
-    LBCmds: TListBox;
     N1: TMenuItem;
-    Label2: TLabel;
+    LabelVersion: TLabel;
 
     procedure FormCreate(Sender: TObject);
     procedure EInputKeyPress(Sender: TObject; var Key: Char);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure LabelVersionClick(Sender: TObject);
     procedure Slovnik1Click(Sender: TObject);
     procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
     procedure Timer1Timer(Sender: TObject);
@@ -65,8 +70,6 @@ type
     procedure OtvorPojektClick(Sender: TObject);
     procedure SaveProjectClick(Sender: TObject);
     procedure TBCmdListClick(Sender: TObject);
-    procedure LBCmdsDrawItem(Control: TWinControl; Index: Integer; Rect: TRect;
-      State: TOwnerDrawState);
     procedure Otvoritprojekt1Click(Sender: TObject);
     procedure Ulozitprojekt1Click(Sender: TObject);
 
@@ -174,6 +177,7 @@ end;
 procedure TForm1.FormCreate(Sender: TObject);
 var X,Y : Integer;
 begin
+  LabelVersion.Caption:='v'+version;
   ReadKarelIni;
   Subor1.Caption:=_lMenuSubor;
   NovyProjekt1.Caption:=_lMenuNovyProjekt;
@@ -327,16 +331,6 @@ begin
   CloseFile(F);
   DecimalSeparator:=DecSep;
 end;
-{
-procedure TForm1.UMRefreshCmdList(var Msg: TWMWindowPosMsg);
-var I : Integer;
-begin
-  LBCmds.Clear;
-  for I := 0 to CmdForm.CmdList.Count - 1 do
-    LBCmds.AddItem(CmdForm.CmdList.Items[I],nil);
-
-end;
- }
 procedure TForm1.EInputKeyPress(Sender: TObject; var Key: Char);
 var S : string;
 begin
@@ -367,6 +361,11 @@ begin
   DStop.Free;
 end;
 
+procedure TForm1.LabelVersionClick(Sender: TObject);
+begin
+
+end;
+
 procedure TForm1.SaveProjectClick(Sender: TObject);
 var DSave : TSaveDialog;
     F : TextFile;
@@ -389,7 +388,7 @@ begin
   AssignFile(F,DSave.FileName);
   try
     ReWrite(F);
-    WriteLn(F,'ver=',Version);
+    WriteLn(F,'ver=',version);
     WriteLn(F,'roomx=',RoomX);
     WriteLn(F,'roomy=',RoomY);
     WriteLn(F,'roomh=',RoomH);
@@ -472,7 +471,7 @@ end;
 
 procedure TForm1.TBCmdListClick(Sender: TObject);
 begin
-  LBCmds.Visible:=TBCmdList.Down;
+
 end;
 
 procedure TForm1.Timer1Timer(Sender: TObject);
@@ -510,18 +509,13 @@ begin
   Mhistory.Top:=ClientHeight-MHistory.Height-EInput.Height;
   MHistory.Width:=ClientWidth;
 
-  Img.Width:=ClientWidth;
+  Img.Width:=ClientWidth-150;
   Img.Height:=ClientHeight-MHistory.Height-EInput.Height;
   Img.Canvas.Brush.Color:=clRed;
   Img.Canvas.FillRect(Img.ClientRect);
 
   Img.Picture.Graphic.Width := ClientWidth;
   Img.Picture.Graphic.Height := ClientHeight;
-
-  LBCmds.Width:=150;
-  LBCmds.Top:=Img.Top+ToolBar1.Height;
-  LBCmds.Height:=Img.Height-ToolBar1.Height;
-  LBCmds.Left:=Img.Width-LBCmds.Width;
 
   //O.Y:=Img.Height div 2;
 
@@ -1519,38 +1513,6 @@ begin
   CmdForm.Caption:=_lPrikazCmd+' '+CmdForm.CmdList.Items[0];
   ReDrawAll;
 //  PostMessage(Handle,um_RefreshCmdList,0,0);
-end;
-
-procedure TForm1.LBCmdsDrawItem(Control: TWinControl; Index: Integer;
-  Rect: TRect; State: TOwnerDrawState);
-var CmdName : string;
-    Cmd : TCmd;
-    Podm : Boolean;
-    A,B,C : Integer;
-begin
-  if Index=-1 then Exit;
-  CmdName:=LBCmds.Items[Index];
-  Cmd:=CmdForm.CmdList.Items.Objects[CmdForm.CmdList.Items.IndexOf(CmdName)] as TCmd;
-  Podm:= (Length(Cmd.Lines)>0) and (Pos('podmienka',LowerCase(Cmd.Lines[0]))>0);
-  LBCmds.Canvas.Font.Size:=(Rect.Bottom-Rect.Top) div 2;
-  if Podm then
-    begin
-      LBCmds.Canvas.Brush.Color:=clWhite;
-      LBCmds.Canvas.Font.Color:=clGreen;
-      LBCmds.Canvas.TextRect(Rect,Rect.Left,Rect.Top,'?');
-    end
-  else
-    begin
-      C:=(Rect.Bottom-Rect.Top) div 2;
-      A:=Rect.Left+C div 2;
-      B:=Rect.Top+C div 2;
-
-      LBCmds.Canvas.Brush.Color:=clNewCmd;
-      LBCmds.Canvas.Ellipse(A,B,A+C,B+C);
-    end;
-  Rect.Left:=Rect.Left+Rect.Bottom-Rect.Top+10;
-  LBCmds.Canvas.Brush.Color:=clWhite;
-  LBCmds.Canvas.TextRect(Rect,Rect.left,Rect.Top,CmdName);
 end;
 
 procedure TForm1.Lupa1Click(Sender: TObject);

@@ -52,7 +52,9 @@
       <Unit2>
         <Filename Value="UcmdForm.pas"/>
         <IsPartOfProject Value="True"/>
+        <ComponentName Value="CmdForm"/>
         <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
         <UnitName Value="UcmdForm"/>
       </Unit2>
       <Unit3>
