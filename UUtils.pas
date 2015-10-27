@@ -2,6 +2,8 @@ unit UUtils;
 interface
 uses Types,Graphics,Classes,Dialogs,Messages;
 type
+  TBricks = array of array of array of TColor;
+  TMarks = array of array of Boolean;
   T3DPoint = record
                 X,Y,Z : Real;
               end;
@@ -42,6 +44,17 @@ type
              Orientation : Byte;
              Graphic : array[0..3] of array of TColRect;
            end;
+  TLevel = record
+             Name: String;
+             RoomX,RoomY,RoomH : Integer;
+             O : TPoint;
+             Karel: TKarel;
+             Zoom : Integer;
+             Description: TStringList;
+             Bricks : TBricks;
+             Marks : TMarks;
+           end;
+
   TCmdSet = set of Byte;
   TPolozF = record
               Color : TColor;
