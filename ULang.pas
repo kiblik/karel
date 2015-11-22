@@ -49,11 +49,11 @@ var _lMsgKarel_NoPic: string='Nenašiel som obrázok Karla! Karel nebude zobraze
     _lPrikazCmd : string = 'prikaz';
     _lVolnoCmd : string = 'volno';
     _lMsgErrorUnknownCnd : string= 'Nepoznám podmienku ';
-    _lMsgSaveTitle : string='Uloenie projektu';
+    _lMsgSaveTitle : string='Uložnie projektu';
     _lMsgSaveError : string='Chyba pri ukladaní súboru.';
     _lMsgOpenError : string ='Chybný formát súboru.';
     _lMsgNoSavedWarn : string = 'Aktuálny projekt bude vymazaný. Mám pokračovať?';
-    _lMsgNoSavedTitle : string='Neuloený projekt';
+    _lMsgNoSavedTitle : string='Neuložný projekt';
     _lMsgOpenTitle : string = 'Otvorenie projektu.';
     _lMsgReadingError : string ='Problém s otvorením súboru';
     _lMenuSubor : string ='Projekt';
@@ -404,6 +404,7 @@ var I : Integer;
     S,C : string;
 begin
   OK:=False;
+  S:='';
   for I:=0 to Length(Lines)-1 do S:=S+Lines[I]+' ';
   UnSpace(S);
   Result:='';
@@ -431,4 +432,4 @@ begin
 end;
 
 
-end.
+end.

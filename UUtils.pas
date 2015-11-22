@@ -321,4 +321,4 @@ finalization
   BasicCmds.Free;
   BasicCnds.Free;
   DefColors.Free;
-end.
+end.

@@ -5,10 +5,10 @@ unit UKarel;
 interface
 
 uses
-  LCLIntf, LCLType, LMessages, Messages, SysUtils, Variants, Classes,
+  LCLIntf, LCLType, SysUtils, Variants, Classes,
   Graphics, Controls, Forms,
   Dialogs, StdCtrls, ExtCtrls, UUtils, Menus, UcmdForm, UStack, ComCtrls,
-  ImgList, Buttons, UDStop, ToolWin, FileUtil{, AppEvnts};
+  Buttons, UDStop, FileUtil;
 
 const
   version = '2.2';
@@ -53,6 +53,9 @@ type
     N1: TMenuItem;
     LVersion: TLabel;
 
+    procedure LBLevelListClick(Sender: TObject);
+    procedure MLevelDescriptionChange(Sender: TObject);
+    procedure OnClose(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure EInputKeyPress(Sender: TObject; var Key: char);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
@@ -88,8 +91,6 @@ type
     ShowGraphic: boolean;
     LHistory: array of string;
 
-    //    procedure WMWindowPosChanging(var Msg : TWMWindowPosChanging);message WM_WindowPosChanging;
-    //    procedure UMRefreshCmdList(var Msg : TWMWindowPosChanging);message um_RefreshCmdList;
     procedure DrawAxis;
     procedure ReDrawAll(const FromY: integer = 0);
     procedure DrawColumn(X, Y: integer);
@@ -116,6 +117,7 @@ type
     function JeStena: boolean;
     procedure ReadKarelIni;
     procedure saveLevel;
+    procedure loadlevel(levelnumber:integer);
   public
     procedure RoomMoveClick(Sender: TObject);
     procedure ZoomChange(Sender: TObject);
@@ -129,18 +131,6 @@ implementation
 {$R *.lfm}
 uses UDMiestnost, UDPosun, UDLimits, UDZoom, ULang;
 
-{
-procedure TForm1.WMWindowPosChanging(var Msg : TWMWindowPosChanging);
-begin
-  if ((SWP_NOMOVE or SWP_NOSIZE) and Msg.WindowPos^.Flags)<>(SWP_NOMOVE or SWP_NOSIZE) then
-    if DStop<>nil then
-    begin
-      DStop.Left:=Left+(Width-DStop.Width) div 2;
-      DStop.Top:=Top;
-    end;
-    inherited;
-end;
- }
 procedure TForm1.ReadKarelIni;
 var
   T: TextFile;
@@ -171,7 +161,7 @@ var
   end;
 
 begin
-  if not FileExistsUTF8('karel.ini') { *Converted from FileExists* } then
+  if not FileExistsUTF8('karel.ini') then
     Exit;
   AssignFile(T, 'karel.ini');
   Reset(T);
@@ -216,23 +206,14 @@ begin
   Left := (Screen.Width - Width) div 2;
   Top := (Screen.Height - Height) div 2;
 
-{  CmdForm:=TCmdForm.Create(self);
-  CmdForm.Parent:=self;  }
   Stack := TStack.Create;
   DStop := TDStop.Create(self);
   DStop.BStop.OnClick := BStopClick;
   DStop.Left := Left + (Width - DStop.Width) div 2;
   DStop.Top := Top;
   DStop.Hide;
-  //  EInput.Left:=0;
-  //  EInput.Top:=ClientHeight-EInput.Height;
-  //  EInput.Width:=ClientWidth;
   EInput.Text := '';
   ELine := 0;
-
-  //  MHistory.Left:=0;
-  //  Mhistory.Top:=ClientHeight-MHistory.Height-EInput.Height;
-  //  MHistory.Width:=ClientWidth;
   MHistory.Clear;
 
   MLevelDescription.Top := 0;
@@ -241,7 +222,6 @@ begin
   Img.Top := 0;
   Img.Width := ClientWidth;
   Img.Height := ClientHeight - MHistory.Height - EInput.Height;
-  //  Img.Canvas.FillRect(Img.ClientRect);
 
   O.X := 150;
   O.Y := Img.Height div 2;
@@ -277,6 +257,24 @@ begin
     otvor(ParamStr(1));
 end;
 
+procedure TForm1.OnClose(Sender: TObject);
+begin
+
+end;
+
+procedure TForm1.LBLevelListClick(Sender: TObject);
+
+begin
+  if(LBLevelList.ItemIndex <> -1) then begin
+    loadlevel(LBLevelList.ItemIndex);
+  end;
+end;
+
+procedure TForm1.MLevelDescriptionChange(Sender: TObject);
+begin
+
+end;
+
 procedure TForm1.ReadKarelPts;
 var
   F: TextFile;
@@ -298,13 +296,14 @@ var
   end;
 
 var
-  S, FN: string;
+  S: string = '';
+  FN: string;
   Phase, Rects, I, J, Vert, KK: integer;
   DecSep: char;
   FGCol, BkCol: TColor;
 begin
-  DecSep := DecimalSeparator;
-  DecimalSeparator := '.';
+  DecSep := DefaultFormatSettings.DecimalSeparator;
+  DefaultFormatSettings.DecimalSeparator := '.';
   FN := ParamStr(0);
   BkCol := clWhite;
   FgCol := clBlack;
@@ -316,7 +315,7 @@ begin
   end
   else
     FN := 'pics' + DirectorySeparator + 'karel.pts';
-  if not FileExistsUTF8(FN) { *Converted from FileExists* } then
+  if not FileExistsUTF8(FN) then
   begin
     MyMessageDlg(_lMsgRunError, _lMsgKarel_NoPic, mtWarning, [mbOK], mrOk, 0);
     Exit;
@@ -352,7 +351,7 @@ begin
     end;
   end;
   CloseFile(F);
-  DecimalSeparator := DecSep;
+  DefaultFormatSettings.DecimalSeparator := DecSep;
 end;
 
 procedure TForm1.EInputKeyPress(Sender: TObject; var Key: char);
@@ -373,7 +372,6 @@ begin
   end;
   ELine := Length(LHistory);
   MHistory.Lines.Add(S);
-  //  PostMessage(MHistory.Handle,WM_KEYUP,vk_down,vk_down);
   CmdForm.Close;
   ShowGraphic := True;
   WasChanged := True;
@@ -501,8 +499,6 @@ end;
 
 procedure TForm1.Slovnik1Click(Sender: TObject);
 begin
-  //  CmdForm.Top:=20;
-  //  CmdForm.Left:=20;
   CmdForm.Position := poScreenCenter;
   CmdForm.Show;
   CmdForm.HLEdit.SetFocus;
@@ -585,8 +581,6 @@ begin
   Img.Picture.Graphic.Height := ClientHeight;
 
   LVersion.Left := MLevelDescription.Left - LVersion.Width - 10;
-
-  //O.Y:=Img.Height div 2;
 
   ReDrawAll;
 end;
@@ -1066,7 +1060,7 @@ begin
       EndProgram;
       Stack.Clear;
       MHistory.Lines.Add('!!! ' + ErrorMsg + '. !!!');
-      //MyMessageDlg(_lErrorMsgRuntime,ErrorMsg,mtError,[mbOK],mrOK,0);
+      MyMessageDlg(_lErrorMsgRuntime,ErrorMsg,mtError,[mbOK],mrOK,0);
       Exit;
     end;
 
@@ -1440,7 +1434,7 @@ var
 
   procedure Spracuj2_2(S: string);
   var
-    LS, PS, C1, C2, r, g, b: string;
+    LS, PS, C1, C2: string;
     I: integer;
   begin
     case Status of
@@ -1486,12 +1480,6 @@ var
         end;
         if PS = 'bricks' then
           Status := 1;
-        if PS = 'cmds' then
-        begin
-          Status := 3;
-          if CmdForm <> nil then
-            CmdForm.CmdList.Clear;
-        end;
         if PS = 'marks' then
           Status := 2;
         if PS = 'description' then
@@ -1553,7 +1541,6 @@ var
         SetLength(Cmd.Lines, PR);
         if CmdForm <> nil then
           CmdForm.CmdList.AddItem(LS, Cmd);
-        //          CmdForm.HLEdit.AddKey(LS,clNewCmd,[]);
         Status := 4;
       end;
       4:
@@ -1592,8 +1579,9 @@ var
         PS := Copy(S, Pos(' ', S) + 1, MaxInt);
         if LS = 'level' then
         begin
-          if Length(levels) > 1 then
+          if Length(levels) >= 1 then
             SetLength(Levels, Length(Levels) + 1);
+          MLevelDescription.Clear;
           Levels[high(Levels)].Name := PS;
           LBLevelList.Items.Append(PS);
           Status := 0;
@@ -1608,19 +1596,17 @@ var
           Exit;
         end;
         MLevelDescription.Lines.Add(S);
-        Application.ProcessMessages;
       end;
     end;
   end;
 
   procedure Spracuj2_1(S: string);
   var
-    LS, PS, C1, C2: string;
-    I: integer;
+    LS, PS: string;
   begin
     case Status of
       0:
-      begin
+      begin // reading level
         LS := Copy(S, 1, Pos('=', S) - 1);
         PS := Copy(S, Pos('=', S) + 1, MaxInt);
         if LS = 'roomx' then
@@ -1672,8 +1658,8 @@ var
         if PS = 'colors' then
           Status := 5;
       end;
-      1: Spracuj2_2(S);
-      2: Spracuj2_2(S);
+      1: Spracuj2_2(S);           // reading bricks
+      2: Spracuj2_2(S);          // reading marks
       3:
       begin  // closing cmds
         UnSpace(S);
@@ -1682,19 +1668,10 @@ var
           Status := 0;
           Exit;
         end;
-        LS := Copy(S, 1, Pos(' ', S) - 1);
-        PS := Copy(S, Pos(' ', S) + 1, MaxInt);
-        PR := StrToInt(PS);
-        CR := 0;
-        Cmd := TCmd.Create;
-        SetLength(Cmd.Lines, PR);
-        if CmdForm <> nil then
-          CmdForm.CmdList.AddItem(LS, Cmd);
-        //          CmdForm.HLEdit.AddKey(LS,clNewCmd,[]);
-        Status := 4;
+        Spracuj2_2(S); // jedine co je ine, do akeho stavu sa clovek vracia po nacitani prikazov.
       end;
 
-      4: Spracuj2_2(S);
+      4: Spracuj2_2(S);   // reading cmds
       5:
       begin // reading colors
         UnSpace(S);
@@ -1708,7 +1685,7 @@ var
         DefColors.AddColor(LS, RGB(StrToInt(First(PS)), StrToInt(
           First(PS)), StrToInt(First(PS))));
       end;
-      6:
+      6,7:
       begin
         MyMessageDlg(_lMsgNacitanie, _lMsgOpenError, mtError, [mbOK], mrOk, 0);
         OKFile := False;
@@ -1719,13 +1696,13 @@ var
 
   procedure Spracuj2_0(S: string);
   var
-    LS, PS, C1, C2, C3: string;
+    C1, C2, C3: string;
     I, J: integer;
   begin
     case Status of
-      0: Spracuj2_1(S);
+      0: Spracuj2_1(S);   // reading level
       // jediny problem moze vzniknut, ak by vo verzii 2.0 bolo slovo colors. dajme tomu, ze sa to nestane
-      1:
+      1:              // reading bricks
       begin
         UnSpace(S);
         if S = '*bricks' then
@@ -1747,10 +1724,10 @@ var
         for J := 0 to StrToInt(C3) - 1 do
           Bricks[StrToInt(C1), StrToInt(C2), J] := BrickColor;
       end;
-      2: Spracuj2_1(S);
-      3: Spracuj2_1(S);
-      4: Spracuj2_1(S);
-      5, 6:
+      2: Spracuj2_1(S); // reading marks
+      3: Spracuj2_1(S);  // closing cmds
+      4: Spracuj2_1(S);  // reading cmds
+      5, 6, 7:
       begin
         MyMessageDlg(_lMsgNacitanie, _lMsgOpenError, mtError, [mbOK], mrOk, 0);
         OKFile := False;
@@ -1806,13 +1783,11 @@ begin
   for I := 0 to Length(Cmd.Lines) - 1 do
     CmdForm.HLEdit.Lines.Add(Cmd.Lines[I]);
   CmdForm.LastItem := 0;
-  //  CmdForm.HLEdit.MakeAll;
   Caption := filename;
 
   WasChanged := False;
   CmdForm.Caption := _lPrikazCmd + ' ' + CmdForm.CmdList.Items[0];
   ReDrawAll;
-  //  PostMessage(Handle,um_RefreshCmdList,0,0);
 end;
 
 procedure TForm1.Lupa1Click(Sender: TObject);
@@ -1888,21 +1863,12 @@ begin
     Exit;
   DeleteProject;
   WasChanged := False;
-  //  PostMessage(Handle,um_RefreshCmdList,0,0);
 end;
 
 procedure TForm1.MIKoniecClick(Sender: TObject);
-//  finally
-//  end;
-{var SN,MCL,FSF : DWord;
-    Ser : Integer;  }
+var Action: TCloseAction;
 begin
- { if GetVolumeInformation(PChar('c:\'),nil,0,@SN,MCL,FSF,nil,0) then
-    Ser:=Integer(SN)
-  else Ser:=0;
-  MessageDlg(IntToStr(Ser),mtinformation,[mbOK],0);
- }
-  //  PostMessage(Application.Handle,WM_CLOSE,0,0);
+     FormClose(self,Action);
 end;
 
 procedure TForm1.Otvoritprojekt1Click(Sender: TObject);
@@ -1918,7 +1884,6 @@ end;
 procedure TForm1.saveLevel;
 var
   I: integer;
-  xs: TStringList;
 begin
 
   Levels[LevelID].RoomX := RoomX;
@@ -1937,5 +1902,24 @@ begin
       Levels[LevelID].Description.Append(MLevelDescription.Lines.Strings[I]);
 
 end;
+procedure TForm1.loadlevel(levelnumber:integer);
+var
+  I: integer;
+begin
+  LevelID:=levelnumber;
+  RoomX:=Levels[LevelID].RoomX;
+  RoomY:=Levels[LevelID].RoomY;
+  RoomH:=Levels[LevelID].RoomH;
+  O:=Levels[LevelID].O;
+  Karel := Levels[LevelID].Karel;
+  Zoom := Levels[LevelID].Zoom;
+  Bricks := Levels[LevelID].Bricks;
+  Marks := Levels[LevelID].Marks;
+  MLevelDescription.Clear;
+  if MLevelDescription.Lines.Capacity > 0 then
+    for I := 0 to MLevelDescription.Lines.Capacity do
+      MLevelDescription.Lines.Add(Levels[LevelID].Description.Strings[I]);
+  ReDrawAll;
+end;
 
-end.
+end.

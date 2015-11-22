@@ -3,8 +3,8 @@ unit UcmdForm;
 interface
 
 uses
-  LCLIntf, LCLType, LMessages, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, StdCtrls, ComCtrls, UMyEditor, Buttons, Menus, ImgList,UGraphCmdForm;
+  LCLIntf, LCLType, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, StdCtrls, Buttons, Menus, UGraphCmdForm;
 
 type
   TCmdForm = class(TForm)
@@ -89,7 +89,6 @@ end;
 *)
 
 procedure TCmdForm.FormCreate(Sender: TObject);
-var I : Integer;
 begin
 {  HLEdit:=TMemo.Create(self);//Tmyeditor
   HLEdit.Parent:=self;
@@ -122,7 +121,6 @@ begin
 end;
 
 procedure TCmdForm.ResetLexemas;
-var I : Integer;
 begin
 {  HlEdit.RemoveLexema('');
   for I:=0 to BasicCmds.Count-1 do
@@ -134,7 +132,7 @@ begin
 end;
 
 procedure TCmdForm.BNewClick(Sender: TObject);
-var NName : string;
+var NName : string = '';
     NCmd,OCmd : TCmd;
     I : Integer;
 begin
@@ -317,7 +315,8 @@ begin
 end;
 
 procedure TCmdForm.BRenameClick(Sender: TObject);
-var NName,OName : string;
+var NName : string = '';
+    OName: string;
        CR : Integer;
      Cmd : TCmd;
 begin
@@ -372,7 +371,7 @@ end;
 
 procedure TCmdForm.CmdListDrawItem(Control: TWinControl; Index: Integer;
   Rect: TRect; State: TOwnerDrawState);
-var Flags : Longint;
+var Flags : Longint = 0;
     MyRect : TRect;
     OldBK,oldFg : TColor;
 begin
@@ -399,7 +398,7 @@ end;
 
 procedure TCmdForm.BGrapCmdClick(Sender: TObject);
 var Cmd : TCmd;
-    OK : Boolean;
+    OK : Boolean = false;
     I : Integer;
 begin
   if CmdList.ItemIndex=-1 then Exit;
@@ -416,4 +415,5 @@ begin
     end;
 end;
 
-end.
+end.
+
