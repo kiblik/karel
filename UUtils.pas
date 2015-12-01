@@ -50,9 +50,12 @@ type
              O : TPoint;
              Karel: TKarel;
              Zoom : Integer;
-             Description: TStringList;
+             Description: TStringList{ TODO :  };
              Bricks : TBricks;
              Marks : TMarks;
+             RequestBricks : TBricks;
+             RequestMarks : TMarks;
+             RequestKarel: TKarel;
            end;
 
   TCmdSet = set of Byte;
@@ -321,4 +324,4 @@ finalization
   BasicCmds.Free;
   BasicCnds.Free;
   DefColors.Free;
-end.
+end.

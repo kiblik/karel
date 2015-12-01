@@ -1,12 +1,12 @@
 object Form1: TForm1
-  Left = 415
+  Left = 405
   Height = 600
-  Top = 247
-  Width = 817
+  Top = 63
+  Width = 819
   AlphaBlendValue = 100
   Caption = 'Neuložený projekt'
   ClientHeight = 600
-  ClientWidth = 817
+  ClientWidth = 819
   Color = clBtnFace
   Font.Color = clWindowText
   Font.Height = -11
@@ -15,9 +15,11 @@ object Form1: TForm1
   OnClose = FormClose
   OnCloseQuery = FormCloseQuery
   OnCreate = FormCreate
+  OnKeyDown = FormKeyDown
+  OnKeyPress = FormKeyPress
   OnResize = FormResize
   Position = poScreenCenter
-  LCLVersion = '1.4.4.0'
+  LCLVersion = '1.2.4.0'
   object Img: TImage
     Left = 0
     Height = 105
@@ -25,7 +27,7 @@ object Form1: TForm1
     Width = 105
   end
   object LVersion: TLabel
-    Left = 456
+    Left = 458
     Height = 14
     Top = 48
     Width = 25
@@ -53,7 +55,7 @@ object Form1: TForm1
     Left = 0
     Height = 29
     Top = 0
-    Width = 817
+    Width = 819
     ButtonWidth = 28
     Caption = 'ToolBar'
     Color = clActiveCaption
@@ -93,7 +95,6 @@ object Form1: TForm1
     end
     object ToolButton2: TToolButton
       Left = 94
-      Height = 22
       Top = 2
       Width = 10
       Caption = 'ToolButton2'
@@ -142,7 +143,6 @@ object Form1: TForm1
     end
     object ToolButton7: TToolButton
       Left = 216
-      Height = 22
       Top = 2
       Width = 10
       Caption = 'ToolButton7'
@@ -179,6 +179,7 @@ object Form1: TForm1
       'a'
     )
     OnChange = MLevelDescriptionChange
+    OnKeyUp = MLevelDescriptionKeyUp
     TabOrder = 2
   end
   object LBLevelList: TListBox
@@ -193,9 +194,9 @@ object Form1: TForm1
     TopIndex = -1
   end
   object MHistory: TMemo
-    Left = 264
+    Left = 192
     Height = 121
-    Top = 176
+    Top = 184
     Width = 185
     Color = clGradientInactiveCaption
     Font.CharSet = EASTEUROPE_CHARSET
@@ -206,10 +207,18 @@ object Form1: TForm1
     Lines.Strings = (
       'MHistory'
     )
+    OnKeyDown = MHistoryKeyDown
     ParentFont = False
     ReadOnly = True
     ScrollBars = ssVertical
     TabOrder = 4
+  end
+  object SBRequest: TSpeedButton
+    Left = 488
+    Height = 22
+    Top = 208
+    Width = 112
+    OnClick = SBRequestClick
   end
   object MainMenu: TMainMenu
     Images = ILMainMenu
@@ -827,4 +836,19 @@ object Form1: TForm1
       0000000000000000000000000000
     }
   end
-end
+  object PMLevelEdit: TPopupMenu
+    left = 320
+    top = 96
+    object MIAddLevel: TMenuItem
+      Caption = 'New Item1'
+      OnClick = MIAddLevelClick
+    end
+    object MIRemoveLevel: TMenuItem
+      Caption = 'New Item2'
+      OnClick = MIRemoveLevelClick
+    end
+    object MIRenameLevel: TMenuItem
+      Caption = 'New Item3'
+    end
+  end
+end

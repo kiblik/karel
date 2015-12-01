@@ -127,6 +127,12 @@ var _lMsgKarel_NoPic: string='Nenašiel som obrázok Karla! Karel nebude zobraze
     _lMsgUkladanie : string ='Ukladanie projektu';
     _lMsgNacitanie : string ='Načítanie projektu';
     _lMsgNeulozeny : string ='Neuložený projekt';
+    _lSBZobrazZadanie : string = 'Zobraz zadanie';
+    _lSBUpravZadanie: string = 'Uprav zadanie';
+    _lSBUpravPlochu: string = 'Uprav plochu';
+    _lMIAddLevel: string = 'Pridaj zadanie';
+    _lMIRemoveLevel: string = 'Odstráň zadanie';
+    _lMIRenameLevel: string = 'Premenuj zadanie';
 
 function GetOpakuj(var Cmd : string; var OK : Boolean) : TOpakuj;
 function GetPresun(var Cmd : string; var OK : Boolean) : TPresun;
@@ -432,4 +438,4 @@ begin
 end;
 
 
-end.
+end.

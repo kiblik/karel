@@ -3,17 +3,14 @@
   <ProjectSession>
     <Version Value="9"/>
     <BuildModes Active="Debug"/>
-    <Units Count="55">
+    <Units Count="57">
       <Unit0>
         <Filename Value="Karel.lpr"/>
         <IsPartOfProject Value="True"/>
-        <IsVisibleTab Value="True"/>
-        <EditorIndex Value="0"/>
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="1" Y="1"/>
-        <UsageCount Value="69"/>
-        <Loaded Value="True"/>
+        <UsageCount Value="94"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit0>
       <Unit1>
@@ -22,9 +19,14 @@
         <ComponentName Value="Form1"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <TopLine Value="1752"/>
-        <CursorPos Y="1766"/>
-        <UsageCount Value="69"/>
+        <UnitName Value="UKarel"/>
+        <EditorIndex Value="0"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="496"/>
+        <CursorPos X="37" Y="502"/>
+        <UsageCount Value="94"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit1>
       <Unit2>
@@ -35,14 +37,14 @@
         <ResourceBaseClass Value="Form"/>
         <TopLine Value="16"/>
         <CursorPos X="10" Y="27"/>
-        <UsageCount Value="69"/>
+        <UsageCount Value="94"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit2>
       <Unit3>
         <Filename Value="UDLimits.pas"/>
         <IsPartOfProject Value="True"/>
         <HasResources Value="True"/>
-        <UsageCount Value="69"/>
+        <UsageCount Value="94"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit3>
       <Unit4>
@@ -50,7 +52,7 @@
         <IsPartOfProject Value="True"/>
         <HasResources Value="True"/>
         <TopLine Value="18"/>
-        <UsageCount Value="69"/>
+        <UsageCount Value="94"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit4>
       <Unit5>
@@ -60,36 +62,48 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <CursorPos X="81" Y="5"/>
-        <UsageCount Value="69"/>
+        <UsageCount Value="94"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit5>
       <Unit6>
         <Filename Value="UDStop.pas"/>
         <IsPartOfProject Value="True"/>
+        <ComponentName Value="DStop"/>
         <HasResources Value="True"/>
-        <UsageCount Value="69"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="UDStop"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="1"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="15"/>
+        <CursorPos X="12" Y="30"/>
+        <UsageCount Value="94"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit6>
       <Unit7>
         <Filename Value="UDZoom.pas"/>
         <IsPartOfProject Value="True"/>
         <HasResources Value="True"/>
-        <UsageCount Value="69"/>
+        <UsageCount Value="94"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit7>
       <Unit8>
         <Filename Value="ugraphcmdform.pas"/>
         <IsPartOfProject Value="True"/>
         <HasResources Value="True"/>
-        <UsageCount Value="69"/>
+        <UsageCount Value="94"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit8>
       <Unit9>
         <Filename Value="ULang.pas"/>
         <IsPartOfProject Value="True"/>
-        <TopLine Value="58"/>
-        <CursorPos X="39" Y="80"/>
-        <UsageCount Value="69"/>
+        <UnitName Value="ULang"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="133"/>
+        <CursorPos X="28" Y="156"/>
+        <UsageCount Value="94"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit9>
       <Unit10>
@@ -97,291 +111,365 @@
         <IsPartOfProject Value="True"/>
         <TopLine Value="4"/>
         <CursorPos X="42" Y="16"/>
-        <UsageCount Value="69"/>
+        <UsageCount Value="94"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit10>
       <Unit11>
         <Filename Value="UStack.pas"/>
         <IsPartOfProject Value="True"/>
         <CursorPos X="59" Y="18"/>
-        <UsageCount Value="69"/>
+        <UsageCount Value="94"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit11>
       <Unit12>
         <Filename Value="UUtils.pas"/>
-        <TopLine Value="185"/>
-        <CursorPos X="35" Y="198"/>
-        <UsageCount Value="21"/>
+        <UnitName Value="UUtils"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="23"/>
+        <CursorPos X="35" Y="58"/>
+        <UsageCount Value="29"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit12>
       <Unit13>
         <Filename Value="UcmdForm.lfm"/>
         <TopLine Value="391"/>
         <CursorPos X="24" Y="277"/>
-        <UsageCount Value="5"/>
+        <UsageCount Value="2"/>
         <DefaultSyntaxHighlighter Value="LFM"/>
       </Unit13>
       <Unit14>
         <Filename Value="UCommands.dfm"/>
         <CursorPos X="27" Y="33"/>
-        <UsageCount Value="5"/>
+        <UsageCount Value="2"/>
         <DefaultSyntaxHighlighter Value="LFM"/>
       </Unit14>
       <Unit15>
         <Filename Value="UDLimits.lfm"/>
         <TopLine Value="146"/>
         <CursorPos X="56" Y="19"/>
-        <UsageCount Value="5"/>
+        <UsageCount Value="2"/>
         <DefaultSyntaxHighlighter Value="LFM"/>
       </Unit15>
       <Unit16>
         <Filename Value="UDMiestnost.lfm"/>
         <TopLine Value="919"/>
         <CursorPos X="21" Y="1172"/>
-        <UsageCount Value="5"/>
+        <UsageCount Value="2"/>
         <DefaultSyntaxHighlighter Value="LFM"/>
       </Unit16>
       <Unit17>
         <Filename Value="UDPosun.lfm"/>
         <TopLine Value="288"/>
         <CursorPos X="26" Y="6"/>
-        <UsageCount Value="5"/>
+        <UsageCount Value="2"/>
         <DefaultSyntaxHighlighter Value="LFM"/>
       </Unit17>
       <Unit18>
         <Filename Value="UDStop.lfm"/>
-        <UsageCount Value="5"/>
+        <UsageCount Value="2"/>
         <DefaultSyntaxHighlighter Value="LFM"/>
       </Unit18>
       <Unit19>
         <Filename Value="UDZoom.lfm"/>
         <CursorPos X="48" Y="5"/>
-        <UsageCount Value="5"/>
+        <UsageCount Value="2"/>
         <DefaultSyntaxHighlighter Value="LFM"/>
       </Unit19>
       <Unit20>
         <Filename Value="ugraphcmdform.lfm"/>
-        <UsageCount Value="5"/>
+        <UsageCount Value="2"/>
         <DefaultSyntaxHighlighter Value="LFM"/>
       </Unit20>
       <Unit21>
         <Filename Value="UKarel.lfm"/>
-        <TopLine Value="775"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="466"/>
         <CursorPos X="35" Y="466"/>
-        <UsageCount Value="5"/>
+        <UsageCount Value="7"/>
         <DefaultSyntaxHighlighter Value="LFM"/>
       </Unit21>
       <Unit22>
         <Filename Value="UCommands.pas"/>
         <HasResources Value="True"/>
         <TopLine Value="4"/>
-        <UsageCount Value="5"/>
+        <UsageCount Value="2"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit22>
       <Unit23>
         <Filename Value="ULex.pas"/>
-        <UsageCount Value="16"/>
+        <UsageCount Value="13"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit23>
       <Unit24>
         <Filename Value="/usr/lib/lazarus/1.2.4/lcl/include/application.inc"/>
-        <TopLine Value="2142"/>
-        <CursorPos Y="2160"/>
-        <UsageCount Value="6"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="2181"/>
+        <CursorPos X="6" Y="2199"/>
+        <UsageCount Value="9"/>
       </Unit24>
       <Unit25>
         <Filename Value="/usr/lib/lazarus/1.2.4/lcl/customtimer.pas"/>
         <UnitName Value="CustomTimer"/>
         <TopLine Value="133"/>
         <CursorPos Y="151"/>
-        <UsageCount Value="6"/>
+        <UsageCount Value="3"/>
       </Unit25>
       <Unit26>
         <Filename Value="/usr/lib/lazarus/1.2.4/lcl/include/customform.inc"/>
-        <TopLine Value="460"/>
-        <CursorPos Y="490"/>
-        <UsageCount Value="6"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="1423"/>
+        <CursorPos X="1" Y="1431"/>
+        <UsageCount Value="10"/>
       </Unit26>
       <Unit27>
         <Filename Value="/usr/lib/lazarus/1.2.4/lcl/include/wincontrol.inc"/>
-        <TopLine Value="7072"/>
-        <CursorPos Y="7090"/>
-        <UsageCount Value="6"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="5318"/>
+        <CursorPos X="1" Y="5327"/>
+        <UsageCount Value="10"/>
       </Unit27>
       <Unit28>
         <Filename Value="/usr/lib/lazarus/1.2.4/lcl/interfaces/gtk2/gtk2callback.inc"/>
-        <TopLine Value="2908"/>
-        <CursorPos Y="2933"/>
-        <UsageCount Value="6"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="1387"/>
+        <CursorPos X="1" Y="1403"/>
+        <UsageCount Value="10"/>
       </Unit28>
       <Unit29>
         <Filename Value="/usr/lib/lazarus/1.2.4/lcl/interfaces/gtk2/gtk2widgetset.inc"/>
-        <TopLine Value="2312"/>
-        <CursorPos Y="2330"/>
-        <UsageCount Value="6"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="2397"/>
+        <CursorPos X="1" Y="2408"/>
+        <UsageCount Value="10"/>
       </Unit29>
       <Unit30>
         <Filename Value="/usr/lib/lazarus/1.2.4/lcl/interfaces/gtk2/gtk2int.pas"/>
         <UnitName Value="Gtk2Int"/>
-        <TopLine Value="726"/>
-        <CursorPos Y="737"/>
-        <UsageCount Value="8"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="704"/>
+        <CursorPos X="1" Y="720"/>
+        <UsageCount Value="9"/>
       </Unit30>
       <Unit31>
         <Filename Value="/usr/lib/lazarus/1.2.4/lcl/stdctrls.pp"/>
         <UnitName Value="StdCtrls"/>
         <TopLine Value="619"/>
         <CursorPos X="14" Y="637"/>
-        <UsageCount Value="6"/>
+        <UsageCount Value="3"/>
       </Unit31>
       <Unit32>
         <Filename Value="/usr/share/fpcsrc/2.6.4/rtl/objpas/classes/classesh.inc"/>
         <TopLine Value="641"/>
         <CursorPos X="15" Y="659"/>
-        <UsageCount Value="8"/>
+        <UsageCount Value="5"/>
       </Unit32>
       <Unit33>
         <Filename Value="/usr/lib/lazarus/1.2.4/lcl/include/control.inc"/>
-        <TopLine Value="4733"/>
-        <CursorPos Y="4744"/>
-        <UsageCount Value="8"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="2084"/>
+        <CursorPos X="1" Y="2100"/>
+        <UsageCount Value="10"/>
       </Unit33>
       <Unit34>
         <Filename Value="/usr/lib/lazarus/1.2.4/lcl/include/toolbutton.inc"/>
-        <TopLine Value="109"/>
-        <CursorPos Y="133"/>
-        <UsageCount Value="8"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="124"/>
+        <CursorPos X="1" Y="134"/>
+        <UsageCount Value="9"/>
       </Unit34>
       <Unit35>
         <Filename Value="/usr/share/fpcsrc/2.6.4/rtl/objpas/objpas.pp"/>
         <TopLine Value="3"/>
         <CursorPos X="8" Y="28"/>
-        <UsageCount Value="8"/>
+        <UsageCount Value="5"/>
       </Unit35>
       <Unit36>
         <Filename Value="/usr/share/fpcsrc/2.6.4/rtl/inc/systemh.inc"/>
         <TopLine Value="67"/>
         <CursorPos X="3" Y="92"/>
-        <UsageCount Value="8"/>
+        <UsageCount Value="5"/>
       </Unit36>
       <Unit37>
         <Filename Value="/usr/lib/lazarus/1.2.4/lcl/include/filedialog.inc"/>
         <TopLine Value="419"/>
         <CursorPos Y="430"/>
-        <UsageCount Value="8"/>
+        <UsageCount Value="5"/>
       </Unit37>
       <Unit38>
         <Filename Value="/usr/lib/lazarus/1.2.4/lcl/include/customlistbox.inc"/>
-        <TopLine Value="592"/>
-        <CursorPos X="35" Y="605"/>
-        <UsageCount Value="8"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="211"/>
+        <CursorPos X="28" Y="221"/>
+        <UsageCount Value="9"/>
       </Unit38>
       <Unit39>
         <Filename Value="/usr/lib/lazarus/1.2.4/lcl/interfaces/gtk2/gtk2memostrings.inc"/>
-        <TopLine Value="140"/>
-        <CursorPos Y="172"/>
-        <UsageCount Value="8"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="175"/>
+        <CursorPos X="1" Y="186"/>
+        <UsageCount Value="9"/>
       </Unit39>
       <Unit40>
         <Filename Value="/usr/lib/lazarus/1.2.4/lcl/include/custommemo.inc"/>
+        <WindowIndex Value="0"/>
         <TopLine Value="188"/>
-        <CursorPos Y="214"/>
+        <CursorPos X="1" Y="214"/>
         <UsageCount Value="8"/>
       </Unit40>
       <Unit41>
         <Filename Value="/usr/share/fpcsrc/2.6.4/rtl/inc/objpash.inc"/>
         <TopLine Value="149"/>
         <CursorPos X="24" Y="192"/>
-        <UsageCount Value="8"/>
+        <UsageCount Value="5"/>
       </Unit41>
       <Unit42>
         <Filename Value="/usr/lib/lazarus/1.2.4/lcl/textstrings.pas"/>
         <UnitName Value="TextStrings"/>
-        <TopLine Value="227"/>
-        <CursorPos Y="178"/>
-        <UsageCount Value="13"/>
-        <DefaultSyntaxHighlighter Value="Delphi"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="715"/>
+        <CursorPos X="1" Y="731"/>
+        <UsageCount Value="10"/>
       </Unit42>
       <Unit43>
         <Filename Value="/usr/share/lazarus/1.4.4/ide/lazarus.pp"/>
         <UnitName Value="Lazarus"/>
         <TopLine Value="24"/>
         <CursorPos X="3" Y="41"/>
-        <UsageCount Value="9"/>
+        <UsageCount Value="6"/>
       </Unit43>
       <Unit44>
         <Filename Value="/usr/share/lazarus/1.4.4/components/PascalScript/Source/x64.inc"/>
         <TopLine Value="246"/>
         <CursorPos X="17" Y="265"/>
-        <UsageCount Value="9"/>
+        <UsageCount Value="6"/>
       </Unit44>
       <Unit45>
         <Filename Value="/usr/share/lazarus/1.4.4/ide/main.pp"/>
         <UnitName Value="Main"/>
         <TopLine Value="12051"/>
         <CursorPos X="19" Y="12090"/>
-        <UsageCount Value="9"/>
+        <UsageCount Value="6"/>
       </Unit45>
       <Unit46>
         <Filename Value="/usr/share/lazarus/1.4.4/lcl/include/customform.inc"/>
         <TopLine Value="1431"/>
         <CursorPos Y="1444"/>
-        <UsageCount Value="9"/>
+        <UsageCount Value="6"/>
       </Unit46>
       <Unit47>
         <Filename Value="/usr/share/lazarus/1.4.4/lcl/include/control.inc"/>
         <TopLine Value="2110"/>
         <CursorPos Y="2123"/>
-        <UsageCount Value="9"/>
+        <UsageCount Value="6"/>
       </Unit47>
       <Unit48>
         <Filename Value="/usr/share/lazarus/1.4.4/lcl/include/wincontrol.inc"/>
         <TopLine Value="5329"/>
         <CursorPos Y="5342"/>
-        <UsageCount Value="9"/>
+        <UsageCount Value="6"/>
       </Unit48>
       <Unit49>
         <Filename Value="/usr/share/lazarus/1.4.4/lcl/lclmessageglue.pas"/>
         <UnitName Value="LCLMessageGlue"/>
         <TopLine Value="106"/>
         <CursorPos Y="123"/>
-        <UsageCount Value="9"/>
+        <UsageCount Value="6"/>
       </Unit49>
       <Unit50>
         <Filename Value="/usr/share/lazarus/1.4.4/lcl/interfaces/gtk2/gtk2proc.inc"/>
         <TopLine Value="3616"/>
         <CursorPos Y="3631"/>
-        <UsageCount Value="9"/>
+        <UsageCount Value="6"/>
       </Unit50>
       <Unit51>
         <Filename Value="/usr/share/lazarus/1.4.4/lcl/interfaces/gtk2/gtk2callback.inc"/>
         <TopLine Value="1337"/>
         <CursorPos Y="1351"/>
-        <UsageCount Value="9"/>
+        <UsageCount Value="6"/>
       </Unit51>
       <Unit52>
         <Filename Value="/usr/share/lazarus/1.4.4/lcl/interfaces/gtk2/gtk2widgetset.inc"/>
         <TopLine Value="2390"/>
         <CursorPos Y="2404"/>
-        <UsageCount Value="9"/>
+        <UsageCount Value="6"/>
       </Unit52>
       <Unit53>
         <Filename Value="/usr/share/lazarus/1.4.4/lcl/include/menuitem.inc"/>
         <TopLine Value="105"/>
         <CursorPos X="3" Y="86"/>
-        <UsageCount Value="9"/>
+        <UsageCount Value="6"/>
       </Unit53>
       <Unit54>
         <Filename Value="/usr/share/lazarus/1.4.4/lcl/interfaces/gtk2/gtk2memostrings.inc"/>
         <TopLine Value="97"/>
         <CursorPos Y="114"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="7"/>
       </Unit54>
+      <Unit55>
+        <Filename Value="/usr/lib/lazarus/1.2.4/lcl/lclmessageglue.pas"/>
+        <UnitName Value="LCLMessageGlue"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="110"/>
+        <CursorPos X="1" Y="123"/>
+        <UsageCount Value="10"/>
+      </Unit55>
+      <Unit56>
+        <Filename Value="/usr/lib/lazarus/1.2.4/lcl/interfaces/gtk2/gtk2proc.inc"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="3606"/>
+        <CursorPos X="1" Y="3617"/>
+        <UsageCount Value="10"/>
+      </Unit56>
     </Units>
     <General>
       <ActiveWindowIndexAtStart Value="0"/>
     </General>
-    <JumpHistory Count="0" HistoryIndex="-1"/>
+    <JumpHistory Count="11" HistoryIndex="10">
+      <Position1>
+        <Filename Value="UKarel.pas"/>
+        <Caret Line="813" Column="3" TopLine="809"/>
+      </Position1>
+      <Position2>
+        <Filename Value="UKarel.pas"/>
+        <Caret Line="506" Column="30" TopLine="472"/>
+      </Position2>
+      <Position3>
+        <Filename Value="UKarel.pas"/>
+        <Caret Line="503" Column="20" TopLine="485"/>
+      </Position3>
+      <Position4>
+        <Filename Value="UKarel.pas"/>
+        <Caret Line="506" Column="18" TopLine="497"/>
+      </Position4>
+      <Position5>
+        <Filename Value="UKarel.pas"/>
+        <Caret Line="511" Column="26" TopLine="498"/>
+      </Position5>
+      <Position6>
+        <Filename Value="UKarel.pas"/>
+        <Caret Line="438" Column="1" TopLine="435"/>
+      </Position6>
+      <Position7>
+        <Filename Value="UKarel.pas"/>
+        <Caret Line="439" Column="1" TopLine="435"/>
+      </Position7>
+      <Position8>
+        <Filename Value="UKarel.pas"/>
+        <Caret Line="440" Column="1" TopLine="435"/>
+      </Position8>
+      <Position9>
+        <Filename Value="UKarel.pas"/>
+        <Caret Line="441" Column="1" TopLine="435"/>
+      </Position9>
+      <Position10>
+        <Filename Value="UDStop.pas"/>
+        <Caret Line="20" Column="38" TopLine="3"/>
+      </Position10>
+      <Position11>
+        <Filename Value="UDStop.pas"/>
+        <Caret Line="14" Column="11" TopLine="6"/>
+      </Position11>
+    </JumpHistory>
   </ProjectSession>
   <Debugging>
     <Watches Count="10">
