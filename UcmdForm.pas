@@ -306,11 +306,13 @@ begin
     begin
       if II=-1 then II:=0;
       CmdList.ItemIndex:=II;
+      LastItem:=II;
       Cmd:=CmdList.Items.Objects[II] as TCmd;
       for II:=0 to Length(Cmd.Lines)-1 do
         HlEdit.Lines.Add(Cmd.Lines[II]);
 //      HlEdit.MakeAll;
       Caption:=CmdList.Items[CmdList.ItemIndex];
+      HlEdit.SelStart:=Cmd.CaretPos;
     end;
 end;
 
