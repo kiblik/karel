@@ -50,7 +50,7 @@ type
              O : TPoint;
              Karel: TKarel;
              Zoom : Integer;
-             Description: TStringList{ TODO :  };
+             Description: TStringList;
              Bricks : TBricks;
              Marks : TMarks;
              RequestBricks : TBricks;
@@ -67,6 +67,7 @@ type
             end;
   TColorStringList = class(TStringList)
     procedure AddColor(ColorName : string; Color : TColor);
+   public
     destructor Destroy; override;
   end;
 
@@ -271,7 +272,7 @@ begin
 end;
 
 
-var NColor : TOColor;
+//var NColor : TOColor;
 initialization
   Zoom:=3;
   WasChanged:=False;

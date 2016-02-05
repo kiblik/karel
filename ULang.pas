@@ -133,6 +133,9 @@ var _lMsgKarel_NoPic: string='Nenašiel som obrázok Karla! Karel nebude zobraze
     _lMIAddLevel: string = 'Pridaj zadanie';
     _lMIRemoveLevel: string = 'Odstráň zadanie';
     _lMIRenameLevel: string = 'Premenuj zadanie';
+    _lLevelName: string = 'Názov zadania';
+    _lWriteLevelName: string = 'Napíš názov zadania';
+    _lLevelNameCannotBeEmpty: string = 'Názov zadania nemôže byť prázdny';
 
 function GetOpakuj(var Cmd : string; var OK : Boolean) : TOpakuj;
 function GetPresun(var Cmd : string; var OK : Boolean) : TPresun;
@@ -438,4 +441,4 @@ begin
 end;
 
 
-end.
+end.

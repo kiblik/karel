@@ -58,14 +58,8 @@ type
     N1: TMenuItem;
     LVersion: TLabel;
 
-    procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
-    procedure FormKeyPress(Sender: TObject; var Key: char);
     procedure LBLevelListClick(Sender: TObject);
     procedure MIAddLevelClick(Sender: TObject);
-    procedure MHistoryKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState
-      );
-    procedure MIRemoveLevelClick(Sender: TObject);
-    procedure MLevelDescriptionChange(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure EInputKeyPress(Sender: TObject; var Key: char);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
@@ -246,11 +240,11 @@ begin
   Img.Width := ClientWidth;
   Img.Height := ClientHeight - MHistory.Height - EInput.Height;
 
-  O.X := 150;
-  O.Y := Img.Height div 2;
-  RoomX := 20;
-  RoomY := 10;
-  RoomH := 10;
+  O.X := DefO.X;
+  O.Y := DefO.Y;//Img.Height div 2;
+  RoomX := DefRoomX;
+  RoomY := DefRoomY;
+  RoomH := DefRoomH;
 
   DrawAxis;
 
@@ -290,7 +284,6 @@ begin
 end;
 
 procedure TForm1.LBLevelListClick(Sender: TObject);
-
 begin
   if(LBLevelList.ItemIndex <> -1) then begin
     loadlevel(LBLevelList.ItemIndex);
@@ -298,36 +291,50 @@ begin
 end;
 
 procedure TForm1.MIAddLevelClick(Sender: TObject);
+  var name:string;
+      X,Y: integer;
 begin
-  SetLength(Levels, Length(Levels)+1);
-  LevelID:=high(Levels);
+  name:=InputBox(_lLevelName, _lWriteLevelName, '');
+  If name = '' then
+    showmessage(_lLevelNameCannotBeEmpty)
+  else begin
+    LevelID:=high(Levels);
+    if (LBLevelList.Items.Count <> 0) then begin // some level is in list
+      SetLength(Levels, Length(Levels)+1);
+      LevelID:=high(Levels);
+      Levels[LevelID].Description := TStringList.Create;
+      MLevelDescription.Lines.Assign(Levels[LevelID].Description);
+      O.X := 150;
+      O.Y := Img.Height div 2;
+      RoomX := 20;
+      RoomY := 10;
+      RoomH := 10;
+      SetLength(Bricks, RoomX, RoomY);
+      SetLength(Marks, RoomX, RoomY);
+      SetLength(RequestBricks, RoomX, RoomY);
+      SetLength(RequestMarks, RoomX, RoomY);
+      for X := 0 to RoomX - 1 do
+        for Y := 0 to RoomY - 1 do
+        begin
+          Bricks[X, Y] := nil;
+          Marks[X, Y] := False;
+          RequestBricks[X, Y] := nil;
+          RequestMarks[X, Y] := False;
+        end;
+      Karel.Pos.X := 0;
+      Karel.Pos.Y := 0;
+      Karel.Orientation := 0;
+      Karel.Limits.Up := 1;
+      saveLevel;
+      ReDrawAll;
+    end;
+    LBLevelList.Items.Append(name);
+    Levels[LevelID].Name := name;
+  end;
+  LBLevelList.ItemIndex:=LevelID;
+  LBLevelListClick(self);
 end;
 
-procedure TForm1.MHistoryKeyDown(Sender: TObject; var Key: Word;
-  Shift: TShiftState);
-begin
-
-end;
-
-procedure TForm1.MIRemoveLevelClick(Sender: TObject);
-begin
-
-end;
-
-procedure TForm1.FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState
-  );
-begin
-end;
-
-procedure TForm1.FormKeyPress(Sender: TObject; var Key: char);
-begin
-
-end;
-
-procedure TForm1.MLevelDescriptionChange(Sender: TObject);
-begin
-
-end;
 
 procedure TForm1.ReadKarelPts;
 var
@@ -434,7 +441,10 @@ begin
 end;
 
 procedure TForm1.FormClose(Sender: TObject; var Action: TCloseAction);
+  var i:integer;
 begin
+  for i:=0 to length(Levels)-1 do
+    Levels[i].Description.Free;
   CmdForm.Free;
   Stack.Free;
   DStop.Free;
@@ -708,7 +718,7 @@ begin
       EInput.Text := LHistory[ELine];
       Key := vk_End;
     end;
-    123:
+    VK_PAUSE :
       startAdmin;
   end;
 end;
@@ -2090,7 +2100,7 @@ begin
   LBLevelList.Items.Clear;
   SetLength(Levels, 1);
   LevelID:=0;
-//  saveLevel;
+  saveLevel;
   RedrawAll;
   Caption := _lMsgNoSavedTitle;
   if CmdForm <> nil then
@@ -2107,9 +2117,7 @@ begin
 end;
 
 procedure TForm1.MIKoniecClick(Sender: TObject);
-var Action: TCloseAction;
 begin
-//     FormClose(self,Action);
   Close;
 end;
 
@@ -2125,8 +2133,6 @@ begin
 end;
 
 procedure TForm1.saveLevel;
-var
-  I: integer;
 begin
 
   Levels[LevelID].RoomX := RoomX;
@@ -2145,8 +2151,6 @@ begin
    Levels[LevelID].Description.Assign(MLevelDescription.Lines);
 end;
 procedure TForm1.loadlevel(levelnumber:integer);
-var
-  I: integer;
 begin
   LevelID:=levelnumber;
   RoomX:=Levels[LevelID].RoomX;

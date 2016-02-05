@@ -1,7 +1,7 @@
 object Form1: TForm1
-  Left = 405
+  Left = 525
   Height = 600
-  Top = 63
+  Top = 327
   Width = 819
   AlphaBlendValue = 100
   Caption = 'Neuložený projekt'
@@ -15,8 +15,6 @@ object Form1: TForm1
   OnClose = FormClose
   OnCloseQuery = FormCloseQuery
   OnCreate = FormCreate
-  OnKeyDown = FormKeyDown
-  OnKeyPress = FormKeyPress
   OnResize = FormResize
   Position = poScreenCenter
   LCLVersion = '1.4.4.0'
@@ -180,7 +178,6 @@ object Form1: TForm1
     Lines.Strings = (
       'a'
     )
-    OnChange = MLevelDescriptionChange
     OnKeyUp = MLevelDescriptionKeyUp
     TabOrder = 2
   end
@@ -208,7 +205,6 @@ object Form1: TForm1
     Lines.Strings = (
       'MHistory'
     )
-    OnKeyDown = MHistoryKeyDown
     ParentFont = False
     ReadOnly = True
     ScrollBars = ssVertical
@@ -846,7 +842,6 @@ object Form1: TForm1
     end
     object MIRemoveLevel: TMenuItem
       Caption = 'New Item2'
-      OnClick = MIRemoveLevelClick
     end
     object MIRenameLevel: TMenuItem
       Caption = 'New Item3'

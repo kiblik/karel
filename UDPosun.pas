@@ -27,7 +27,7 @@ uses ULang;
 {$R *.lfm}
 
 procedure TDRoomMove.FormCreate(Sender: TObject);
-var Rgn : HRgn;
+//var Rgn : HRgn;
 begin
   Width:=110;
 
@@ -59,4 +59,5 @@ begin
   if Key=#27 then Close
 end;
 
-end.
+end.
+
