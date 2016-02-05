@@ -137,6 +137,8 @@ var _lMsgKarel_NoPic: string='Nenašiel som obrázok Karla! Karel nebude zobraze
     _lWriteLevelName: string = 'Napíš názov zadania';
     _lLevelNameCannotBeEmpty: string = 'Názov zadania nemôže byť prázdny';
     _lCannotBeRemovedLastLevel: string = 'Posledný level nemôže byť zmazaný';
+    _lPozastavCmd: string = 'pozastav';
+    _lPokracujCmd: string = 'pokracuj';
 
 function GetOpakuj(var Cmd : string; var OK : Boolean) : TOpakuj;
 function GetPresun(var Cmd : string; var OK : Boolean) : TPresun;

@@ -31,5 +31,6 @@ begin
   BStop.Caption:=_LBStopCaption;
 end;
 
+
 end.
-
+

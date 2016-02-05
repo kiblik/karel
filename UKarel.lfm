@@ -1,7 +1,7 @@
 object Form1: TForm1
-  Left = 314
+  Left = 431
   Height = 600
-  Top = 124
+  Top = 161
   Width = 819
   AlphaBlendValue = 100
   Caption = 'Neuložený projekt'

@@ -76,6 +76,8 @@ type
     procedure EInputKeyDown(Sender: TObject; var Key: word; Shift: TShiftState);
     procedure FormResize(Sender: TObject);
     procedure BStopClick(Sender: TObject);
+    procedure BPauseClick(Sender: TObject);
+    procedure BStepClick(Sender: TObject);
     procedure Rozmerymiestnosti1Click(Sender: TObject);
     procedure Posunmiestnosti1Click(Sender: TObject);
     procedure ObmedzenieKarla1Click(Sender: TObject);
@@ -106,6 +108,7 @@ type
     LHistory: array of string;
     admin: boolean;
     editingRequest: boolean;
+    Pause: boolean;
 
     procedure DrawAxis;
     procedure ReDrawAll(const FromY: integer = 0);
@@ -124,6 +127,8 @@ type
     procedure CmdRychlo;
     procedure CmdOznac;
     procedure CmdOdznac;
+    procedure CmdPozastav;
+    procedure CmdPokracuj;
     procedure CmdPolozF(Info: TPolozF; var OK: boolean);
     procedure BeginProgram;
     procedure EndProgram;
@@ -230,9 +235,12 @@ begin
   Stack := TStack.Create;
   DStop := TDStop.Create(self);
   DStop.BStop.OnClick := BStopClick;
+  DStop.BPause.OnClick:= BPauseClick;
+  DStop.BStep.OnClick:=BStepClick;
   DStop.Left := Left + (Width - DStop.Width) div 2;
   DStop.Top := Top;
   DStop.Hide;
+
   EInput.Text := '';
   ELine := 0;
   MHistory.Clear;
@@ -284,6 +292,7 @@ begin
 
   if paramcount > 0 then
     otvor(ParamStr(1));
+
 
 end;
 
@@ -825,6 +834,23 @@ begin
   Stack.Clear;
 end;
 
+procedure TForm1.BPauseClick(Sender: TObject);
+begin
+  if pause then
+    CmdPokracuj
+  else
+    CmdPozastav;
+end;
+
+procedure TForm1.BStepClick(Sender: TObject);
+begin
+  if Stack.IsEmpty then
+    EndProgram
+  else
+    RunCommand(Stack.Pop);
+  ReDrawAll;
+end;
+
 procedure TForm1.RoomMoveClick(Sender: TObject);
 begin
   case (Sender as TBitBtn).Tag of
@@ -1215,6 +1241,20 @@ begin
       if Cmd <> '' then
         Stack.Push(Cmd);
     end;
+    if FW = _lPozastavCmd then
+    begin
+      CmdPozastav;
+      OK := True;
+      if Cmd <> '' then
+        Stack.Push(Cmd);
+    end;
+    if FW = _lPokracujCmd then
+    begin
+      CmdPokracuj;
+      OK := True;
+      if Cmd <> '' then
+        Stack.Push(Cmd);
+    end;
     if FW = _lAkCmd then
     begin
       Ak := GetAk(Cmd, OK);
@@ -1296,7 +1336,8 @@ begin
       MyMessageDlg(_lErrorMsgRuntime,ErrorMsg,mtError,[mbOK],mrOK,0);
       Exit;
     end;
-
+    if ((not Stack.IsEmpty) and Pause) then
+      break;
     if not Stack.IsEmpty and not Timer1.Enabled then
       BeginProgram;
     if not ShowGraphic then
@@ -1304,7 +1345,7 @@ begin
       Cmd := Stack.Pop;
       Application.ProcessMessages;
     end;
-  until ShowGraphic or (Cmd = '');
+  until ShowGraphic or (Cmd = '') or Pause;
   if Stack.IsEmpty then
     EndProgram;
 end;
@@ -1573,6 +1614,18 @@ procedure TForm1.CmdOdznac;
 begin
   Marks[Karel.Pos.X, Karel.Pos.Y] := False;
   RedrawAll;
+end;
+
+procedure TForm1.CmdPozastav;
+begin
+  Pause:=true;
+  Timer1.Enabled:=false;
+end;
+
+procedure TForm1.CmdPokracuj;
+begin
+  Pause:=false;
+  Timer1.Enabled:=true;
 end;
 
 procedure TForm1.Rozmerymiestnosti1Click(Sender: TObject);
@@ -2167,6 +2220,7 @@ begin
     Exit;
   DeleteProject;
   WasChanged := False;
+  Pause:=false;
 end;
 
 procedure TForm1.MIKoniecClick(Sender: TObject);
@@ -2231,3 +2285,4 @@ begin
 end;
 
 end.
+
