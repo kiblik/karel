@@ -2109,7 +2109,8 @@ end;
 procedure TForm1.MIKoniecClick(Sender: TObject);
 var Action: TCloseAction;
 begin
-     FormClose(self,Action);
+//     FormClose(self,Action);
+  Close;
 end;
 
 procedure TForm1.Otvoritprojekt1Click(Sender: TObject);
@@ -2172,4 +2173,4 @@ begin
   admin:=true;
 end;
 
-end.
+end.

@@ -67,6 +67,7 @@ type
             end;
   TColorStringList = class(TStringList)
     procedure AddColor(ColorName : string; Color : TColor);
+    destructor Destroy; override;
   end;
 
 var    O,UX,UY,UZ : TPoint;
@@ -112,7 +113,6 @@ procedure CenterText(Text : string;Canvas : TCanvas;var Rect : TRect);
 implementation
 uses ULang,SysUtils,StdCtrls;
 
-
 procedure TColorStringList.AddColor(ColorName : string; Color : TColor);
 var NColor : TOColor;
 begin
@@ -122,11 +122,17 @@ begin
       AddObject(ColorName,NColor)
     end
   else NColor:=Objects[IndexOf(ColorName)] as TOColor;
-
   NColor.Color:=Color;
 end;
 
-
+destructor TColorStringList.Destroy;
+  var i:integer;
+begin
+  if(count > 0) then
+    for i:=0 to Count-1 do
+      Objects[i].Destroy;
+  Clear;
+end;
 
 procedure CenterText(Text : string;Canvas : TCanvas;var Rect : TRect);
 begin
@@ -324,4 +330,4 @@ finalization
   BasicCmds.Free;
   BasicCnds.Free;
   DefColors.Free;
-end.
+end.

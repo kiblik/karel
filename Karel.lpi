@@ -60,7 +60,6 @@
               <ShoLineNum Value="True"/>
             </Verbosity>
             <CustomOptions Value="-dBorland -dVer150 -dDelphi7 -dCompiler6_Up -dPUREPASCAL"/>
-            <CompilerPath Value="$(CompPath)"/>
           </Other>
         </CompilerOptions>
       </Item2>
@@ -97,7 +96,6 @@
               <ShoLineNum Value="True"/>
             </Verbosity>
             <CustomOptions Value="-dBorland -dVer150 -dDelphi7 -dCompiler6_Up -dPUREPASCAL"/>
-            <CompilerPath Value="$(CompPath)"/>
           </Other>
         </CompilerOptions>
       </Item3>
@@ -126,7 +124,6 @@
         <ComponentName Value="Form1"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UnitName Value="UKarel"/>
       </Unit1>
       <Unit2>
         <Filename Value="UcmdForm.pas"/>
@@ -158,7 +155,6 @@
         <ComponentName Value="DStop"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UnitName Value="UDStop"/>
       </Unit6>
       <Unit7>
         <Filename Value="UDZoom.pas"/>
@@ -173,7 +169,6 @@
       <Unit9>
         <Filename Value="ULang.pas"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="ULang"/>
       </Unit9>
       <Unit10>
         <Filename Value="UMyEditor.pas"/>
@@ -212,7 +207,6 @@
         <ShoLineNum Value="True"/>
       </Verbosity>
       <CustomOptions Value="-dBorland -dVer150 -dDelphi7 -dCompiler6_Up -dPUREPASCAL"/>
-      <CompilerPath Value="$(CompPath)"/>
     </Other>
   </CompilerOptions>
   <Debugging>
