@@ -59,10 +59,14 @@ type
     LVersion: TLabel;
 
     procedure LBLevelListClick(Sender: TObject);
+    procedure LBLevelListMouseDown(Sender: TObject; Button: TMouseButton;
+      Shift: TShiftState; X, Y: Integer);
     procedure MIAddLevelClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure EInputKeyPress(Sender: TObject; var Key: char);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure MIRemoveLevelClick(Sender: TObject);
+    procedure MIRenameLevelClick(Sender: TObject);
     procedure MLevelDescriptionKeyUp(Sender: TObject; var Key: Word;
       Shift: TShiftState);
     procedure SBRequestClick(Sender: TObject);
@@ -240,8 +244,8 @@ begin
   Img.Width := ClientWidth;
   Img.Height := ClientHeight - MHistory.Height - EInput.Height;
 
-  O.X := DefO.X;
-  O.Y := DefO.Y;//Img.Height div 2;
+  O.X := 150;
+  O.Y := Img.Height div 2;
   RoomX := DefRoomX;
   RoomY := DefRoomY;
   RoomH := DefRoomH;
@@ -289,12 +293,30 @@ begin
     loadlevel(LBLevelList.ItemIndex);
   end;
 end;
+// toto je skaredy hnustny kod inspirovany examplom z netu, len aby sa dalo right clickom mazat a premenovavat
+procedure TForm1.LBLevelListMouseDown(Sender: TObject; Button: TMouseButton;
+  Shift: TShiftState; X, Y: Integer);
+var
+  MousePos      : TPoint;
+  OverItemIndex : integer;
+begin
+
+  MousePos.x := X;
+  MousePos.y := Y;
+
+  if Button = mbRight then
+    begin
+      OverItemIndex := LBLevelList.ItemAtPos(MousePos,False);
+      LBLevelList.ItemIndex:=OverItemIndex;
+    end;
+end;
+// koniec skaredeho hnusneho kodu - ok, skaredy je aj dalej, ale aspon nerobi taku magiu ako toto
 
 procedure TForm1.MIAddLevelClick(Sender: TObject);
-  var name:string;
+  var newname:string;
       X,Y: integer;
 begin
-  name:=InputBox(_lLevelName, _lWriteLevelName, '');
+  newname:=InputBox(_lLevelName, _lWriteLevelName, '');
   If name = '' then
     showmessage(_lLevelNameCannotBeEmpty)
   else begin
@@ -328,8 +350,8 @@ begin
       saveLevel;
       ReDrawAll;
     end;
-    LBLevelList.Items.Append(name);
-    Levels[LevelID].Name := name;
+    LBLevelList.Items.Append(newname);
+    Levels[LevelID].Name := newname;
   end;
   LBLevelList.ItemIndex:=LevelID;
   LBLevelListClick(self);
@@ -448,6 +470,37 @@ begin
   CmdForm.Free;
   Stack.Free;
   DStop.Free;
+end;
+
+procedure TForm1.MIRenameLevelClick(Sender: TObject);
+var
+  newname: string;
+begin
+  newname:=Levels[LBLevelList.ItemIndex].Name;
+  newname:=InputBox(_lLevelName, _lWriteLevelName, newname);
+  If name = '' then
+    showmessage(_lLevelNameCannotBeEmpty)
+  else begin
+    Levels[LBLevelList.ItemIndex].Name:=newname;
+    LBLevelList.Items.Strings[LBLevelList.ItemIndex]:=newname;
+  end;
+end;
+
+procedure TForm1.MIRemoveLevelClick(Sender: TObject);
+  var
+      i:integer;
+begin
+  if LBLevelList.Count = 1 then
+    ShowMessage(_lCannotBeRemovedLastLevel)
+  else begin
+    levels[LBLevelList.ItemIndex].Description.free;
+    for i:=LBLevelList.ItemIndex to high(levels)-1 do
+      levels[i]:=levels[i+1];
+    SetLength(levels, Length(Levels)-1);
+    LBLevelList.Items.Delete(LBLevelList.ItemIndex);
+    LBLevelList.ItemIndex := 0;
+    LBLevelListClick(self);
+  end
 end;
 
 procedure TForm1.MLevelDescriptionKeyUp(Sender: TObject; var Key: Word;
