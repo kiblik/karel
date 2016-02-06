@@ -1,7 +1,7 @@
 object DStop: TDStop
-  Left = 778
+  Left = 654
   Height = 78
-  Top = 224
+  Top = 133
   Width = 279
   BorderIcons = []
   BorderStyle = bsNone
@@ -12,7 +12,7 @@ object DStop: TDStop
   OnCreate = FormCreate
   ParentFont = True
   Position = poScreenCenter
-  LCLVersion = '1.4.4.0'
+  LCLVersion = '1.6.0.2'
   Visible = True
   object BStop: TBitBtn
     Left = 0

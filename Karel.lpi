@@ -135,12 +135,16 @@
       <Unit3>
         <Filename Value="UDLimits.pas"/>
         <IsPartOfProject Value="True"/>
+        <ComponentName Value="DLimitKarel"/>
         <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
       </Unit3>
       <Unit4>
         <Filename Value="UDMiestnost.pas"/>
         <IsPartOfProject Value="True"/>
+        <ComponentName Value="DMiestnost"/>
         <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
       </Unit4>
       <Unit5>
         <Filename Value="UDPosun.pas"/>

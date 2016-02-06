@@ -1,12 +1,12 @@
 object Form1: TForm1
-  Left = 431
-  Height = 600
-  Top = 161
-  Width = 819
+  Left = 593
+  Height = 435
+  Top = 763
+  Width = 722
   AlphaBlendValue = 100
   Caption = 'Neuložený projekt'
-  ClientHeight = 580
-  ClientWidth = 819
+  ClientHeight = 415
+  ClientWidth = 722
   Color = clBtnFace
   Font.Color = clWindowText
   Font.Height = -11
@@ -17,7 +17,7 @@ object Form1: TForm1
   OnCreate = FormCreate
   OnResize = FormResize
   Position = poScreenCenter
-  LCLVersion = '1.4.4.0'
+  LCLVersion = '1.6.0.2'
   object Img: TImage
     Left = 0
     Height = 105
@@ -25,7 +25,7 @@ object Form1: TForm1
     Width = 105
   end
   object LVersion: TLabel
-    Left = 462
+    Left = 365
     Height = 13
     Top = 48
     Width = 21
@@ -53,7 +53,7 @@ object Form1: TForm1
     Left = 0
     Height = 29
     Top = 0
-    Width = 819
+    Width = 722
     ButtonWidth = 28
     Caption = 'ToolBar'
     Color = clActiveCaption

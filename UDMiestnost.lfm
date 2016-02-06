@@ -1,47 +1,54 @@
 object DMiestnost: TDMiestnost
   Left = 300
+  Height = 220
   Top = 214
+  Width = 289
   BorderStyle = bsToolWindow
-  ClientHeight = 207
-  ClientWidth = 268
+  ClientHeight = 220
+  ClientWidth = 289
   Color = clBtnFace
+  OnCreate = FormCreate
   ParentFont = True
   Position = poScreenCenter
-  OnCreate = FormCreate
-  PixelsPerInch = 96
+  LCLVersion = '1.6.0.2'
   object GroupBox1: TGroupBox
     Left = 4
+    Height = 177
     Top = 8
-    Width = 257
-    Height = 153
+    Width = 268
     Caption = 'Rozmery miestnosti'
+    ClientHeight = 157
+    ClientWidth = 264
     TabOrder = 0
     object LVyska: TLabel
       Left = 16
-      Top = 24
-      Width = 29
-      Height = 13
+      Height = 15
+      Top = 8
+      Width = 30
       Caption = 'Výška'
+      ParentColor = False
     end
     object LSirka: TLabel
       Left = 16
+      Height = 15
       Top = 104
-      Width = 24
-      Height = 13
+      Width = 25
       Caption = 'Širka'
+      ParentColor = False
     end
     object LDlzka: TLabel
       Left = 16
-      Top = 64
-      Width = 27
-      Height = 13
+      Height = 15
+      Top = 56
+      Width = 28
       Caption = 'Dĺžka'
+      ParentColor = False
     end
     object Image1: TImage
       Left = 16
-      Top = 40
-      Width = 21
       Height = 21
+      Top = 24
+      Width = 21
       Picture.Data = {
         07544269746D617036030000424D360300000000000036000000280000001000
         0000100000000100180000000000000300000000000000000000000000000000
@@ -69,13 +76,14 @@ object DMiestnost: TDMiestnost
         FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF000000000000000000000000000000
         000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
         FFFFFFFF000000000000000000000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-        FFFF}
+        FFFF
+      }
     end
     object Image2: TImage
       Left = 16
-      Top = 80
-      Width = 21
       Height = 21
+      Top = 72
+      Width = 21
       Picture.Data = {
         07544269746D617036030000424D360300000000000036000000280000001000
         0000100000000100180000000000000300000000000000000000000000000000
@@ -103,13 +111,14 @@ object DMiestnost: TDMiestnost
         FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
         FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
         FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-        FFFF}
+        FFFF
+      }
     end
     object Image3: TImage
       Left = 16
+      Height = 29
       Top = 120
       Width = 29
-      Height = 29
       Picture.Data = {
         07544269746D61703E070000424D3E0700000000000036000000280000001800
         0000190000000100180000000000080700000000000000000000000000000000
@@ -169,13 +178,14 @@ object DMiestnost: TDMiestnost
         FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
         FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
         FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-        FFFFFFFFFFFFFFFFFFFF}
+        FFFFFFFFFFFFFFFFFFFF
+      }
     end
     object Image4: TImage
       Left = 144
-      Top = 32
-      Width = 100
       Height = 100
+      Top = 8
+      Width = 100
       Picture.Data = {
         07544269746D617066750000424D667500000000000036000000280000006400
         000064000000010018000000000030750000130B0000130B0000000000000000
@@ -1116,88 +1126,92 @@ object DMiestnost: TDMiestnost
         FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
         FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
         FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
+        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+      }
     end
     object UDVyska: TUpDown
       Left = 108
-      Top = 28
-      Width = 17
       Height = 25
-      Min = 1
+      Top = 24
+      Width = 17
       Max = 50
+      Min = 1
+      OnClick = UDVyskaClick
       Position = 1
       TabOrder = 0
-      OnClick = UDVyskaClick
+      Wrap = False
     end
     object UDDlzka: TUpDown
       Left = 108
-      Top = 68
-      Width = 17
       Height = 25
-      Min = 1
+      Top = 72
+      Width = 17
       Max = 50
+      Min = 1
+      OnClick = UDDlzkaClick
       Position = 1
       TabOrder = 1
-      OnClick = UDDlzkaClick
+      Wrap = False
     end
     object UDSirka: TUpDown
       Left = 108
-      Top = 108
-      Width = 17
       Height = 25
-      Min = 1
+      Top = 118
+      Width = 17
       Max = 50
+      Min = 1
+      OnClick = UDSirkaClick
       Position = 1
       TabOrder = 2
-      OnClick = UDSirkaClick
+      Wrap = False
     end
     object EVyska: TEdit
       Left = 50
-      Top = 32
+      Height = 23
+      Top = 24
       Width = 53
-      Height = 21
-      TabStop = False
       ReadOnly = True
+      TabStop = False
       TabOrder = 3
       Text = 'EVýška'
     end
     object EDlzka: TEdit
       Left = 50
+      Height = 23
       Top = 72
       Width = 53
-      Height = 21
-      TabStop = False
       ReadOnly = True
+      TabStop = False
       TabOrder = 4
       Text = 'EDĺžka'
     end
     object ESirka: TEdit
       Left = 50
-      Top = 112
+      Height = 23
+      Top = 118
       Width = 53
-      Height = 21
-      TabStop = False
       ReadOnly = True
+      TabStop = False
       TabOrder = 5
       Text = 'EŠírka'
     end
   end
   object BNastav: TBitBtn
-    Left = 36
-    Top = 168
-    Width = 75
+    Left = 32
     Height = 25
+    Top = 192
+    Width = 75
     Caption = 'Nastav'
-    TabOrder = 1
     Kind = bkOK
+    TabOrder = 1
   end
   object BNenastav: TBitBtn
-    Left = 152
-    Top = 168
-    Width = 75
+    Left = 176
     Height = 25
+    Top = 192
+    Width = 75
     Caption = 'Nenastav'
-    TabOrder = 2
     Kind = bkCancel
+    TabOrder = 2
   end
-end
+end

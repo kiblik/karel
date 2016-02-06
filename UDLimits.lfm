@@ -1,52 +1,50 @@
 object DLimitKarel: TDLimitKarel
-  Left = 245
-  Top = 108
+  Left = 365
+  Height = 201
+  Top = 284
+  Width = 239
   BorderStyle = bsToolWindow
   Caption = 'Obmedzenie Karla'
-  ClientHeight = 205
-  ClientWidth = 230
+  ClientHeight = 201
+  ClientWidth = 239
   Color = clBtnFace
+  OnCreate = FormCreate
   ParentFont = True
   Position = poScreenCenter
-  OnCreate = FormCreate
-  PixelsPerInch = 96
+  LCLVersion = '1.6.0.2'
   object LVykrocit: TLabel
-    Left = 41
+    Left = 8
+    Height = 16
     Top = 0
-    Width = 145
-    Height = 32
+    Width = 226
     Alignment = taCenter
     Caption = 'Počet tehál, na ktoré vie Karel vykročiť'
-    Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -13
     Font.Name = 'MS Sans Serif'
-    Font.Style = []
+    ParentColor = False
     ParentFont = False
     WordWrap = True
   end
   object LSpomalit: TLabel
     Left = 52
+    Height = 16
     Top = 96
     Width = 107
-    Height = 16
     Caption = 'Spomalenie Karla'
-    Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -13
     Font.Name = 'MS Sans Serif'
-    Font.Style = []
+    ParentColor = False
     ParentFont = False
   end
   object BNastav: TBitBtn
-    Left = 12
+    Left = 8
+    Height = 30
     Top = 164
     Width = 90
-    Height = 30
     Caption = 'Nastav'
     Default = True
-    ModalResult = 1
-    TabOrder = 0
     Glyph.Data = {
       DE010000424DDE01000000000000760000002800000024000000120000000100
       0400000000006801000000000000000000001000000000000000000000000000
@@ -63,18 +61,19 @@ object DLimitKarel: TDLimitKarel
       33333333A222433333333333338F338F00003333333333333A22433333333333
       3338F38F000033333333333333A223333333333333338F830000333333333333
       333A333333333333333338330000333333333333333333333333333333333333
-      0000}
+      0000
+    }
+    ModalResult = 1
     NumGlyphs = 2
+    TabOrder = 0
   end
   object BNenastav: TBitBtn
-    Left = 112
+    Left = 144
+    Height = 30
     Top = 164
     Width = 90
-    Height = 30
     Cancel = True
     Caption = 'Nenastav'
-    ModalResult = 1
-    TabOrder = 1
     Glyph.Data = {
       DE010000424DDE01000000000000760000002800000024000000120000000100
       0400000000006801000000000000000000001000000000000000000000000000
@@ -91,23 +90,26 @@ object DLimitKarel: TDLimitKarel
       11833338111833338F338FFFF883F83300003339111888811183333338FF3888
       83FF83330000333399111111993333333388FFFFFF8833330000333333999999
       3333333333338888883333330000333333333333333333333333333333333333
-      0000}
+      0000
+    }
+    ModalResult = 1
     NumGlyphs = 2
+    TabOrder = 1
   end
   object EUp: TEdit
     Left = 100
+    Height = 23
     Top = 36
     Width = 29
-    Height = 21
     ReadOnly = True
     TabOrder = 2
     Text = '999'
   end
   object SBTimer: TScrollBar
     Left = 20
+    Height = 17
     Top = 116
     Width = 197
-    Height = 17
     Max = 10
     Min = 1
     PageSize = 0
@@ -116,11 +118,9 @@ object DLimitKarel: TDLimitKarel
   end
   object BMinus: TBitBtn
     Left = 56
+    Height = 25
     Top = 36
     Width = 29
-    Height = 25
-    TabOrder = 4
-    OnClick = BMinusClick
     Glyph.Data = {
       36030000424D3603000000000000360000002800000010000000100000000100
       1800000000000003000000000000000000000000000000000000FFFFFFFFFFFF
@@ -147,15 +147,16 @@ object DLimitKarel: TDLimitKarel
       FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
       FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
       FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-      FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
+      FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+    }
+    OnClick = BMinusClick
+    TabOrder = 4
   end
   object BPlus: TBitBtn
     Left = 144
+    Height = 25
     Top = 36
     Width = 29
-    Height = 25
-    TabOrder = 5
-    OnClick = BPlusClick
     Glyph.Data = {
       36030000424D3603000000000000360000002800000010000000100000000100
       1800000000000003000000000000000000000000000000000000FFFFFFFFFFFF
@@ -182,6 +183,9 @@ object DLimitKarel: TDLimitKarel
       0000800000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
       FFFFFFFFFFFFFFFFFFFFFFFFFFFFFF800000800000FFFFFFFFFFFFFFFFFFFFFF
       FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF80
-      0000800000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
+      0000800000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+    }
+    OnClick = BPlusClick
+    TabOrder = 5
   end
-end
+end
