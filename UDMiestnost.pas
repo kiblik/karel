@@ -6,6 +6,9 @@ uses LCLIntf, LCLType, LMessages, SysUtils, Classes, Graphics, Forms, Controls, 
   Buttons, ExtCtrls, MaskEdit, ComCtrls;
 
 type
+
+  { TDMiestnost }
+
   TDMiestnost = class(TForm)
     GroupBox1: TGroupBox;
     LVyska: TLabel;
@@ -64,4 +67,5 @@ begin
   BNenastav.Caption:=_lButtonNenastav;
 end;
 
-end.
+end.
+

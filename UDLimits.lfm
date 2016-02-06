@@ -1,7 +1,7 @@
 object DLimitKarel: TDLimitKarel
-  Left = 365
+  Left = 636
   Height = 201
-  Top = 284
+  Top = 487
   Width = 239
   BorderStyle = bsToolWindow
   Caption = 'Obmedzenie Karla'

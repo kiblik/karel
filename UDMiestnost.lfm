@@ -1,7 +1,7 @@
 object DMiestnost: TDMiestnost
-  Left = 300
+  Left = 912
   Height = 220
-  Top = 214
+  Top = 500
   Width = 289
   BorderStyle = bsToolWindow
   ClientHeight = 220
@@ -1202,7 +1202,9 @@ object DMiestnost: TDMiestnost
     Top = 192
     Width = 75
     Caption = 'Nastav'
+    Default = True
     Kind = bkOK
+    ModalResult = 1
     TabOrder = 1
   end
   object BNenastav: TBitBtn
@@ -1210,8 +1212,10 @@ object DMiestnost: TDMiestnost
     Height = 25
     Top = 192
     Width = 75
+    Cancel = True
     Caption = 'Nenastav'
     Kind = bkCancel
+    ModalResult = 2
     TabOrder = 2
   end
 end

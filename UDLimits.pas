@@ -6,6 +6,9 @@ uses LCLIntf, LCLType, LMessages, SysUtils, Classes, Graphics, Forms, Controls, 
   Buttons, ExtCtrls, ComCtrls;
 
 type
+
+  { TDLimitKarel }
+
   TDLimitKarel = class(TForm)
     BNastav: TBitBtn;
     BNenastav: TBitBtn;
@@ -38,6 +41,7 @@ begin
   BNenastav.Caption:=_lButtonNenastav;
 end;
 
+
 procedure TDLimitKarel.BMinusClick(Sender: TObject);
 begin
   if EUp.Text='1' then Exit;
@@ -49,4 +53,5 @@ begin
   EUp.Text:=IntToStr(StrToInt(EUp.Text)+1);
 end;
 
-end.
+end.
+
