@@ -1,7 +1,7 @@
 object DMiestnost: TDMiestnost
-  Left = 912
+  Left = 754
   Height = 220
-  Top = 500
+  Top = 480
   Width = 289
   BorderStyle = bsToolWindow
   ClientHeight = 220
@@ -1170,7 +1170,7 @@ object DMiestnost: TDMiestnost
       Height = 23
       Top = 24
       Width = 53
-      ReadOnly = True
+      NumbersOnly = True
       TabStop = False
       TabOrder = 3
       Text = 'EVýška'
@@ -1180,7 +1180,7 @@ object DMiestnost: TDMiestnost
       Height = 23
       Top = 72
       Width = 53
-      ReadOnly = True
+      NumbersOnly = True
       TabStop = False
       TabOrder = 4
       Text = 'EDĺžka'
@@ -1190,7 +1190,7 @@ object DMiestnost: TDMiestnost
       Height = 23
       Top = 118
       Width = 53
-      ReadOnly = True
+      NumbersOnly = True
       TabStop = False
       TabOrder = 5
       Text = 'EŠírka'
