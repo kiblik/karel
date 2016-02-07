@@ -11,7 +11,7 @@ uses
   Buttons, UDStop, FileUtil;
 
 const
-  version = '2.2';
+  version = '2.3';
 
 type
 
