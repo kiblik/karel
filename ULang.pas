@@ -21,6 +21,7 @@ var _lMsgKarel_NoPic: string='Nenašiel som obrázok Karla! Karel nebude zobraze
     _lMsgErrorPresun : string ='Za príkazom presun očakávam dve čísla';
     _lMsgErrorPrikaz : string ='Chybná štruktúra príkazu ';
     _lMsgErrorPolozF : string ='Za príkazom polozf som očakával farbu.';
+    _lMsgErrorPodmienka : string = 'Chybna štruktúra podmienky';
     _lPrikazEndCmd : string = '*prikaz';
     _lInakCmd : string = 'inak';
     _lAkEndCmd : string = '*ak';
@@ -48,6 +49,9 @@ var _lMsgKarel_NoPic: string='Nenašiel som obrázok Karla! Karel nebude zobraze
     _lNahodaCmd : string = 'nahoda';
     _lPrikazCmd : string = 'prikaz';
     _lVolnoCmd : string = 'volno';
+    _lPoslednaFCmd : string = 'poslednaf';
+    _lPodmienkaCmd : string = 'podmienka';
+    _lPodmienkaEndCmd : string = '*podmienka';
     _lMsgErrorUnknownCnd : string= 'Nepoznám podmienku ';
     _lMsgSaveTitle : string='Uložnie projektu';
     _lMsgSaveError : string='Chyba pri ukladaní súboru.';
@@ -109,11 +113,9 @@ var _lMsgKarel_NoPic: string='Nenašiel som obrázok Karla! Karel nebude zobraze
     _lOznacCmd : string ='oznac';
     _lOdznacCmd : string ='odznac';
     _lZnackaCmd : string ='znacka';
-    _lPodmienkaCmd : string ='podmienka';
     _lErrorMsgPrikazZly : string ='Nesprávny formát príkazu';
     _lVysledokCnd : string = 'vysledok';
     _lMsgErrorCnd : string = 'Problém so spracovaním podmienky';
-    _lPodmienkaEndCmd : string = '*podmienka';
     _lResultCmd : string ='vysledok';
     _lPravdaCmd : string ='pravda';
     _lNepravdaCmd : string ='nepravda';
@@ -160,15 +162,15 @@ begin
   OK:=False;
   for I:=0 to Length(Cond)-1 do S:=S+' '+Cond[I];
   UnSpace(S);
-  if LowerCase(First(S))<>'podmienka' then
+  if LowerCase(First(S))<>_lPodmienkaCmd then
     begin
-      ErrorMsg:='Chybna štruktúra podmienky';
+      ErrorMsg:= _lMsgErrorPodmienka;
       Exit
     end;
   First(S);
-  if Last(S)<>'*podmienka' then
+  if Last(S)<>_lPodmienkaEndCmd then
     begin
-      ErrorMsg:='Chybná štruktúra podmienky';
+      ErrorMsg:= _lMsgErrorPodmienka;
       Exit
     end;
   OK:=True;
@@ -386,14 +388,14 @@ function GetPolozF(var Cmd : string; var OK : Boolean) : TPolozF;
 var S : string;
 begin
   S:=First(Cmd);
-  if LowerCase(S)='nahoda' then
+  if LowerCase(S)=_lNahodaCmd then
     begin
       if DefColors.Count=0 then Result.Color:=BrickColor
                            else Result.Color:=(DefColors.Objects[Random(DefColors.Count)] as TOColor).Color;
       OK:=True;
       Exit;
     end;
-  if LowerCase(S)='poslednaf' then
+  if LowerCase(S)=_lPoslednaFCmd then
     begin
       Result.Color:=LastTakenColor;
       OK:=True;
