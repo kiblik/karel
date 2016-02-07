@@ -2,6 +2,7 @@ unit ULang;
 
 interface
 uses UUtils;
+
 var _lMsgKarel_NoPic: string='Nenašiel som obrázok Karla! Karel nebude zobrazený!';
     _lMsgCloseAppl : string ='Projekt bol zmenený a nie je uložený. Mám napriek tomu program ukončiť?';
     _lMsgErrorUnknownCmd : string = 'Nepoznám príkaz ';
@@ -151,7 +152,7 @@ function GetCond(Cond : array of string;var OK : Boolean) :TCond;
 function GetPolozF(var Cmd : string; var OK : Boolean) :TPolozF;
 
 implementation
-uses SysUtils;
+uses Ui18n,SysUtils;
 
 function GetCond(Cond : array of string;var OK : Boolean) :TCond;
 var S : string;
@@ -445,5 +446,9 @@ begin
   {este treba odrezat koniec prikazu *prikaz}
 end;
 
+initialization
+begin
+     setLang(lang_SK);
+end;
 
 end.
