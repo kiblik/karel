@@ -2,8 +2,8 @@ unit UDLimits;
 
 interface
 
-uses LCLIntf, LCLType, LMessages, SysUtils, Classes, Graphics, Forms, Controls, StdCtrls,
-  Buttons, ExtCtrls, ComCtrls;
+uses LCLIntf, LCLType, SysUtils, Classes, Graphics, Forms, Controls, StdCtrls,
+  Buttons, ExtCtrls;
 
 type
   TDLimitKarel = class(TForm)
@@ -49,4 +49,5 @@ begin
   EUp.Text:=IntToStr(StrToInt(EUp.Text)+1);
 end;
 
-end.
+end.
+

@@ -1,6 +1,6 @@
 unit UUtils;
 interface
-uses Types,Graphics,Classes,Dialogs,Messages;
+uses Graphics,Classes,Dialogs;
 type
   TBricks = array of array of array of TColor;
   TMarks = array of array of Boolean;
@@ -206,7 +206,7 @@ end;
 procedure DrawRect(P1,P2,P3,P4 : T3DPoint;Canvas : TCanvas);
 var B : array[1..4] of TPoint;
 begin
-  Konvertuj(P1,B[1]);
+  Konvertuj(P1,{%H-}B[1]);
   Konvertuj(P2,B[2]);
   Konvertuj(P3,B[3]);
   Konvertuj(P4,B[4]);
@@ -216,7 +216,7 @@ end;
 procedure DrawTriangle(P1,P2,P3 : T3DPoint;Canvas : TCanvas);
 var B : array[1..3] of TPoint;
 begin
-  Konvertuj(P1,B[1]);
+  Konvertuj(P1,{%H-}B[1]);
   Konvertuj(P2,B[2]);
   Konvertuj(P3,B[3]);
   Canvas.Polygon(B);
@@ -225,8 +225,8 @@ end;
 procedure DrawLine(P1,P2 : T3DPoint; Canvas : TCanvas);
 var NP1,NP2 : TPoint;
 begin
-  Konvertuj(P1,NP1);
-  Konvertuj(P2,NP2);
+  Konvertuj(P1,NP1{%H-});
+  Konvertuj(P2,NP2{%H-});
   Canvas.MoveTo(NP1.X,NP1.Y);
   Canvas.LineTo(NP2.X,NP2.Y);
 end;

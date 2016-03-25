@@ -18,15 +18,15 @@ type
     HLEdit: TMemo;
     procedure FormCreate(Sender: TObject);
     procedure BNewClick(Sender: TObject);
-    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure FormClose(Sender: TObject; var {%H-}Action: TCloseAction);
     procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
     procedure HLEditChange(Sender: TObject);
     procedure HLEditKeyPress(Sender: TObject; var Key: Char);
     procedure CmdListClick(Sender: TObject);
     procedure BDeleteClick(Sender: TObject);
     procedure BRenameClick(Sender: TObject);
-    procedure CmdListDrawItem(Control: TWinControl; Index: Integer;
-      Rect: TRect; State: TOwnerDrawState);
+    procedure CmdListDrawItem({%H-}Control: TWinControl; Index: Integer;
+      Rect: TRect; {%H-}State: TOwnerDrawState);
     procedure BGrapCmdClick(Sender: TObject);
   private
     EOL : Boolean;

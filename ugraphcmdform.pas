@@ -3,8 +3,8 @@ unit ugraphcmdform;
 interface
 
 uses
-  LCLIntf, LCLType, LMessages, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, ImgList, Grids,UUtils, ExtCtrls;
+  LCLIntf, LCLType, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, UUtils, ExtCtrls;
 
 type
   TGraphCmdForm = class(TForm)

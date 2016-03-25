@@ -2,8 +2,8 @@ unit UDStop;
 
 interface
 
-uses LCLIntf, LCLType, LMessages, SysUtils, Classes, Graphics, Forms, Controls, StdCtrls,
-  Buttons, ExtCtrls,Messages;
+uses LCLIntf, LCLType, SysUtils, Classes, Graphics, Forms, Controls,
+  Buttons, ExtCtrls;
 
 type
 

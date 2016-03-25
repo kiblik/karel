@@ -64,4 +64,5 @@ __history/
 #*.lps
 
 backup/
+*.bak
 

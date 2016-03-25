@@ -2,8 +2,8 @@ unit UDMiestnost;
 
 interface
 
-uses LCLIntf, LCLType, LMessages, SysUtils, Classes, Graphics, Forms, Controls, StdCtrls,
-  Buttons, ExtCtrls, MaskEdit, ComCtrls;
+uses LCLIntf, LCLType, SysUtils, Classes, Graphics, Forms, Controls, StdCtrls,
+  Buttons, ExtCtrls, ComCtrls;
 
 type
   TDMiestnost = class(TForm)
@@ -23,9 +23,9 @@ type
     EVyska: TEdit;
     EDlzka: TEdit;
     ESirka: TEdit;
-    procedure UDVyskaClick(Sender: TObject; Button: TUDBtnType);
-    procedure UDDlzkaClick(Sender: TObject; Button: TUDBtnType);
-    procedure UDSirkaClick(Sender: TObject; Button: TUDBtnType);
+    procedure UDVyskaClick(Sender: TObject; {%H-}Button: TUDBtnType);
+    procedure UDDlzkaClick(Sender: TObject; {%H-}Button: TUDBtnType);
+    procedure UDSirkaClick(Sender: TObject; {%H-}Button: TUDBtnType);
     procedure FormCreate(Sender: TObject);
   private
     { Private declarations }
@@ -64,4 +64,5 @@ begin
   BNenastav.Caption:=_lButtonNenastav;
 end;
 
-end.
+end.
+

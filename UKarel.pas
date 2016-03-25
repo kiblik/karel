@@ -60,20 +60,20 @@ type
 
     procedure LBLevelListClick(Sender: TObject);
     procedure LBLevelListMouseDown(Sender: TObject; Button: TMouseButton;
-      Shift: TShiftState; X, Y: Integer);
+      {%H-}Shift: TShiftState; X, Y: Integer);
     procedure MIAddLevelClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure EInputKeyPress(Sender: TObject; var Key: char);
-    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure FormClose(Sender: TObject; var {%H-}Action: TCloseAction);
     procedure MIRemoveLevelClick(Sender: TObject);
     procedure MIRenameLevelClick(Sender: TObject);
-    procedure MLevelDescriptionKeyUp(Sender: TObject; var Key: Word;
-      Shift: TShiftState);
+    procedure MLevelDescriptionKeyUp(Sender: TObject; var {%H-}Key: Word;
+      {%H-}Shift: TShiftState);
     procedure SBRequestClick(Sender: TObject);
     procedure Slovnik1Click(Sender: TObject);
     procedure FormCloseQuery(Sender: TObject; var CanClose: boolean);
     procedure Timer1Timer(Sender: TObject);
-    procedure EInputKeyDown(Sender: TObject; var Key: word; Shift: TShiftState);
+    procedure EInputKeyDown(Sender: TObject; var Key: word; {%H-}Shift: TShiftState);
     procedure FormResize(Sender: TObject);
     procedure BStopClick(Sender: TObject);
     procedure BPauseClick(Sender: TObject);
@@ -183,7 +183,7 @@ var
   end;
 
 begin
-  if not FileExistsUTF8('karel.ini') then
+  if not FileExists('karel.ini') then
     Exit;
   AssignFile(T, 'karel.ini');
   Reset(T);
@@ -407,7 +407,7 @@ begin
   end
   else
     FN := 'pics' + DirectorySeparator + 'karel.pts';
-  if not FileExistsUTF8(FN) then
+  if not FileExists(FN) then
   begin
     MyMessageDlg(_lMsgRunError, _lMsgKarel_NoPic, mtWarning, [mbOK], mrOk, 0);
     Exit;
