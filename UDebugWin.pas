@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, ExtCtrls,
-  StdCtrls, Buttons;
+  StdCtrls, Buttons, Ulang;
 
 type
 
@@ -30,6 +30,7 @@ type
     LZnackaDesc: TLabel;
     LVolnoDesc: TLabel;
     LZnacka: TLabel;
+    procedure FormCreate(Sender: TObject);
   private
     { private declarations }
   public
@@ -42,8 +43,17 @@ implementation
 
 { TDDebugWin }
 
-
-
+procedure TDDebugWin.FormCreate(Sender: TObject);
+begin
+  Caption:=_lDebugWin;
+  LLastCmdDesc.Caption:=_lLastCmdDesc;
+  LNextCmdDesc.Caption:=_lNextCmdDesc;
+  LIterationDesc.Caption:=_lIterationDesc;
+  LStenaDesc.Caption:=_lStenaDesc;
+  LTehlaDesc.Caption:=_lTehlaDesc;
+  LZnackaDesc.Caption:=_lZnackaDesc;
+  LVolnoDesc.Caption:=_lVolnoDesc;
+end;
 
 end.
 

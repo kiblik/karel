@@ -9,6 +9,7 @@ object DDebugWin: TDDebugWin
   ClientHeight = 207
   ClientWidth = 248
   FormStyle = fsStayOnTop
+  OnCreate = FormCreate
   LCLVersion = '1.6.0.4'
   object LLastCmdDesc: TLabel
     Left = 8
@@ -67,7 +68,7 @@ object DDebugWin: TDDebugWin
     ParentColor = False
   end
   object LLastCmd: TLabel
-    Left = 104
+    Left = 176
     Height = 15
     Top = 8
     Width = 53
@@ -75,7 +76,7 @@ object DDebugWin: TDDebugWin
     ParentColor = False
   end
   object LNextCmd: TLabel
-    Left = 104
+    Left = 176
     Height = 15
     Top = 32
     Width = 56
@@ -83,7 +84,7 @@ object DDebugWin: TDDebugWin
     ParentColor = False
   end
   object LIteration: TLabel
-    Left = 104
+    Left = 176
     Height = 15
     Top = 56
     Width = 50
@@ -91,7 +92,7 @@ object DDebugWin: TDDebugWin
     ParentColor = False
   end
   object LStena: TLabel
-    Left = 104
+    Left = 176
     Height = 15
     Top = 80
     Width = 35
@@ -99,7 +100,7 @@ object DDebugWin: TDDebugWin
     ParentColor = False
   end
   object LTehla: TLabel
-    Left = 104
+    Left = 176
     Height = 15
     Top = 104
     Width = 35
@@ -107,7 +108,7 @@ object DDebugWin: TDDebugWin
     ParentColor = False
   end
   object LZnacka: TLabel
-    Left = 104
+    Left = 176
     Height = 15
     Top = 128
     Width = 44
@@ -115,7 +116,7 @@ object DDebugWin: TDDebugWin
     ParentColor = False
   end
   object LVolno: TLabel
-    Left = 104
+    Left = 176
     Height = 15
     Top = 152
     Width = 37

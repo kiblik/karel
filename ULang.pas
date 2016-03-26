@@ -138,7 +138,14 @@ var _lMsgKarel_NoPic: string='Nenašiel som obrázok Karla! Karel nebude zobraze
     _lLevelNameCannotBeEmpty: string = 'Názov zadania nemôže byť prázdny';
     _lCannotBeRemovedLastLevel: string = 'Posledný level nemôže byť zmazaný';
     _lPozastavCmd: string = 'pozastav';
-    _lPokracujCmd: string = 'pokracuj';
+    _lDebugWin: string = 'Ladenie';
+    _lLastCmdDesc: string = 'Posledný príkaz';
+    _lNextCmdDesc: string = 'Nasledujúcu príkaz';
+    _lIterationDesc: string = 'Zostavajúci počet cyklov';
+    _lStenaDesc: string = 'JeStena?';
+    _lTehlaDesc: string = 'JeTehla?';
+    _lZnackaDesc: string = 'JeZnacka?';
+    _lVolnoDesc: string = 'JeVolno?';
 
 function GetOpakuj(var Cmd : string; var OK : Boolean) : TOpakuj;
 function GetPresun(var Cmd : string; var OK : Boolean) : TPresun;

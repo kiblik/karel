@@ -79,7 +79,7 @@ type
     procedure BPauseClick(Sender: TObject);
     procedure BStepClick(Sender: TObject);
     procedure BContinueClick(Sender: TObject);
-    procedure BDebugCloseWrapper(Sender: TObject; var CloseAction: TCloseAction);
+    procedure BDebugCloseWrapper(Sender: TObject; var {%H-}CloseAction: TCloseAction);
     procedure Rozmerymiestnosti1Click(Sender: TObject);
     procedure Posunmiestnosti1Click(Sender: TObject);
     procedure ObmedzenieKarla1Click(Sender: TObject);
@@ -1271,13 +1271,6 @@ begin
       if Cmd <> '' then
         Stack.Push(Cmd);
     end;
-    if FW = _lPokracujCmd then
-    begin
-      CmdPokracuj;
-      OK := True;
-      if Cmd <> '' then
-        Stack.Push(Cmd);
-    end;
     if FW = _lAkCmd then
     begin
       Ak := GetAk(Cmd, OK);
@@ -1370,22 +1363,22 @@ begin
     end;
   until ShowGraphic or (Cmd = '') or Pause;
   If Pause then begin
-    If CmdCond('stena',OK) then
-      DDebugWin.LStena.Caption := 'Pravda'
+    If CmdCond(_lStenaCmd,OK) then
+      DDebugWin.LStena.Caption := _lPravdaCmd
     else
-      DDebugWin.LStena.Caption := 'Nepravda';
-    If CmdCond('volno',OK) then
-      DDebugWin.LVolno.Caption := 'Pravda'
+      DDebugWin.LStena.Caption := _lNepravdaCmd;
+    If CmdCond(_lVolnoCmd,OK) then
+      DDebugWin.LVolno.Caption := _lPravdaCmd
     else
-      DDebugWin.LVolno.Caption := 'Nepravda';
-    If CmdCond('tehla',OK) then
-      DDebugWin.LTehla.Caption := 'Pravda'
+      DDebugWin.LVolno.Caption := _lNepravdaCmd;
+    If CmdCond(_lTehlaCmd,OK) then
+      DDebugWin.LTehla.Caption := _lPravdaCmd
     else
-      DDebugWin.LTehla.Caption := 'Nepravda';
-    If CmdCond('znacka',OK) then
-      DDebugWin.LZnacka.Caption := 'Pravda'
+      DDebugWin.LTehla.Caption := _lNepravdaCmd;
+    If CmdCond(_lZnackaCmd,OK) then
+      DDebugWin.LZnacka.Caption := _lPravdaCmd
     else
-      DDebugWin.LZnacka.Caption := 'Nepravda';
+      DDebugWin.LZnacka.Caption := _lNepravdaCmd;
     DDebugWin.LLastCmd.Caption:=First(PomCmdStr);  // vyuzivame, ze sme si na zaciatku odlozili obsah Cmd
     if not Stack.IsEmpty then begin
       PomCmdStr := Stack.Pop;
