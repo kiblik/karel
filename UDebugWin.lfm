@@ -1,0 +1,149 @@
+object DDebugWin: TDDebugWin
+  Left = 171
+  Height = 207
+  Top = 181
+  Width = 248
+  BorderIcons = [biSystemMenu]
+  BorderStyle = bsDialog
+  Caption = 'DDebugWin'
+  ClientHeight = 207
+  ClientWidth = 248
+  FormStyle = fsStayOnTop
+  LCLVersion = '1.6.0.4'
+  object LLastCmdDesc: TLabel
+    Left = 8
+    Height = 15
+    Top = 8
+    Width = 78
+    Caption = 'LLastCmdDesc'
+    ParentColor = False
+  end
+  object LNextCmdDesc: TLabel
+    Left = 8
+    Height = 15
+    Top = 32
+    Width = 81
+    Caption = 'LNextCmdDesc'
+    ParentColor = False
+  end
+  object LIterationDesc: TLabel
+    Left = 8
+    Height = 15
+    Top = 56
+    Width = 75
+    Caption = 'LIterationDesc'
+    ParentColor = False
+  end
+  object LStenaDesc: TLabel
+    Left = 8
+    Height = 15
+    Top = 80
+    Width = 60
+    Caption = 'LStenaDesc'
+    ParentColor = False
+  end
+  object LTehlaDesc: TLabel
+    Left = 8
+    Height = 15
+    Top = 104
+    Width = 60
+    Caption = 'LTehlaDesc'
+    ParentColor = False
+  end
+  object LZnackaDesc: TLabel
+    Left = 8
+    Height = 15
+    Top = 128
+    Width = 69
+    Caption = 'LZnackaDesc'
+    ParentColor = False
+  end
+  object LVolnoDesc: TLabel
+    Left = 8
+    Height = 15
+    Top = 152
+    Width = 62
+    Caption = 'LVolnoDesc'
+    ParentColor = False
+  end
+  object LLastCmd: TLabel
+    Left = 104
+    Height = 15
+    Top = 8
+    Width = 53
+    Caption = 'LLastCmd'
+    ParentColor = False
+  end
+  object LNextCmd: TLabel
+    Left = 104
+    Height = 15
+    Top = 32
+    Width = 56
+    Caption = 'LNextCmd'
+    ParentColor = False
+  end
+  object LIteration: TLabel
+    Left = 104
+    Height = 15
+    Top = 56
+    Width = 50
+    Caption = 'LIteration'
+    ParentColor = False
+  end
+  object LStena: TLabel
+    Left = 104
+    Height = 15
+    Top = 80
+    Width = 35
+    Caption = 'LStena'
+    ParentColor = False
+  end
+  object LTehla: TLabel
+    Left = 104
+    Height = 15
+    Top = 104
+    Width = 35
+    Caption = 'LTehla'
+    ParentColor = False
+  end
+  object LZnacka: TLabel
+    Left = 104
+    Height = 15
+    Top = 128
+    Width = 44
+    Caption = 'LZnacka'
+    ParentColor = False
+  end
+  object LVolno: TLabel
+    Left = 104
+    Height = 15
+    Top = 152
+    Width = 37
+    Caption = 'LVolno'
+    ParentColor = False
+  end
+  object BStep: TBitBtn
+    Left = 8
+    Height = 30
+    Top = 176
+    Width = 75
+    Caption = 'BStep'
+    TabOrder = 0
+  end
+  object BContinue: TBitBtn
+    Left = 88
+    Height = 30
+    Top = 176
+    Width = 75
+    Caption = 'BContinue'
+    TabOrder = 1
+  end
+  object BStop: TBitBtn
+    Left = 168
+    Height = 30
+    Top = 177
+    Width = 75
+    Caption = 'BStop'
+    TabOrder = 2
+  end
+end

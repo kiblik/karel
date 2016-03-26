@@ -8,7 +8,7 @@ uses
   LCLIntf, LCLType, SysUtils, Variants, Classes,
   Graphics, Controls, Forms,
   Dialogs, StdCtrls, ExtCtrls, UUtils, Menus, UcmdForm, UStack, ComCtrls,
-  Buttons, UDStop, FileUtil;
+  Buttons, UDStop, FileUtil, UDebugWin;
 
 const
   version = '2.2';
@@ -78,6 +78,8 @@ type
     procedure BStopClick(Sender: TObject);
     procedure BPauseClick(Sender: TObject);
     procedure BStepClick(Sender: TObject);
+    procedure BContinueClick(Sender: TObject);
+    procedure BDebugCloseWrapper(Sender: TObject; var CloseAction: TCloseAction);
     procedure Rozmerymiestnosti1Click(Sender: TObject);
     procedure Posunmiestnosti1Click(Sender: TObject);
     procedure ObmedzenieKarla1Click(Sender: TObject);
@@ -104,11 +106,13 @@ type
     Stack: TStack;
     ELine: integer;
     DStop: TDStop;
+    DDebugWin: TDDebugWin;
     ShowGraphic: boolean;
     LHistory: array of string;
     admin: boolean;
     editingRequest: boolean;
     Pause: boolean;
+    Iteracia: integer;
 
     procedure DrawAxis;
     procedure ReDrawAll(const FromY: integer = 0);
@@ -236,10 +240,16 @@ begin
   DStop := TDStop.Create(self);
   DStop.BStop.OnClick := BStopClick;
   DStop.BPause.OnClick:= BPauseClick;
-  DStop.BStep.OnClick:=BStepClick;
   DStop.Left := Left + (Width - DStop.Width) div 2;
   DStop.Top := Top;
   DStop.Hide;
+
+  DDebugWin := TDDebugWin.Create(self);
+  DDebugWin.BContinue.OnClick:= BContinueClick;
+  DDebugWin.BStep.OnClick:= BStepClick;
+  DDebugWin.BStop.OnClick:= BStopClick;
+  DDebugWin.OnClose := BDebugCloseWrapper;
+  DDebugWin.Hide;
 
   EInput.Text := '';
   ELine := 0;
@@ -479,6 +489,7 @@ begin
   CmdForm.Free;
   Stack.Free;
   DStop.Free;
+  DDebugWin.Free;
 end;
 
 procedure TForm1.MIRenameLevelClick(Sender: TObject);
@@ -836,10 +847,19 @@ end;
 
 procedure TForm1.BPauseClick(Sender: TObject);
 begin
-  if pause then
-    CmdPokracuj
-  else
-    CmdPozastav;
+  CmdPozastav;
+end;
+
+procedure TForm1.BContinueClick(Sender: TObject);
+begin
+  DDebugWin.Hide;
+  DStop.Show;
+  CmdPokracuj;
+end;
+
+procedure TForm1.BDebugCloseWrapper(Sender: TObject; var CloseAction: TCloseAction);
+begin
+  BContinueClick(Sender);
 end;
 
 procedure TForm1.BStepClick(Sender: TObject);
@@ -1049,7 +1069,9 @@ var
   Cond: TCond;
   II: integer;
   PolozF: TPolozF;
+  PomCmdStr: string;
 begin
+  PomCmdStr:=Cmd;
   repeat
     UnSpace(Cmd);
     FW := LowerCase(First(Cmd));
@@ -1121,6 +1143,7 @@ begin
             Stack.Push(Opakuj.Commands);
         end;
       end;
+      Iteracia:=Opakuj.Pocet;
     end;
     if FW = _lPresunCmd then
     begin
@@ -1346,6 +1369,32 @@ begin
       Application.ProcessMessages;
     end;
   until ShowGraphic or (Cmd = '') or Pause;
+  If Pause then begin
+    If CmdCond('stena',OK) then
+      DDebugWin.LStena.Caption := 'Pravda'
+    else
+      DDebugWin.LStena.Caption := 'Nepravda';
+    If CmdCond('volno',OK) then
+      DDebugWin.LVolno.Caption := 'Pravda'
+    else
+      DDebugWin.LVolno.Caption := 'Nepravda';
+    If CmdCond('tehla',OK) then
+      DDebugWin.LTehla.Caption := 'Pravda'
+    else
+      DDebugWin.LTehla.Caption := 'Nepravda';
+    If CmdCond('znacka',OK) then
+      DDebugWin.LZnacka.Caption := 'Pravda'
+    else
+      DDebugWin.LZnacka.Caption := 'Nepravda';
+    DDebugWin.LLastCmd.Caption:=First(PomCmdStr);  // vyuzivame, ze sme si na zaciatku odlozili obsah Cmd
+    if not Stack.IsEmpty then begin
+      PomCmdStr := Stack.Pop;
+      Stack.Push(PomCmdStr);
+      DDebugWin.LNextCmd.Caption:=First(PomCmdStr);
+    end;
+    DDebugWin.LIteration.Caption:=inttostr(Iteracia);
+  end;
+
   if Stack.IsEmpty then
     EndProgram;
 end;
@@ -1370,15 +1419,17 @@ var
 begin
   Timer1.Enabled := False;
   DStop.Visible := False;
+  DDebugWin.Visible := False;
   EInput.Enabled := True;
   EInput.SetFocus;
+  Pause:=false;
   for I := 0 to MainMenu.Items.Count - 1 do
     MainMenu.Items[I].Enabled := True;
-  if not ShowGraphic then
-  begin
+//  if not ShowGraphic then
+//  begin
     ShowGraphic := True;
     RedrawAll;
-  end;
+//  end;
   for I := 0 to ToolBar1.ButtonCount - 1 do
     ToolBar1.Buttons[I].Enabled := True;
 end;
@@ -1620,6 +1671,8 @@ procedure TForm1.CmdPozastav;
 begin
   Pause:=true;
   Timer1.Enabled:=false;
+  DDebugWin.Show;
+  DStop.Hide;
 end;
 
 procedure TForm1.CmdPokracuj;
@@ -2255,7 +2308,7 @@ begin
   Levels[LevelID].RequestMarks := RequestMarks;
   if Levels[LevelID].Description = nil then
     Levels[LevelID].Description := TStringList.Create;
-   Levels[LevelID].Description.Assign(MLevelDescription.Lines);
+  Levels[LevelID].Description.Assign(MLevelDescription.Lines);  //TODO toto pada pri dvojnasobnom otvoreni projektu
 end;
 procedure TForm1.loadlevel(levelnumber:integer);
 begin

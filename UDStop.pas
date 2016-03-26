@@ -12,7 +12,6 @@ type
   TDStop = class(TForm)
     BStop: TBitBtn;
     BPause: TBitBtn;
-    BStep: TBitBtn;
     procedure FormCreate(Sender: TObject);
   private
     { Private declarations }
@@ -27,7 +26,7 @@ uses ULang;
 
 procedure TDStop.FormCreate(Sender: TObject);
 begin
-  Width:=240;
+  Width:=160;
   BStop.Caption:=_LBStopCaption;
 end;
 
