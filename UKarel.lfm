@@ -547,8 +547,8 @@ object Form1: TForm1
   end
   object ILMainMenu: TImageList
     DrawingStyle = dsTransparent
-    left = 38
-    top = 156
+    left = 16
+    top = 216
     Bitmap = {
       4C69090000001000000010000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000

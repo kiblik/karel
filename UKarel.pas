@@ -2339,7 +2339,7 @@ begin
   OrigKarel:= Karel;
   if Length(Levels) > 1 then
     for I := 0 to high(Levels) do
-      Levels[I].Description.Free;
+      FreeAndNil(Levels[I].Description);
   MLevelDescription.Lines.Clear;
   LBLevelList.Items.Clear;
   SetLength(Levels, 1);
@@ -2396,7 +2396,7 @@ begin
   Levels[LevelID].OrigMarks := OrigMarks;
   if Levels[LevelID].Description = nil then
     Levels[LevelID].Description := TStringList.Create;
-  Levels[LevelID].Description.Assign(MLevelDescription.Lines);  //TODO toto pada pri dvojnasobnom otvoreni projektu
+  Levels[LevelID].Description.Assign(MLevelDescription.Lines);
 end;
 procedure TForm1.loadlevel(levelnumber:integer);
 begin
