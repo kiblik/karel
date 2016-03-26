@@ -8,7 +8,7 @@ uses
   LCLIntf, LCLType, SysUtils, Variants, Classes,
   Graphics, Controls, Forms,
   Dialogs, StdCtrls, ExtCtrls, UUtils, Menus, UcmdForm, UStack, ComCtrls,
-  Buttons, UDStop, FileUtil, UDebugWin;
+  Buttons, UDStop, FileUtil, UDebugWin, UDirect;
 
 const
   version = '2.3';
@@ -118,24 +118,25 @@ type
     editingRequest: boolean;
     Pause: boolean;
     Iteracia: integer;
+    DirectForm: TDirectForm;
 
     procedure DrawAxis;
     procedure ReDrawAll(const FromY: integer = 0);
     procedure DrawColumn(X, Y: integer);
     procedure DrawKarel(X, Y, Z: integer);
     procedure RunCommand(Cmd: string);
-    procedure CmdKrok;
+    procedure CmdKrok(Sender: TObject = nil);
     procedure CmdPoloz(var OK: boolean);
     procedure CmdZober(var OK: boolean);
-    procedure CmdVlavo;
+    procedure CmdVlavo(Sender: TObject = nil);
     procedure CmdZmaz;
     procedure CmdPresun(NX, NY: integer);
     function CmdCond(Condition: string; var OK: boolean): boolean;
     procedure CmdStoj;
     procedure CmdPomaly;
     procedure CmdRychlo;
-    procedure CmdOznac;
-    procedure CmdOdznac;
+    procedure CmdOznac(Sender: TObject = nil);
+    procedure CmdOdznac(Sender: TObject = nil);
     procedure CmdPozastav;
     procedure CmdPokracuj;
     procedure CmdPolozF(Info: TPolozF; var OK: boolean);
@@ -149,6 +150,9 @@ type
     procedure saveLevel;
     procedure loadlevel(levelnumber:integer);
     procedure startAdmin;
+    procedure wrapperpoloz(Sender: TObject);
+    procedure wrapperzober(Sender: TObject);
+
   public
     procedure RoomMoveClick(Sender: TObject);
     procedure ZoomChange(Sender: TObject);
@@ -1468,7 +1472,7 @@ begin
     ToolBar1.Buttons[I].Enabled := True;
 end;
 
-procedure TForm1.CmdKrok;
+procedure TForm1.CmdKrok(Sender: TObject = nil);
 begin
   case Karel.Orientation of
     0: if RoomX > Karel.Pos.X + 1 then
@@ -2414,15 +2418,38 @@ begin
   MLevelDescription.Lines.Assign(Levels[LevelID].Description);
   ReDrawAll;
 end;
+procedure TForm1.wrapperpoloz(Sender: TObject);
+  var localOK:boolean = false;
+begin
+  CmdPoloz(localOK);
+end;
+procedure TForm1.wrapperzober(Sender: TObject);
+  var localOK:boolean = false;
+begin
+  CmdZober(localOK);
+end;
 
 procedure TForm1.startAdmin;
+
 begin
   MLevelDescription.Enabled:=true;
   SBRequest.Enabled:=true;
   SBRequest.Caption:=_lSBUpravZadanie;
   LBLevelList.PopupMenu:=PMLevelEdit;
   admin:=true;
+
+  DirectForm := TDirectForm.Create(self);
+  DirectForm.SBkrok.OnClick:=Cmdkrok;
+  DirectForm.SBvlavo.OnClick:=Cmdvlavo;
+  DirectForm.SBoznac.OnClick:=Cmdoznac;
+  DirectForm.SBodznac.OnClick:=Cmdodznac;
+  DirectForm.SBpoloz.OnClick:=wrapperpoloz;
+  DirectForm.SBzober.OnClick:=wrapperzober;
+
+  DirectForm.Show;
 end;
+
+
 
 end.
 
