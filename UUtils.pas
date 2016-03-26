@@ -56,6 +56,9 @@ type
              RequestBricks : TBricks;
              RequestMarks : TMarks;
              RequestKarel: TKarel;
+             OrigBricks : TBricks;
+             OrigMarks : TMarks;
+             OrigKarel: TKarel;
            end;
 
   TCmdSet = set of Byte;

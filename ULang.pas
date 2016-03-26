@@ -146,6 +146,7 @@ var _lMsgKarel_NoPic: string='Nenašiel som obrázok Karla! Karel nebude zobraze
     _lTehlaDesc: string = 'JeTehla?';
     _lZnackaDesc: string = 'JeZnacka?';
     _lVolnoDesc: string = 'JeVolno?';
+    _lSBReset: string = 'Obnov zadanie';
 
 function GetOpakuj(var Cmd : string; var OK : Boolean) : TOpakuj;
 function GetPresun(var Cmd : string; var OK : Boolean) : TPresun;

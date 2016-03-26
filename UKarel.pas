@@ -11,7 +11,7 @@ uses
   Buttons, UDStop, FileUtil, UDebugWin;
 
 const
-  version = '2.2';
+  version = '2.3';
 
 type
 
@@ -27,6 +27,7 @@ type
     MLevelDescription: TMemo;
     PMLevelEdit: TPopupMenu;
     SBRequest: TSpeedButton;
+    SBReset: TSpeedButton;
     Timer1: TTimer;
     ILMainMenu: TImageList;
 
@@ -70,6 +71,7 @@ type
     procedure MLevelDescriptionKeyUp(Sender: TObject; var {%H-}Key: Word;
       {%H-}Shift: TShiftState);
     procedure SBRequestClick(Sender: TObject);
+    procedure SBResetClick(Sender: TObject);
     procedure Slovnik1Click(Sender: TObject);
     procedure FormCloseQuery(Sender: TObject; var CanClose: boolean);
     procedure Timer1Timer(Sender: TObject);
@@ -99,8 +101,11 @@ type
     Marks: TMarks;
     RequestBricks: TBricks;
     RequestMarks: TMarks;
+    OrigBricks: TBricks;
+    OrigMarks: TMarks;
     Karel: TKarel;
     RequestKarel: TKarel;
+    OrigKarel: TKarel;
     RoomX, RoomY, RoomH: integer;
     //  CmdForm: TCmdForm;
     Stack: TStack;
@@ -229,6 +234,7 @@ begin
   MIAddLevel.Caption := _lMIAddLevel;
   MIRemoveLevel.Caption := _lMIRemoveLevel;
   MIRenameLevel.Caption := _lMIRenameLevel;
+  SBReset.Caption:= _lSBReset;
 
   Randomize;
   ShowGraphic := True;
@@ -274,6 +280,8 @@ begin
   SetLength(Marks, RoomX, RoomY);
   SetLength(RequestBricks, RoomX, RoomY);
   SetLength(RequestMarks, RoomX, RoomY);
+  SetLength(OrigBricks, RoomX, RoomY);
+  SetLength(OrigMarks, RoomX, RoomY);
 
   for X := 0 to RoomX - 1 do
     for Y := 0 to RoomY - 1 do
@@ -282,6 +290,8 @@ begin
       Marks[X, Y] := False;
       RequestBricks[X, Y] := nil;
       RequestMarks[X, Y] := False;
+      OrigBricks[X, Y] := nil;
+      OrigMarks[X, Y] := False;
     end;
   Karel.Pos.X := 0;
   Karel.Pos.Y := 0;
@@ -291,6 +301,7 @@ begin
   ReadKarelPts;
 
   RequestKarel := Karel; //set default values
+  OrigKarel := Karel;
 
   DrawKarel(Karel.Pos.X, Karel.Pos.Y, 0);
   WasChanged := False;
@@ -354,6 +365,8 @@ begin
       SetLength(Marks, RoomX, RoomY);
       SetLength(RequestBricks, RoomX, RoomY);
       SetLength(RequestMarks, RoomX, RoomY);
+      SetLength(OrigBricks, RoomX, RoomY);
+      SetLength(OrigMarks, RoomX, RoomY);
       for X := 0 to RoomX - 1 do
         for Y := 0 to RoomY - 1 do
         begin
@@ -361,11 +374,15 @@ begin
           Marks[X, Y] := False;
           RequestBricks[X, Y] := nil;
           RequestMarks[X, Y] := False;
+          OrigBricks[X, Y] := nil;
+          OrigMarks[X, Y] := False;
         end;
       Karel.Pos.X := 0;
       Karel.Pos.Y := 0;
       Karel.Orientation := 0;
       Karel.Limits.Up := 1;
+      RequestKarel := Karel;
+      OrigKarel := Karel;
       saveLevel;
       ReDrawAll;
     end;
@@ -597,6 +614,20 @@ begin
   end;
 end;
 
+procedure TForm1.SBResetClick(Sender: TObject);
+  var xk,yk,zk:integer;
+begin
+  Karel := OrigKarel;
+  for xk:= 0 to RoomX-1 do
+    for yk:= 0 to RoomY-1 do begin
+      Marks[xk,yk] := OrigMarks[xk,yk];
+    SetLength(Bricks[xk,yk],length(OrigBricks[xk,yk]));
+      for zk:=0 to length(OrigBricks[xk,yk])-1 do
+        Bricks[xk,yk,zk] := OrigBricks[xk,yk,zk];
+    end;
+  ReDrawAll;
+end;
+
 procedure TForm1.SaveProjectClick(Sender: TObject);
 var
   DSave: TSaveDialog;
@@ -821,10 +852,20 @@ begin
   SBRequest.Top := (ClientHeight - MHistory.Height - EInput.Height) div
     rightBarRatio - questbuttonheight;
 
-  LBLevelList.Top := (ClientHeight - MHistory.Height - EInput.Height) div rightBarRatio;
+
+  LBLevelList.Top := (ClientHeight - MHistory.Height - EInput.Height) div rightBarRatio+ questbuttonheight;
   LBLevelList.Left := ClientWidth - rightBar;
   LBLevelList.Width := rightBar;
-  LBLevelList.Height := (ClientHeight - MHistory.Height - EInput.Height) div rightBarRatio;
+  LBLevelList.Height := (ClientHeight - MHistory.Height - EInput.Height) div rightBarRatio- questbuttonheight;
+
+  SBReset.Left:=ClientWidth - rightBar;
+  SBReset.Width := rightBar;
+  SBReset.Height:= questbuttonheight;
+  SBReset.Top := (ClientHeight - MHistory.Height - EInput.Height) div rightBarRatio;
+
+  SBRequest.Height:= questbuttonheight;
+  SBRequest.Top := (ClientHeight - MHistory.Height - EInput.Height) div
+    rightBarRatio - questbuttonheight;
 
   Img.Width := ClientWidth - rightBar;
   Img.Height := ClientHeight - MHistory.Height - EInput.Height;
@@ -1697,11 +1738,23 @@ begin
   SetLength(Marks, RoomX, RoomY);
   SetLength(RequestBricks, RoomX, RoomY);
   SetLength(RequestMarks, RoomX, RoomY);
+  SetLength(OrigBricks, RoomX, RoomY);
+  SetLength(OrigMarks, RoomX, RoomY);
 
   if (Karel.Pos.X >= RoomX) or (Karel.Pos.Y >= RoomY) then
   begin
     Karel.Pos.X := 0;
     Karel.Pos.Y := 0;
+  end;
+  if (RequestKarel.Pos.X >= RoomX) or (RequestKarel.Pos.Y >= RoomY) then
+  begin
+    RequestKarel.Pos.X := 0;
+    RequestKarel.Pos.Y := 0;
+  end;
+  if (OrigKarel.Pos.X >= RoomX) or (OrigKarel.Pos.Y >= RoomY) then
+  begin
+    OrigKarel.Pos.X := 0;
+    OrigKarel.Pos.Y := 0;
   end;
   RedrawAll;
   MyDialog.Free;
@@ -1800,6 +1853,8 @@ var
           SetLength(Marks, RoomX, RoomY);
           SetLength(RequestBricks, RoomX, RoomY);
           SetLength(RequestMarks, RoomX, RoomY);
+          SetLength(OrigBricks, RoomX, RoomY);
+          SetLength(OrigMarks, RoomX, RoomY);
         end;
         if LS = 'roomy' then
         begin
@@ -1808,6 +1863,8 @@ var
           SetLength(Marks, RoomX, RoomY);
           SetLength(RequestBricks, RoomX, RoomY);
           SetLength(RequestMarks, RoomX, RoomY);
+          SetLength(OrigBricks, RoomX, RoomY);
+          SetLength(OrigMarks, RoomX, RoomY);
         end;
         if LS = 'roomh' then
           RoomH := StrToInt(PS);
@@ -1818,13 +1875,20 @@ var
         if LS = 'klimitup' then begin
           Karel.Limits.Up := StrToInt(PS);
           RequestKarel.Limits.Up := StrToInt(PS);
+          OrigKarel.Limits.Up := StrToInt(PS);
         end;
-        if LS = 'karelx' then
+        if LS = 'karelx' then begin
           Karel.Pos.X := StrToInt(PS);
-        if LS = 'karely' then
+          OrigKarel.Pos.X := StrToInt(PS);
+        end;
+        if LS = 'karely' then begin
           Karel.Pos.Y := StrToInt(PS);
-        if LS = 'karelo' then
+          OrigKarel.Pos.Y := StrToInt(PS);
+        end;
+        if LS = 'karelo' then begin
           Karel.Orientation := StrToInt(PS);
+          OrigKarel.Orientation := StrToInt(PS);
+        end;
         if LS = 'reqkarelx' then
           RequestKarel.Pos.X := StrToInt(PS);
         if LS = 'reqkarely' then
@@ -1884,6 +1948,12 @@ var
             Bricks[StrToInt(C1), StrToInt(C2)]) + 1);
           Bricks[StrToInt(C1), StrToInt(C2), Length(
             Bricks[StrToInt(C1), StrToInt(C2)]) - 1] := StrToInt(First(S));
+          SetLength(OrigBricks[StrToInt(C1), StrToInt(C2)], Length(
+            OrigBricks[StrToInt(C1), StrToInt(C2)]) + 1);
+          OrigBricks[StrToInt(C1), StrToInt(C2), Length(
+            OrigBricks[StrToInt(C1), StrToInt(C2)]) - 1] :=
+          Bricks[StrToInt(C1), StrToInt(C2), Length(
+            OrigBricks[StrToInt(C1), StrToInt(C2)]) - 1];
           UnSpace(S);
         until S = '';
       end;
@@ -1907,6 +1977,7 @@ var
         C1 := Copy(S, 1, I - 1);
         C2 := Copy(S, I + 1, MaxInt);
         Marks[StrToInt(C1), StrToInt(C2)] := True;
+        OrigMarks[StrToInt(C1), StrToInt(C2)] := True;
       end;
       3:
       begin  // closing cmds
@@ -2004,6 +2075,8 @@ var
           SetLength(Marks, RoomX, RoomY);
           SetLength(RequestBricks, RoomX, RoomY);
           SetLength(RequestMarks, RoomX, RoomY);
+          SetLength(OrigBricks, RoomX, RoomY);
+          SetLength(OrigMarks, RoomX, RoomY);
         end;
         if LS = 'roomy' then
         begin
@@ -2012,6 +2085,8 @@ var
           SetLength(Marks, RoomX, RoomY);
           SetLength(RequestBricks, RoomX, RoomY);
           SetLength(RequestMarks, RoomX, RoomY);
+          SetLength(OrigBricks, RoomX, RoomY);
+          SetLength(OrigMarks, RoomX, RoomY);
         end;
         if LS = 'roomh' then
           RoomH := StrToInt(PS);
@@ -2019,14 +2094,22 @@ var
           O.X := StrToInt(PS);
         if LS = 'OY' then
           O.Y := StrToInt(PS);
-        if LS = 'klimitup' then
+        if LS = 'klimitup' then begin
           Karel.Limits.Up := StrToInt(PS);
-        if LS = 'karelx' then
+          OrigKarel.Limits.Up := StrToInt(PS);
+        end;
+        if LS = 'karelx' then begin
           Karel.Pos.X := StrToInt(PS);
-        if LS = 'karely' then
+          OrigKarel.Pos.X := StrToInt(PS);
+        end;
+        if LS = 'karely' then begin
           Karel.Pos.Y := StrToInt(PS);
-        if LS = 'karelo' then
+          OrigKarel.Pos.Y := StrToInt(PS);
+        end;
+        if LS = 'karelo' then begin
           Karel.Orientation := StrToInt(PS);
+          OrigKarel.Orientation := StrToInt(PS);
+        end;
         if LS = 'zoom' then
         begin
           Zoom := StrToInt(PS);
@@ -2233,6 +2316,8 @@ begin
   SetLength(Marks, RoomX, RoomY);
   SetLength(RequestBricks, RoomX, RoomY);
   SetLength(RequestMarks, RoomX, RoomY);
+  SetLength(OrigBricks, RoomX, RoomY);
+  SetLength(OrigMarks, RoomX, RoomY);
   for I := 0 to RoomX - 1 do
     for J := 0 to RoomY - 1 do
     begin
@@ -2240,11 +2325,14 @@ begin
       Marks[I, J] := False;
       RequestBricks[I, J] := nil;
       RequestMarks[I, J] := False;
+      OrigBricks[I, J] := nil;
+      OrigMarks[I, J] := False;
     end;
   Karel.Pos.X := 0;
   Karel.Pos.Y := 0;
   Karel.Orientation := 0;
   RequestKarel := Karel;
+  OrigKarel:= Karel;
   if Length(Levels) > 1 then
     for I := 0 to high(Levels) do
       Levels[I].Description.Free;
@@ -2294,11 +2382,14 @@ begin
   Levels[LevelID].O := O;
   Levels[LevelID].Karel := Karel;
   Levels[LevelID].RequestKarel := RequestKarel;
+  Levels[LevelID].OrigKarel := OrigKarel;
   Levels[LevelID].Zoom := Zoom;
   Levels[LevelID].Bricks := Bricks;
   Levels[LevelID].Marks := Marks;
   Levels[LevelID].RequestBricks := RequestBricks;
   Levels[LevelID].RequestMarks := RequestMarks;
+  Levels[LevelID].OrigBricks := OrigBricks;
+  Levels[LevelID].OrigMarks := OrigMarks;
   if Levels[LevelID].Description = nil then
     Levels[LevelID].Description := TStringList.Create;
   Levels[LevelID].Description.Assign(MLevelDescription.Lines);  //TODO toto pada pri dvojnasobnom otvoreni projektu
@@ -2312,11 +2403,14 @@ begin
   O:=Levels[LevelID].O;
   Karel := Levels[LevelID].Karel;
   RequestKarel := Levels[LevelID].RequestKarel;
+  OrigKarel := Levels[LevelID].OrigKarel;
   Zoom := Levels[LevelID].Zoom;
   Bricks := Levels[LevelID].Bricks;
   Marks := Levels[LevelID].Marks;
   RequestBricks := Levels[LevelID].RequestBricks;
   RequestMarks := Levels[LevelID].RequestMarks;
+  OrigBricks := Levels[LevelID].OrigBricks;
+  OrigMarks := Levels[LevelID].OrigMarks;
   MLevelDescription.Lines.Assign(Levels[LevelID].Description);
   ReDrawAll;
 end;

@@ -1,7 +1,7 @@
 object Form1: TForm1
-  Left = 494
+  Left = 411
   Height = 600
-  Top = 131
+  Top = 48
   Width = 819
   AlphaBlendValue = 100
   Caption = 'Neuložený projekt'
@@ -217,6 +217,13 @@ object Form1: TForm1
     Top = 208
     Width = 112
     OnClick = SBRequestClick
+  end
+  object SBReset: TSpeedButton
+    Left = 464
+    Height = 22
+    Top = 240
+    Width = 88
+    OnClick = SBResetClick
   end
   object MainMenu: TMainMenu
     Images = ILMainMenu
