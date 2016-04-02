@@ -9,7 +9,7 @@
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
         <CursorPos Y="15"/>
-        <UsageCount Value="133"/>
+        <UsageCount Value="134"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit0>
       <Unit1>
@@ -19,9 +19,9 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <IsVisibleTab Value="True"/>
-        <TopLine Value="2371"/>
-        <CursorPos Y="2399"/>
-        <UsageCount Value="133"/>
+        <TopLine Value="1942"/>
+        <CursorPos X="23" Y="1958"/>
+        <UsageCount Value="134"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
@@ -35,7 +35,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="20"/>
         <CursorPos X="58" Y="36"/>
-        <UsageCount Value="133"/>
+        <UsageCount Value="134"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit2>
       <Unit3>
@@ -45,7 +45,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="28"/>
         <CursorPos X="22" Y="40"/>
-        <UsageCount Value="133"/>
+        <UsageCount Value="134"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit3>
       <Unit4>
@@ -54,7 +54,7 @@
         <HasResources Value="True"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="17" Y="9"/>
-        <UsageCount Value="133"/>
+        <UsageCount Value="134"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit4>
       <Unit5>
@@ -65,7 +65,7 @@
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="22" Y="5"/>
-        <UsageCount Value="133"/>
+        <UsageCount Value="134"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit5>
       <Unit6>
@@ -77,7 +77,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="2"/>
         <CursorPos X="12" Y="29"/>
-        <UsageCount Value="133"/>
+        <UsageCount Value="134"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit6>
       <Unit7>
@@ -86,7 +86,7 @@
         <HasResources Value="True"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="22" Y="6"/>
-        <UsageCount Value="133"/>
+        <UsageCount Value="134"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit7>
       <Unit8>
@@ -95,7 +95,7 @@
         <HasResources Value="True"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="23" Y="9"/>
-        <UsageCount Value="133"/>
+        <UsageCount Value="134"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit8>
       <Unit9>
@@ -104,7 +104,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="25"/>
         <CursorPos Y="150"/>
-        <UsageCount Value="133"/>
+        <UsageCount Value="134"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit9>
       <Unit10>
@@ -113,7 +113,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="4"/>
         <CursorPos X="42" Y="16"/>
-        <UsageCount Value="133"/>
+        <UsageCount Value="134"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit10>
       <Unit11>
@@ -122,7 +122,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="4"/>
         <CursorPos Y="32"/>
-        <UsageCount Value="133"/>
+        <UsageCount Value="134"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit11>
       <Unit12>
@@ -133,7 +133,7 @@
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="37" Y="39"/>
-        <UsageCount Value="35"/>
+        <UsageCount Value="36"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit12>
       <Unit13>
@@ -145,14 +145,16 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="12"/>
         <CursorPos X="60" Y="26"/>
-        <UsageCount Value="23"/>
+        <UsageCount Value="24"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit13>
       <Unit14>
         <Filename Value="UUtils.pas"/>
-        <EditorIndex Value="-1"/>
-        <CursorPos X="36" Y="5"/>
+        <EditorIndex Value="1"/>
+        <TopLine Value="251"/>
+        <CursorPos Y="275"/>
         <UsageCount Value="33"/>
+        <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit14>
       <Unit15>
@@ -544,7 +546,7 @@
       </Unit72>
       <Unit73>
         <Filename Value="../../../../../lazarus/lcl/include/toolbutton.inc"/>
-        <EditorIndex Value="1"/>
+        <EditorIndex Value="2"/>
         <TopLine Value="146"/>
         <CursorPos Y="162"/>
         <UsageCount Value="10"/>
@@ -553,140 +555,154 @@
     </Units>
     <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
-        <Filename Value="UKarel.pas"/>
-        <Caret Line="2321" TopLine="2293"/>
+        <Filename Value="UUtils.pas"/>
+        <Caret Line="271" TopLine="251"/>
       </Position1>
       <Position2>
-        <Filename Value="UKarel.pas"/>
-        <Caret Line="2322" TopLine="2294"/>
+        <Filename Value="UUtils.pas"/>
+        <Caret Line="273" TopLine="251"/>
       </Position2>
       <Position3>
-        <Filename Value="UKarel.pas"/>
-        <Caret Line="2323" TopLine="2295"/>
+        <Filename Value="UUtils.pas"/>
+        <Caret Line="265" TopLine="251"/>
       </Position3>
       <Position4>
-        <Filename Value="UKarel.pas"/>
-        <Caret Line="2324" TopLine="2296"/>
+        <Filename Value="UUtils.pas"/>
+        <Caret Line="275" TopLine="251"/>
       </Position4>
       <Position5>
         <Filename Value="UKarel.pas"/>
-        <Caret Line="2336" TopLine="2309"/>
+        <Caret Line="1952" TopLine="1942"/>
       </Position5>
       <Position6>
         <Filename Value="UKarel.pas"/>
-        <Caret Line="2337" TopLine="2310"/>
+        <Caret Line="1951" TopLine="1942"/>
       </Position6>
       <Position7>
         <Filename Value="UKarel.pas"/>
-        <Caret Line="2338" TopLine="2311"/>
+        <Caret Line="1952" TopLine="1942"/>
       </Position7>
       <Position8>
         <Filename Value="UKarel.pas"/>
-        <Caret Line="2339" TopLine="2312"/>
+        <Caret Line="1951" TopLine="1942"/>
       </Position8>
       <Position9>
         <Filename Value="UKarel.pas"/>
-        <Caret Line="2343" TopLine="2320"/>
+        <Caret Line="1953" TopLine="1942"/>
       </Position9>
       <Position10>
         <Filename Value="UKarel.pas"/>
-        <Caret Line="2348" TopLine="2320"/>
+        <Caret Line="1954" TopLine="1942"/>
       </Position10>
       <Position11>
         <Filename Value="UKarel.pas"/>
-        <Caret Line="2383" TopLine="2366"/>
+        <Caret Line="1953" TopLine="1942"/>
       </Position11>
       <Position12>
         <Filename Value="UKarel.pas"/>
-        <Caret Line="2384" TopLine="2366"/>
+        <Caret Line="1954" TopLine="1942"/>
       </Position12>
       <Position13>
         <Filename Value="UKarel.pas"/>
-        <Caret Line="2385" TopLine="2366"/>
+        <Caret Line="1953" TopLine="1942"/>
       </Position13>
       <Position14>
         <Filename Value="UKarel.pas"/>
-        <Caret Line="2386" TopLine="2366"/>
+        <Caret Line="1954" TopLine="1942"/>
       </Position14>
       <Position15>
         <Filename Value="UKarel.pas"/>
-        <Caret Line="2387" TopLine="2366"/>
+        <Caret Line="1953" TopLine="1942"/>
       </Position15>
       <Position16>
         <Filename Value="UKarel.pas"/>
-        <Caret Line="2388" TopLine="2366"/>
+        <Caret Line="1956" TopLine="1942"/>
       </Position16>
       <Position17>
         <Filename Value="UKarel.pas"/>
-        <Caret Line="2389" TopLine="2366"/>
+        <Caret Line="1955" TopLine="1942"/>
       </Position17>
       <Position18>
         <Filename Value="UKarel.pas"/>
-        <Caret Line="2390" TopLine="2366"/>
+        <Caret Line="1956" TopLine="1942"/>
       </Position18>
       <Position19>
         <Filename Value="UKarel.pas"/>
-        <Caret Line="2391" TopLine="2366"/>
+        <Caret Line="1949" TopLine="1942"/>
       </Position19>
       <Position20>
         <Filename Value="UKarel.pas"/>
-        <Caret Line="2392" TopLine="2366"/>
+        <Caret Line="1957" TopLine="1942"/>
       </Position20>
       <Position21>
         <Filename Value="UKarel.pas"/>
-        <Caret Line="2393" TopLine="2366"/>
+        <Caret Line="1954" Column="19" TopLine="1942"/>
       </Position21>
       <Position22>
         <Filename Value="UKarel.pas"/>
-        <Caret Line="2394" TopLine="2366"/>
+        <Caret Line="1958" TopLine="1942"/>
       </Position22>
       <Position23>
         <Filename Value="UKarel.pas"/>
-        <Caret Line="2395" TopLine="2367"/>
+        <Caret Line="1957" TopLine="1942"/>
       </Position23>
       <Position24>
         <Filename Value="UKarel.pas"/>
-        <Caret Line="2396" TopLine="2368"/>
+        <Caret Line="1958" TopLine="1942"/>
       </Position24>
       <Position25>
         <Filename Value="UKarel.pas"/>
-        <Caret Line="2397" TopLine="2369"/>
+        <Caret Line="1957" TopLine="1942"/>
       </Position25>
       <Position26>
         <Filename Value="UKarel.pas"/>
-        <Caret Line="2399" TopLine="2371"/>
+        <Caret Line="1959" TopLine="1942"/>
       </Position26>
       <Position27>
         <Filename Value="UKarel.pas"/>
-        <Caret Line="2397" Column="14" TopLine="2372"/>
+        <Caret Line="1960" TopLine="1942"/>
       </Position27>
       <Position28>
         <Filename Value="UKarel.pas"/>
-        <Caret Line="2342" Column="40" TopLine="2326"/>
+        <Caret Line="1959" TopLine="1942"/>
       </Position28>
       <Position29>
         <Filename Value="UKarel.pas"/>
-        <Caret Line="2347" TopLine="2326"/>
+        <Caret Line="1960" TopLine="1942"/>
       </Position29>
       <Position30>
         <Filename Value="UKarel.pas"/>
-        <Caret Line="1818" Column="9" TopLine="1798"/>
+        <Caret Line="1959" TopLine="1942"/>
       </Position30>
     </JumpHistory>
   </ProjectSession>
   <Debugging>
-    <Watches Count="18">
+    <BreakPoints Count="2">
+      <Item1>
+        <Kind Value="bpkSource"/>
+        <WatchScope Value="wpsLocal"/>
+        <WatchKind Value="wpkWrite"/>
+        <Source Value="UKarel.pas"/>
+        <Line Value="1949"/>
+      </Item1>
+      <Item2>
+        <Kind Value="bpkSource"/>
+        <WatchScope Value="wpsLocal"/>
+        <WatchKind Value="wpkWrite"/>
+        <Source Value="UKarel.pas"/>
+        <Line Value="1957"/>
+      </Item2>
+    </BreakPoints>
+    <Watches Count="20">
       <Item1>
         <Expression Value="MLevelDescription.Lines"/>
         <Enabled Value="False"/>
       </Item1>
       <Item2>
         <Expression Value="LevelID"/>
-        <Enabled Value="False"/>
       </Item2>
       <Item3>
         <Expression Value="Levels"/>
-        <Enabled Value="False"/>
       </Item3>
       <Item4>
         <Expression Value="Cmd"/>
@@ -730,9 +746,11 @@
       </Item13>
       <Item14>
         <Expression Value="xk"/>
+        <Enabled Value="False"/>
       </Item14>
       <Item15>
         <Expression Value="yk"/>
+        <Enabled Value="False"/>
       </Item15>
       <Item16>
         <Expression Value="zk"/>
@@ -746,6 +764,12 @@
         <Expression Value="OrigMarks[xk,yk]"/>
         <Enabled Value="False"/>
       </Item18>
+      <Item19>
+        <Expression Value="OrigBricks"/>
+      </Item19>
+      <Item20>
+        <Expression Value="S"/>
+      </Item20>
     </Watches>
   </Debugging>
 </CONFIG>

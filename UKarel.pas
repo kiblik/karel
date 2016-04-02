@@ -1953,7 +1953,7 @@ var
           Bricks[StrToInt(C1), StrToInt(C2), Length(
             Bricks[StrToInt(C1), StrToInt(C2)]) - 1] := StrToInt(First(S));
           SetLength(OrigBricks[StrToInt(C1), StrToInt(C2)], Length(
-            OrigBricks[StrToInt(C1), StrToInt(C2)]) + 1);
+            Bricks[StrToInt(C1), StrToInt(C2)]));
           OrigBricks[StrToInt(C1), StrToInt(C2), Length(
             OrigBricks[StrToInt(C1), StrToInt(C2)]) - 1] :=
           Bricks[StrToInt(C1), StrToInt(C2), Length(
