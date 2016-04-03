@@ -156,6 +156,15 @@ begin
     _lPokracujCmd:= 'pokracuj';
     _lBPauseCaption:= 'Pozastav';
     _lBContinueCaption:= 'Pokračuj';
+	_lDebugWin:= 'Ladenie';
+    _lLastCmdDesc:= 'Posledný príkaz';
+    _lNextCmdDesc:= 'Nasledujúcu príkaz';
+    _lIterationDesc := 'Zostavajúci počet cyklov';
+    _lStenaDesc:= 'JeStena?';
+    _lTehlaDesc:= 'JeTehla?';
+    _lZnackaDesc:= 'JeZnacka?';
+    _lVolnoDesc:= 'JeVolno?';
+    _lSBReset:= 'Obnov zadanie';
 end;
 
 procedure setLangEN;
@@ -307,6 +316,15 @@ begin
     _lPokracujCmd:= 'continue';
     _lBPauseCaption:= 'Pause';
     _lBContinueCaption:= 'Continue';
+	_lDebugWin:= 'Debugging';
+    _lLastCmdDesc:= 'Last command';
+    _lNextCmdDesc:= 'Next command';
+    _lIterationDesc := 'Remaining iteration count';
+    _lStenaDesc:= 'IsWall?';
+    _lTehlaDesc:= 'IsBrick?';
+    _lZnackaDesc:= 'IsMarker?';
+    _lVolnoDesc:= 'IsFree?';
+    _lSBReset:= 'Refresh task';
 end;
 
 procedure setLang(lang: TLang);

@@ -8,7 +8,7 @@ uses
   LCLIntf, LCLType, SysUtils, Variants, Classes,
   Graphics, Controls, Forms,
   Dialogs, StdCtrls, ExtCtrls, UUtils, Menus, UcmdForm, UStack, ComCtrls,
-  Buttons, UDStop, FileUtil;
+  Buttons, UDStop, FileUtil, UDebugWin, UDirect;
 
 const
   version = '2.99';
@@ -28,6 +28,7 @@ type
     MLevelDescription: TMemo;
     PMLevelEdit: TPopupMenu;
     SBRequest: TSpeedButton;
+    SBReset: TSpeedButton;
     Timer1: TTimer;
     ILMainMenu: TImageList;
 
@@ -61,24 +62,27 @@ type
 
     procedure LBLevelListClick(Sender: TObject);
     procedure LBLevelListMouseDown(Sender: TObject; Button: TMouseButton;
-      Shift: TShiftState; X, Y: Integer);
+      {%H-}Shift: TShiftState; X, Y: Integer);
     procedure MIAddLevelClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure EInputKeyPress(Sender: TObject; var Key: char);
-    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure FormClose(Sender: TObject; var {%H-}Action: TCloseAction);
     procedure MIRemoveLevelClick(Sender: TObject);
     procedure MIRenameLevelClick(Sender: TObject);
-    procedure MLevelDescriptionKeyUp(Sender: TObject; var Key: Word;
-      Shift: TShiftState);
+    procedure MLevelDescriptionKeyUp(Sender: TObject; var {%H-}Key: Word;
+      {%H-}Shift: TShiftState);
     procedure SBRequestClick(Sender: TObject);
+    procedure SBResetClick(Sender: TObject);
     procedure Slovnik1Click(Sender: TObject);
     procedure FormCloseQuery(Sender: TObject; var CanClose: boolean);
     procedure Timer1Timer(Sender: TObject);
-    procedure EInputKeyDown(Sender: TObject; var Key: word; Shift: TShiftState);
+    procedure EInputKeyDown(Sender: TObject; var Key: word; {%H-}Shift: TShiftState);
     procedure FormResize(Sender: TObject);
     procedure BStopClick(Sender: TObject);
     procedure BPauseClick(Sender: TObject);
     procedure BStepClick(Sender: TObject);
+    procedure BContinueClick(Sender: TObject);
+    procedure BDebugCloseWrapper(Sender: TObject; var {%H-}CloseAction: TCloseAction);
     procedure Rozmerymiestnosti1Click(Sender: TObject);
     procedure Posunmiestnosti1Click(Sender: TObject);
     procedure ObmedzenieKarla1Click(Sender: TObject);
@@ -98,36 +102,42 @@ type
     Marks: TMarks;
     RequestBricks: TBricks;
     RequestMarks: TMarks;
+    OrigBricks: TBricks;
+    OrigMarks: TMarks;
     Karel: TKarel;
     RequestKarel: TKarel;
+    OrigKarel: TKarel;
     RoomX, RoomY, RoomH: integer;
     //  CmdForm: TCmdForm;
     Stack: TStack;
     ELine: integer;
     DStop: TDStop;
+    DDebugWin: TDDebugWin;
     ShowGraphic: boolean;
     LHistory: array of string;
     admin: boolean;
     editingRequest: boolean;
     Pause: boolean;
+    Iteracia: integer;
+    DirectForm: TDirectForm;
 
     procedure DrawAxis;
     procedure ReDrawAll(const FromY: integer = 0);
     procedure DrawColumn(X, Y: integer);
     procedure DrawKarel(X, Y, Z: integer);
     procedure RunCommand(Cmd: string);
-    procedure CmdKrok;
+    procedure CmdKrok(Sender: TObject = nil);
     procedure CmdPoloz(var OK: boolean);
     procedure CmdZober(var OK: boolean);
-    procedure CmdVlavo;
+    procedure CmdVlavo(Sender: TObject = nil);
     procedure CmdZmaz;
     procedure CmdPresun(NX, NY: integer);
     function CmdCond(Condition: string; var OK: boolean): boolean;
     procedure CmdStoj;
     procedure CmdPomaly;
     procedure CmdRychlo;
-    procedure CmdOznac;
-    procedure CmdOdznac;
+    procedure CmdOznac(Sender: TObject = nil);
+    procedure CmdOdznac(Sender: TObject = nil);
     procedure CmdPozastav;
     procedure CmdPokracuj;
     procedure CmdPolozF(Info: TPolozF; var OK: boolean);
@@ -141,6 +151,9 @@ type
     procedure saveLevel;
     procedure loadlevel(levelnumber:integer);
     procedure startAdmin;
+    procedure wrapperpoloz(Sender: TObject);
+    procedure wrapperzober(Sender: TObject);
+
   public
     procedure RoomMoveClick(Sender: TObject);
     procedure ZoomChange(Sender: TObject);
@@ -184,7 +197,7 @@ var
   end;
 
 begin
-  if not FileExistsUTF8('karel.ini') then
+  if not FileExists('karel.ini') then
     Exit;
   AssignFile(T, 'karel.ini');
   Reset(T);
@@ -227,6 +240,8 @@ begin
   MIRemoveLevel.Caption := _lMIRemoveLevel;
   MIRenameLevel.Caption := _lMIRenameLevel;
   Jazyk1.Caption:=_lMenuJazyk;
+  SBReset.Caption:= _lSBReset;
+
   Randomize;
   ShowGraphic := True;
   DoubleBuffered := True;
@@ -237,10 +252,16 @@ begin
   DStop := TDStop.Create(self);
   DStop.BStop.OnClick := BStopClick;
   DStop.BPause.OnClick:= BPauseClick;
-  DStop.BStep.OnClick:=BStepClick;
   DStop.Left := Left + (Width - DStop.Width) div 2;
   DStop.Top := Top;
   DStop.Hide;
+
+  DDebugWin := TDDebugWin.Create(self);
+  DDebugWin.BContinue.OnClick:= BContinueClick;
+  DDebugWin.BStep.OnClick:= BStepClick;
+  DDebugWin.BStop.OnClick:= BStopClick;
+  DDebugWin.OnClose := BDebugCloseWrapper;
+  DDebugWin.Hide;
 
   EInput.Text := '';
   ELine := 0;
@@ -265,6 +286,8 @@ begin
   SetLength(Marks, RoomX, RoomY);
   SetLength(RequestBricks, RoomX, RoomY);
   SetLength(RequestMarks, RoomX, RoomY);
+  SetLength(OrigBricks, RoomX, RoomY);
+  SetLength(OrigMarks, RoomX, RoomY);
 
   for X := 0 to RoomX - 1 do
     for Y := 0 to RoomY - 1 do
@@ -273,6 +296,8 @@ begin
       Marks[X, Y] := False;
       RequestBricks[X, Y] := nil;
       RequestMarks[X, Y] := False;
+      OrigBricks[X, Y] := nil;
+      OrigMarks[X, Y] := False;
     end;
   Karel.Pos.X := 0;
   Karel.Pos.Y := 0;
@@ -282,6 +307,7 @@ begin
   ReadKarelPts;
 
   RequestKarel := Karel; //set default values
+  OrigKarel := Karel;
 
   DrawKarel(Karel.Pos.X, Karel.Pos.Y, 0);
   WasChanged := False;
@@ -345,6 +371,8 @@ begin
       SetLength(Marks, RoomX, RoomY);
       SetLength(RequestBricks, RoomX, RoomY);
       SetLength(RequestMarks, RoomX, RoomY);
+      SetLength(OrigBricks, RoomX, RoomY);
+      SetLength(OrigMarks, RoomX, RoomY);
       for X := 0 to RoomX - 1 do
         for Y := 0 to RoomY - 1 do
         begin
@@ -352,11 +380,15 @@ begin
           Marks[X, Y] := False;
           RequestBricks[X, Y] := nil;
           RequestMarks[X, Y] := False;
+          OrigBricks[X, Y] := nil;
+          OrigMarks[X, Y] := False;
         end;
       Karel.Pos.X := 0;
       Karel.Pos.Y := 0;
       Karel.Orientation := 0;
       Karel.Limits.Up := 1;
+      RequestKarel := Karel;
+      OrigKarel := Karel;
       saveLevel;
       ReDrawAll;
     end;
@@ -408,7 +440,7 @@ begin
   end
   else
     FN := 'pics' + DirectorySeparator + 'karel.pts';
-  if not FileExistsUTF8(FN) then
+  if not FileExists(FN) then
   begin
     MyMessageDlg(_lMsgRunError, _lMsgKarel_NoPic, mtWarning, [mbOK], mrOk, 0);
     Exit;
@@ -480,6 +512,7 @@ begin
   CmdForm.Free;
   Stack.Free;
   DStop.Free;
+  DDebugWin.Free;
 end;
 
 procedure TForm1.MIRenameLevelClick(Sender: TObject);
@@ -585,6 +618,20 @@ begin
       ShowModal;
     end;
   end;
+end;
+
+procedure TForm1.SBResetClick(Sender: TObject);
+  var xk,yk,zk:integer;
+begin
+  Karel := OrigKarel;
+  for xk:= 0 to RoomX-1 do
+    for yk:= 0 to RoomY-1 do begin
+      Marks[xk,yk] := OrigMarks[xk,yk];
+    SetLength(Bricks[xk,yk],length(OrigBricks[xk,yk]));
+      for zk:=0 to length(OrigBricks[xk,yk])-1 do
+        Bricks[xk,yk,zk] := OrigBricks[xk,yk,zk];
+    end;
+  ReDrawAll;
 end;
 
 procedure TForm1.SaveProjectClick(Sender: TObject);
@@ -811,10 +858,20 @@ begin
   SBRequest.Top := (ClientHeight - MHistory.Height - EInput.Height) div
     rightBarRatio - questbuttonheight;
 
-  LBLevelList.Top := (ClientHeight - MHistory.Height - EInput.Height) div rightBarRatio;
+
+  LBLevelList.Top := (ClientHeight - MHistory.Height - EInput.Height) div rightBarRatio+ questbuttonheight;
   LBLevelList.Left := ClientWidth - rightBar;
   LBLevelList.Width := rightBar;
-  LBLevelList.Height := (ClientHeight - MHistory.Height - EInput.Height) div rightBarRatio;
+  LBLevelList.Height := (ClientHeight - MHistory.Height - EInput.Height) div rightBarRatio- questbuttonheight;
+
+  SBReset.Left:=ClientWidth - rightBar;
+  SBReset.Width := rightBar;
+  SBReset.Height:= questbuttonheight;
+  SBReset.Top := (ClientHeight - MHistory.Height - EInput.Height) div rightBarRatio;
+
+  SBRequest.Height:= questbuttonheight;
+  SBRequest.Top := (ClientHeight - MHistory.Height - EInput.Height) div
+    rightBarRatio - questbuttonheight;
 
   Img.Width := ClientWidth - rightBar;
   Img.Height := ClientHeight - MHistory.Height - EInput.Height;
@@ -837,10 +894,19 @@ end;
 
 procedure TForm1.BPauseClick(Sender: TObject);
 begin
-  if pause then
-    CmdPokracuj
-  else
-    CmdPozastav;
+  CmdPozastav;
+end;
+
+procedure TForm1.BContinueClick(Sender: TObject);
+begin
+  DDebugWin.Hide;
+  DStop.Show;
+  CmdPokracuj;
+end;
+
+procedure TForm1.BDebugCloseWrapper(Sender: TObject; var CloseAction: TCloseAction);
+begin
+  BContinueClick(Sender);
 end;
 
 procedure TForm1.BStepClick(Sender: TObject);
@@ -1050,7 +1116,9 @@ var
   Cond: TCond;
   II: integer;
   PolozF: TPolozF;
+  PomCmdStr: string;
 begin
+  PomCmdStr:=Cmd;
   repeat
     UnSpace(Cmd);
     FW := LowerCase(First(Cmd));
@@ -1122,6 +1190,7 @@ begin
             Stack.Push(Opakuj.Commands);
         end;
       end;
+      Iteracia:=Opakuj.Pocet;
     end;
     if FW = _lPresunCmd then
     begin
@@ -1249,13 +1318,6 @@ begin
       if Cmd <> '' then
         Stack.Push(Cmd);
     end;
-    if FW = _lPokracujCmd then
-    begin
-      CmdPokracuj;
-      OK := True;
-      if Cmd <> '' then
-        Stack.Push(Cmd);
-    end;
     if FW = _lAkCmd then
     begin
       Ak := GetAk(Cmd, OK);
@@ -1347,6 +1409,32 @@ begin
       Application.ProcessMessages;
     end;
   until ShowGraphic or (Cmd = '') or Pause;
+  If Pause then begin
+    If CmdCond(_lStenaCmd,OK) then
+      DDebugWin.LStena.Caption := _lPravdaCmd
+    else
+      DDebugWin.LStena.Caption := _lNepravdaCmd;
+    If CmdCond(_lVolnoCmd,OK) then
+      DDebugWin.LVolno.Caption := _lPravdaCmd
+    else
+      DDebugWin.LVolno.Caption := _lNepravdaCmd;
+    If CmdCond(_lTehlaCmd,OK) then
+      DDebugWin.LTehla.Caption := _lPravdaCmd
+    else
+      DDebugWin.LTehla.Caption := _lNepravdaCmd;
+    If CmdCond(_lZnackaCmd,OK) then
+      DDebugWin.LZnacka.Caption := _lPravdaCmd
+    else
+      DDebugWin.LZnacka.Caption := _lNepravdaCmd;
+    DDebugWin.LLastCmd.Caption:=First(PomCmdStr);  // vyuzivame, ze sme si na zaciatku odlozili obsah Cmd
+    if not Stack.IsEmpty then begin
+      PomCmdStr := Stack.Pop;
+      Stack.Push(PomCmdStr);
+      DDebugWin.LNextCmd.Caption:=First(PomCmdStr);
+    end;
+    DDebugWin.LIteration.Caption:=inttostr(Iteracia);
+  end;
+
   if Stack.IsEmpty then
     EndProgram;
 end;
@@ -1371,20 +1459,22 @@ var
 begin
   Timer1.Enabled := False;
   DStop.Visible := False;
+  DDebugWin.Visible := False;
   EInput.Enabled := True;
   EInput.SetFocus;
+  Pause:=false;
   for I := 0 to MainMenu.Items.Count - 1 do
     MainMenu.Items[I].Enabled := True;
-  if not ShowGraphic then
-  begin
+//  if not ShowGraphic then
+//  begin
     ShowGraphic := True;
     RedrawAll;
-  end;
+//  end;
   for I := 0 to ToolBar1.ButtonCount - 1 do
     ToolBar1.Buttons[I].Enabled := True;
 end;
 
-procedure TForm1.CmdKrok;
+procedure TForm1.CmdKrok(Sender: TObject = nil);
 begin
   case Karel.Orientation of
     0: if RoomX > Karel.Pos.X + 1 then
@@ -1621,6 +1711,8 @@ procedure TForm1.CmdPozastav;
 begin
   Pause:=true;
   Timer1.Enabled:=false;
+  DDebugWin.Show;
+  DStop.Hide;
 end;
 
 procedure TForm1.CmdPokracuj;
@@ -1652,11 +1744,23 @@ begin
   SetLength(Marks, RoomX, RoomY);
   SetLength(RequestBricks, RoomX, RoomY);
   SetLength(RequestMarks, RoomX, RoomY);
+  SetLength(OrigBricks, RoomX, RoomY);
+  SetLength(OrigMarks, RoomX, RoomY);
 
   if (Karel.Pos.X >= RoomX) or (Karel.Pos.Y >= RoomY) then
   begin
     Karel.Pos.X := 0;
     Karel.Pos.Y := 0;
+  end;
+  if (RequestKarel.Pos.X >= RoomX) or (RequestKarel.Pos.Y >= RoomY) then
+  begin
+    RequestKarel.Pos.X := 0;
+    RequestKarel.Pos.Y := 0;
+  end;
+  if (OrigKarel.Pos.X >= RoomX) or (OrigKarel.Pos.Y >= RoomY) then
+  begin
+    OrigKarel.Pos.X := 0;
+    OrigKarel.Pos.Y := 0;
   end;
   RedrawAll;
   MyDialog.Free;
@@ -1755,6 +1859,8 @@ var
           SetLength(Marks, RoomX, RoomY);
           SetLength(RequestBricks, RoomX, RoomY);
           SetLength(RequestMarks, RoomX, RoomY);
+          SetLength(OrigBricks, RoomX, RoomY);
+          SetLength(OrigMarks, RoomX, RoomY);
         end;
         if LS = 'roomy' then
         begin
@@ -1763,6 +1869,8 @@ var
           SetLength(Marks, RoomX, RoomY);
           SetLength(RequestBricks, RoomX, RoomY);
           SetLength(RequestMarks, RoomX, RoomY);
+          SetLength(OrigBricks, RoomX, RoomY);
+          SetLength(OrigMarks, RoomX, RoomY);
         end;
         if LS = 'roomh' then
           RoomH := StrToInt(PS);
@@ -1773,13 +1881,20 @@ var
         if LS = 'klimitup' then begin
           Karel.Limits.Up := StrToInt(PS);
           RequestKarel.Limits.Up := StrToInt(PS);
+          OrigKarel.Limits.Up := StrToInt(PS);
         end;
-        if LS = 'karelx' then
+        if LS = 'karelx' then begin
           Karel.Pos.X := StrToInt(PS);
-        if LS = 'karely' then
+          OrigKarel.Pos.X := StrToInt(PS);
+        end;
+        if LS = 'karely' then begin
           Karel.Pos.Y := StrToInt(PS);
-        if LS = 'karelo' then
+          OrigKarel.Pos.Y := StrToInt(PS);
+        end;
+        if LS = 'karelo' then begin
           Karel.Orientation := StrToInt(PS);
+          OrigKarel.Orientation := StrToInt(PS);
+        end;
         if LS = 'reqkarelx' then
           RequestKarel.Pos.X := StrToInt(PS);
         if LS = 'reqkarely' then
@@ -1839,6 +1954,12 @@ var
             Bricks[StrToInt(C1), StrToInt(C2)]) + 1);
           Bricks[StrToInt(C1), StrToInt(C2), Length(
             Bricks[StrToInt(C1), StrToInt(C2)]) - 1] := StrToInt(First(S));
+          SetLength(OrigBricks[StrToInt(C1), StrToInt(C2)], Length(
+            Bricks[StrToInt(C1), StrToInt(C2)]));
+          OrigBricks[StrToInt(C1), StrToInt(C2), Length(
+            OrigBricks[StrToInt(C1), StrToInt(C2)]) - 1] :=
+          Bricks[StrToInt(C1), StrToInt(C2), Length(
+            OrigBricks[StrToInt(C1), StrToInt(C2)]) - 1];
           UnSpace(S);
         until S = '';
       end;
@@ -1862,6 +1983,7 @@ var
         C1 := Copy(S, 1, I - 1);
         C2 := Copy(S, I + 1, MaxInt);
         Marks[StrToInt(C1), StrToInt(C2)] := True;
+        OrigMarks[StrToInt(C1), StrToInt(C2)] := True;
       end;
       3:
       begin  // closing cmds
@@ -1959,6 +2081,8 @@ var
           SetLength(Marks, RoomX, RoomY);
           SetLength(RequestBricks, RoomX, RoomY);
           SetLength(RequestMarks, RoomX, RoomY);
+          SetLength(OrigBricks, RoomX, RoomY);
+          SetLength(OrigMarks, RoomX, RoomY);
         end;
         if LS = 'roomy' then
         begin
@@ -1967,6 +2091,8 @@ var
           SetLength(Marks, RoomX, RoomY);
           SetLength(RequestBricks, RoomX, RoomY);
           SetLength(RequestMarks, RoomX, RoomY);
+          SetLength(OrigBricks, RoomX, RoomY);
+          SetLength(OrigMarks, RoomX, RoomY);
         end;
         if LS = 'roomh' then
           RoomH := StrToInt(PS);
@@ -1974,14 +2100,22 @@ var
           O.X := StrToInt(PS);
         if LS = 'OY' then
           O.Y := StrToInt(PS);
-        if LS = 'klimitup' then
+        if LS = 'klimitup' then begin
           Karel.Limits.Up := StrToInt(PS);
-        if LS = 'karelx' then
+          OrigKarel.Limits.Up := StrToInt(PS);
+        end;
+        if LS = 'karelx' then begin
           Karel.Pos.X := StrToInt(PS);
-        if LS = 'karely' then
+          OrigKarel.Pos.X := StrToInt(PS);
+        end;
+        if LS = 'karely' then begin
           Karel.Pos.Y := StrToInt(PS);
-        if LS = 'karelo' then
+          OrigKarel.Pos.Y := StrToInt(PS);
+        end;
+        if LS = 'karelo' then begin
           Karel.Orientation := StrToInt(PS);
+          OrigKarel.Orientation := StrToInt(PS);
+        end;
         if LS = 'zoom' then
         begin
           Zoom := StrToInt(PS);
@@ -2188,6 +2322,8 @@ begin
   SetLength(Marks, RoomX, RoomY);
   SetLength(RequestBricks, RoomX, RoomY);
   SetLength(RequestMarks, RoomX, RoomY);
+  SetLength(OrigBricks, RoomX, RoomY);
+  SetLength(OrigMarks, RoomX, RoomY);
   for I := 0 to RoomX - 1 do
     for J := 0 to RoomY - 1 do
     begin
@@ -2195,14 +2331,17 @@ begin
       Marks[I, J] := False;
       RequestBricks[I, J] := nil;
       RequestMarks[I, J] := False;
+      OrigBricks[I, J] := nil;
+      OrigMarks[I, J] := False;
     end;
   Karel.Pos.X := 0;
   Karel.Pos.Y := 0;
   Karel.Orientation := 0;
   RequestKarel := Karel;
+  OrigKarel:= Karel;
   if Length(Levels) > 1 then
     for I := 0 to high(Levels) do
-      Levels[I].Description.Free;
+      FreeAndNil(Levels[I].Description);
   MLevelDescription.Lines.Clear;
   LBLevelList.Items.Clear;
   SetLength(Levels, 1);
@@ -2249,14 +2388,17 @@ begin
   Levels[LevelID].O := O;
   Levels[LevelID].Karel := Karel;
   Levels[LevelID].RequestKarel := RequestKarel;
+  Levels[LevelID].OrigKarel := OrigKarel;
   Levels[LevelID].Zoom := Zoom;
   Levels[LevelID].Bricks := Bricks;
   Levels[LevelID].Marks := Marks;
   Levels[LevelID].RequestBricks := RequestBricks;
   Levels[LevelID].RequestMarks := RequestMarks;
+  Levels[LevelID].OrigBricks := OrigBricks;
+  Levels[LevelID].OrigMarks := OrigMarks;
   if Levels[LevelID].Description = nil then
     Levels[LevelID].Description := TStringList.Create;
-   Levels[LevelID].Description.Assign(MLevelDescription.Lines);
+  Levels[LevelID].Description.Assign(MLevelDescription.Lines);
 end;
 procedure TForm1.loadlevel(levelnumber:integer);
 begin
@@ -2267,23 +2409,49 @@ begin
   O:=Levels[LevelID].O;
   Karel := Levels[LevelID].Karel;
   RequestKarel := Levels[LevelID].RequestKarel;
+  OrigKarel := Levels[LevelID].OrigKarel;
   Zoom := Levels[LevelID].Zoom;
   Bricks := Levels[LevelID].Bricks;
   Marks := Levels[LevelID].Marks;
   RequestBricks := Levels[LevelID].RequestBricks;
   RequestMarks := Levels[LevelID].RequestMarks;
+  OrigBricks := Levels[LevelID].OrigBricks;
+  OrigMarks := Levels[LevelID].OrigMarks;
   MLevelDescription.Lines.Assign(Levels[LevelID].Description);
   ReDrawAll;
 end;
+procedure TForm1.wrapperpoloz(Sender: TObject);
+  var localOK:boolean = false;
+begin
+  CmdPoloz(localOK);
+end;
+procedure TForm1.wrapperzober(Sender: TObject);
+  var localOK:boolean = false;
+begin
+  CmdZober(localOK);
+end;
 
 procedure TForm1.startAdmin;
+
 begin
   MLevelDescription.Enabled:=true;
   SBRequest.Enabled:=true;
   SBRequest.Caption:=_lSBUpravZadanie;
   LBLevelList.PopupMenu:=PMLevelEdit;
   admin:=true;
+
+  DirectForm := TDirectForm.Create(self);
+  DirectForm.SBkrok.OnClick:=Cmdkrok;
+  DirectForm.SBvlavo.OnClick:=Cmdvlavo;
+  DirectForm.SBoznac.OnClick:=Cmdoznac;
+  DirectForm.SBodznac.OnClick:=Cmdodznac;
+  DirectForm.SBpoloz.OnClick:=wrapperpoloz;
+  DirectForm.SBzober.OnClick:=wrapperzober;
+
+  DirectForm.Show;
 end;
+
+
 
 end.
 

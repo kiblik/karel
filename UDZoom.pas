@@ -2,7 +2,7 @@ unit UDZoom;
 
 interface
 
-uses LCLIntf, LCLType, LMessages, SysUtils, Classes, Graphics, Forms, Controls, StdCtrls,
+uses LCLIntf, LCLType, SysUtils, Classes, Graphics, Forms, Controls, StdCtrls,
   Buttons, ExtCtrls;
 
 type
@@ -25,4 +25,5 @@ begin
   Caption:=_lZoomCaption;
 end;
 
-end.
+end.
+

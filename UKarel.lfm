@@ -218,6 +218,13 @@ object Form1: TForm1
     Width = 112
     OnClick = SBRequestClick
   end
+  object SBReset: TSpeedButton
+    Left = 464
+    Height = 22
+    Top = 240
+    Width = 88
+    OnClick = SBResetClick
+  end
   object MainMenu: TMainMenu
     Images = ILMainMenu
     left = 60
@@ -543,8 +550,8 @@ object Form1: TForm1
   end
   object ILMainMenu: TImageList
     DrawingStyle = dsTransparent
-    left = 38
-    top = 156
+    left = 16
+    top = 216
     Bitmap = {
       4C69090000001000000010000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000

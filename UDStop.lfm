@@ -99,13 +99,4 @@ object DStop: TDStop
     Layout = blGlyphTop
     TabOrder = 1
   end
-  object BStep: TBitBtn
-    Left = 160
-    Height = 77
-    Top = 1
-    Width = 80
-    Caption = 'STEP'
-    Layout = blGlyphTop
-    TabOrder = 2
-  end
 end

@@ -1,0 +1,50 @@
+object DirectForm: TDirectForm
+  Left = 174
+  Height = 61
+  Top = 135
+  Width = 221
+  BorderIcons = [biSystemMenu]
+  BorderStyle = bsDialog
+  Caption = 'DirectForm'
+  ClientHeight = 61
+  ClientWidth = 221
+  FormStyle = fsStayOnTop
+  OnCreate = FormCreate
+  LCLVersion = '1.6.0.4'
+  object SBkrok: TSpeedButton
+    Left = 8
+    Height = 22
+    Top = 8
+    Width = 65
+  end
+  object SBvlavo: TSpeedButton
+    Left = 8
+    Height = 22
+    Top = 32
+    Width = 65
+  end
+  object SBpoloz: TSpeedButton
+    Left = 76
+    Height = 22
+    Top = 32
+    Width = 65
+  end
+  object SBoznac: TSpeedButton
+    Left = 76
+    Height = 22
+    Top = 8
+    Width = 65
+  end
+  object SBzober: TSpeedButton
+    Left = 143
+    Height = 22
+    Top = 32
+    Width = 65
+  end
+  object SBodznac: TSpeedButton
+    Left = 143
+    Height = 22
+    Top = 8
+    Width = 65
+  end
+end

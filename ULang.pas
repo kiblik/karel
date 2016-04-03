@@ -145,6 +145,15 @@ var _lMsgKarel_NoPic: string='';
     _lPokracujCmd: string = '';
     _lBPauseCaption: string = '';
     _lBContinueCaption: string = '';
+	_lDebugWin: string = '';
+    _lLastCmdDesc: string = '';
+    _lNextCmdDesc: string = '';
+    _lIterationDesc: string = '';
+    _lStenaDesc: string = '';
+    _lTehlaDesc: string = '';
+    _lZnackaDesc: string = '';
+    _lVolnoDesc: string = '';
+    _lSBReset: string = '';
 
 function GetOpakuj(var Cmd : string; var OK : Boolean) : TOpakuj;
 function GetPresun(var Cmd : string; var OK : Boolean) : TPresun;
