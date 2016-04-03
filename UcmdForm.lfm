@@ -1,7 +1,7 @@
 object CmdForm: TCmdForm
-  Left = 1126
+  Left = 540
   Height = 392
-  Top = 631
+  Top = 424
   Width = 551
   BorderIcons = [biSystemMenu, biMinimize]
   BorderStyle = bsSingle

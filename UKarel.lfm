@@ -1,7 +1,7 @@
 object Form1: TForm1
-  Left = 454
+  Left = 453
   Height = 435
-  Top = 595
+  Top = 585
   Width = 722
   AlphaBlendValue = 100
   Caption = 'Neuložený projekt'
@@ -17,7 +17,7 @@ object Form1: TForm1
   OnCreate = FormCreate
   OnResize = FormResize
   Position = poScreenCenter
-  LCLVersion = '1.6.0.2'
+  LCLVersion = '1.6.0.4'
   object Img: TImage
     Left = 0
     Height = 105
@@ -539,6 +539,14 @@ object Form1: TForm1
     end
     object Jazyk1: TMenuItem
       Caption = 'Jazyk'
+      object LEng1: TMenuItem
+        Caption = 'English'
+        OnClick = LEng1Click
+      end
+      object LSk1: TMenuItem
+        Caption = 'Slovenčina'
+        OnClick = LSk1Click
+      end
     end
   end
   object Timer1: TTimer
