@@ -11,7 +11,7 @@ uses
   Buttons, UDStop, FileUtil;
 
 const
-  version = '2.3';
+  version = '2.99';
 
 type
 
@@ -21,6 +21,7 @@ type
     EInput: TEdit;
     Img: TImage;
     LBLevelList: TListBox;
+    Jazyk1: TMenuItem;
     MIAddLevel: TMenuItem;
     MIRemoveLevel: TMenuItem;
     MIRenameLevel: TMenuItem;
@@ -225,7 +226,7 @@ begin
   MIAddLevel.Caption := _lMIAddLevel;
   MIRemoveLevel.Caption := _lMIRemoveLevel;
   MIRenameLevel.Caption := _lMIRenameLevel;
-
+  Jazyk1.Caption:=_lMenuJazyk;
   Randomize;
   ShowGraphic := True;
   DoubleBuffered := True;

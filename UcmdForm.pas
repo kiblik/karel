@@ -90,6 +90,7 @@ end;
 
 procedure TCmdForm.FormCreate(Sender: TObject);
 begin
+  Caption:=_lMenuSlovnik;
 {  HLEdit:=TMemo.Create(self);//Tmyeditor
   HLEdit.Parent:=self;
   HLEdit.Name:='memo';}

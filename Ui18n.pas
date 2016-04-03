@@ -154,6 +154,8 @@ begin
     _lCannotBeRemovedLastLevel:= 'Posledný level nemôže byť zmazaný';
     _lPozastavCmd:= 'pozastav';
     _lPokracujCmd:= 'pokracuj';
+    _lBPauseCaption:= 'Pozastav';
+    _lBContinueCaption:= 'Pokračuj';
 end;
 
 procedure setLangEN;
@@ -239,12 +241,12 @@ begin
     _lTBResize := 'Change dimensions of the room';
     _lTBMove := 'Shift the room';
     _lTBKarelLimit := 'Set Karel''s various restrictions';
-    _lTBCommands := 'Open dictionary with Karel''s commands';
+    _lTBCommands := 'Open a dictionary with Karel''s commands';
     _lBNewCaption := 'New'#13'command';
     _lBDeleteCaption :='Delete'#13'command';
     _lBRenameCaption :='Rename'#13'command';
     _lNovyPrikaz := 'New command';
-    _lMsgZadajMeno := 'Enter a name of the new command';
+    _lMsgZadajMeno := 'Enter a name for the new command';
     _lMsgErrorRezSlovo1 :=' can''t be used as a name of a command. ';
     _lMsgErrorRezSlovo2 :=' is a basic command or a part of one.';
     _lMsgErrorJednoSlovo :='Name of a command must be one word (without spaces)';
@@ -303,6 +305,8 @@ begin
     _lCannotBeRemovedLastLevel:= 'Last level can''t be removed.';
     _lPozastavCmd:= 'pause';
     _lPokracujCmd:= 'continue';
+    _lBPauseCaption:= 'Pause';
+    _lBContinueCaption:= 'Continue';
 end;
 
 procedure setLang(lang: TLang);

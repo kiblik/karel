@@ -75,7 +75,7 @@ var _lMsgKarel_NoPic: string='';
     _lTBNew : string = '';
     _lTBOpen : string = '';
     _lTBSave : string = '';
-	_lMenuJazyk : string = '';
+    _lMenuJazyk : string = '';
     _lTBResize : string = '';
     _lTBMove : string = '';
     _lTBKarelLimit : string = '';
@@ -143,6 +143,8 @@ var _lMsgKarel_NoPic: string='';
     _lCannotBeRemovedLastLevel: string = '';
     _lPozastavCmd: string = '';
     _lPokracujCmd: string = '';
+    _lBPauseCaption: string = '';
+    _lBContinueCaption: string = '';
 
 function GetOpakuj(var Cmd : string; var OK : Boolean) : TOpakuj;
 function GetPresun(var Cmd : string; var OK : Boolean) : TPresun;

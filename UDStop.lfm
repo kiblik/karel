@@ -1,12 +1,12 @@
 object DStop: TDStop
-  Left = 654
+  Left = 683
   Height = 78
-  Top = 133
-  Width = 279
+  Top = 344
+  Width = 241
   BorderIcons = []
   BorderStyle = bsNone
   ClientHeight = 78
-  ClientWidth = 279
+  ClientWidth = 241
   Color = clBtnFace
   FormStyle = fsStayOnTop
   OnCreate = FormCreate

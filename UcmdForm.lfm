@@ -15,7 +15,7 @@ object CmdForm: TCmdForm
   OnClose = FormClose
   OnCloseQuery = FormCloseQuery
   OnCreate = FormCreate
-  LCLVersion = '1.6.0.2'
+  LCLVersion = '1.6.0.4'
   object BNew: TSpeedButton
     Left = 8
     Height = 40

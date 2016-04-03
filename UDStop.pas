@@ -28,7 +28,9 @@ uses ULang;
 procedure TDStop.FormCreate(Sender: TObject);
 begin
   Width:=240;
-  BStop.Caption:=_LBStopCaption;
+  BStop.Caption :=_LBStopCaption;
+  BPause.Caption := _lBPauseCaption;
+  BStep.Caption := _lBContinueCaption;
 end;
 
 

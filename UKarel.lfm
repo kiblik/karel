@@ -1,7 +1,7 @@
 object Form1: TForm1
-  Left = 593
+  Left = 454
   Height = 435
-  Top = 763
+  Top = 595
   Width = 722
   AlphaBlendValue = 100
   Caption = 'Neuložený projekt'
@@ -529,6 +529,9 @@ object Form1: TForm1
       Caption = 'Prikazy Karla'
       ShortCut = 115
       OnClick = Slovnik1Click
+    end
+    object Jazyk1: TMenuItem
+      Caption = 'Jazyk'
     end
   end
   object Timer1: TTimer
