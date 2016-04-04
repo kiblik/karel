@@ -253,7 +253,7 @@ begin
     end;
   {cislo}
   S:=LowerCase(First(Cmd));
-  if (currentLang=lang_SK) then begin
+  if (i18n.getLang=lang_SK) then begin
        if (S<>_lJeCmd)and(S<>_lNieCmd) then
           begin
   	  ErrorMsg:=_lMsgErrorKymJe;
@@ -272,7 +272,7 @@ begin
         end;
         S:=LowerCase(First(Cmd));
   end
-  else if (currentLang=lang_EN) then begin
+  else if (i18n.getLang=lang_EN) then begin
          if (S<>_lJeCmd) then
          begin
               ErrorMsg:=_lMsgErrorKymJe;
@@ -332,7 +332,7 @@ begin
     end;
   {cislo}
   S:=LowerCase(First(Cmd));
-  if (currentLang=lang_SK) then begin
+  if (i18n.getLang=lang_SK) then begin
      if (S<>_lJeCmd)and(S<>_lNieCmd) then
         begin
 	  ErrorMsg:=_lMsgErrorKymJe;
@@ -351,7 +351,7 @@ begin
       end;
       S:=LowerCase(First(Cmd));
   end
-  else if (currentLang=lang_EN) then begin
+  else if (i18n.getlang=lang_EN) then begin
        if (S<>_lJeCmd) then
        begin
             ErrorMsg:=_lMsgErrorKymJe;
@@ -492,7 +492,7 @@ end;
 
 initialization
 begin
-     setLang(lang_EN);
+     i18n.setLang(lang_EN);
 end;
 
 end.

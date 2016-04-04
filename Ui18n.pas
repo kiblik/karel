@@ -1,17 +1,27 @@
 unit Ui18n;
-
 interface
 
-type TLang = (lang_SK,lang_EN);
+type TLangs = (lang_SK,lang_EN);
 
-var currentLang : TLang;
-  
-procedure setLang(lang: TLang);
+type TLang = class
+
+  public
+    procedure setLang(lang: TLangs);
+    function getLang:TLangs;
+  private
+    currentLang : TLangs;
+    procedure setLangSK;
+    procedure setLangEN;
+
+end;
+
+var
+  i18n:Tlang;
 
 implementation
 uses SysUtils,ULang;
 
-procedure setLangSK;
+procedure TLang.setLangSK;
 begin
     currentLang := lang_SK;
     _lMsgKarel_NoPic:='Nenašiel som obrázok Karla! Karel nebude zobrazený!';
@@ -156,7 +166,7 @@ begin
     _lPokracujCmd:= 'pokracuj';
     _lBPauseCaption:= 'Pozastav';
     _lBContinueCaption:= 'Pokračuj';
-	_lDebugWin:= 'Ladenie';
+    _lDebugWin:= 'Ladenie';
     _lLastCmdDesc:= 'Posledný príkaz';
     _lNextCmdDesc:= 'Nasledujúcu príkaz';
     _lIterationDesc := 'Zostavajúci počet cyklov';
@@ -167,7 +177,7 @@ begin
     _lSBReset:= 'Obnov zadanie';
 end;
 
-procedure setLangEN;
+procedure Tlang.setLangEN;
 begin
     currentLang := lang_EN;
     _lMsgKarel_NoPic:='Could not find picture of Karel! Karel will not be displayed!';
@@ -179,16 +189,12 @@ begin
     _lMsgErrorOpakujEnd :='Bad structure of the command repeat - could not find termination statement';
     _lMsgErrorKym :='Bad structure of the command while';
     _lMsgErrorKymJe := 'The word while must be followed by either "is" or "is not"';
-	
     _lMsgErrorKymJezanie := 'za slovom nie musí nasledovať "je"';
     _lMsgErrorKymRob :='The word ''do'' was expected';
-	
     _lMsgErrorKymEnd :='Bad structure of the command while - could not find termination statement';
     _lMsgErrorAk :='Bad structure of the command if';
     _lMsgErrorAkJe := 'The word if must be followed by either "is" or "is not"';
-	
     _lMsgErrorAkJezanie := 'za slovom nie musí nasledovať "je"';
-	
     _lMsgErrorAkTak := 'The word ''then'' was expected';
     _lMsgErrorPresun :='Two numbers expected after the move command';
     _lMsgErrorPrikaz :='Bad command structure.';
@@ -246,7 +252,7 @@ begin
     _lTBNew := 'New project';
     _lTBOpen := 'Open project';
     _lTBSave := 'Save project';
-	_lMenuJazyk := 'Language';
+    _lMenuJazyk := 'Language';
     _lTBResize := 'Change dimensions of the room';
     _lTBMove := 'Shift the room';
     _lTBKarelLimit := 'Set Karel''s various restrictions';
@@ -316,7 +322,7 @@ begin
     _lPokracujCmd:= 'continue';
     _lBPauseCaption:= 'Pause';
     _lBContinueCaption:= 'Continue';
-	_lDebugWin:= 'Debugging';
+    _lDebugWin:= 'Debugging';
     _lLastCmdDesc:= 'Last command';
     _lNextCmdDesc:= 'Next command';
     _lIterationDesc := 'Remaining iteration count';
@@ -327,7 +333,7 @@ begin
     _lSBReset:= 'Refresh task';
 end;
 
-procedure setLang(lang: TLang);
+procedure Tlang.setLang(lang: TLangs);
 begin
   case lang of
        lang_SK: setLangSK;
@@ -338,4 +344,13 @@ begin
   end;
 end;
 
+function Tlang.getLang:TLangs;
+begin
+  getLang:=currentLang;
+end;
+
+initialization
+begin
+  i18n:=Tlang.Create;
+end;
 end.

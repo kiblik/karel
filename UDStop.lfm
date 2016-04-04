@@ -1,7 +1,7 @@
 object DStop: TDStop
-  Left = 683
+  Left = 620
   Height = 78
-  Top = 344
+  Top = 272
   Width = 241
   BorderIcons = []
   BorderStyle = bsNone

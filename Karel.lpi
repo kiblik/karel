@@ -8,7 +8,7 @@
         <MainUnitHasCreateFormStatements Value="False"/>
         <MainUnitHasTitleStatement Value="False"/>
       </Flags>
-      <SessionStorage Value="InProjectDir"/>
+      <SessionStorage Value="None"/>
       <MainUnit Value="0"/>
       <Title Value="Karel"/>
       <ResourceType Value="res"/>
@@ -25,9 +25,10 @@
       <UseVersionInfo Value="True"/>
       <AutoIncrementBuild Value="True"/>
       <MajorVersionNr Value="2"/>
-      <MinorVersionNr Value="3"/>
+      <MinorVersionNr Value="99"/>
       <Language Value="041B"/>
-      <StringTable CompanyName="GJH" FileDescription="Karel 3D" ProductVersion=""/>
+      <Attributes pvaPreRelease="True"/>
+      <StringTable CompanyName="GJH" FileDescription="Karel 3D" ProductName="Karel 3D" ProductVersion="2.99"/>
     </VersionInfo>
     <BuildModes Count="3">
       <Item1 Name="Default" Default="True"/>
@@ -209,7 +210,9 @@
       <Unit14>
         <Filename Value="UDebugWin.pas"/>
         <IsPartOfProject Value="True"/>
+        <ComponentName Value="DDebugWin"/>
         <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
       </Unit14>
       <Unit15>
         <Filename Value="UDirect.pas"/>

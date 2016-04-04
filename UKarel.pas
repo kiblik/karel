@@ -12,7 +12,8 @@ uses
 
 const
   version = '2.99';
-  saveVersion = '2.2'
+  saveVersion = '2.2';
+
 type
 
   { TForm1 }
@@ -233,12 +234,11 @@ var
   end;
   procedure NacitajJazyk;
   begin
-    ReadLn(T,Line);
-    Line:=LowerCase(line);
+    Line:=Copy(Line, Pos('=', Line) + 1,Length(Line)-Pos('=', Line));
     if(line='sk') then
-      setLang(lang_sk)
+      i18n.setLang(lang_sk)
     else if (line='en') then
-      setLang(lang_en);
+      i18n.setLang(lang_en);
   end;
 
 begin
@@ -252,8 +252,10 @@ begin
     ReadLn(T, Line);
     if LowerCase(Line) = 'colors' then
       NacitajFarby;
-    if LowerCase(Line) = 'lang' then
-      NacitajJazyk;
+    if (Pos('=', Line)<>0) then begin
+      if LowerCase(Copy(Line, 1, Pos('=', Line) - 1)) = 'lang' then
+        NacitajJazyk;
+    end;
   end;
   CloseFile(T);
 end;
@@ -376,13 +378,13 @@ end;
 
 procedure TForm1.LEng1Click(Sender: TObject);
 begin
-  setLang(lang_EN);
+  i18n.setLang(lang_EN);
   reloadLang;
 end;
 
 procedure TForm1.LSk1Click(Sender: TObject);
 begin
-  setLang(lang_SK);
+  i18n.setLang(lang_SK);
   reloadLang;
 end;
 
