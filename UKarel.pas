@@ -12,7 +12,7 @@ uses
 
 const
   version = '2.99';
-
+  saveVersion = '2.2'
 type
 
   { TForm1 }
@@ -698,7 +698,7 @@ begin
   AssignFile(F, DSave.FileName);
   try
     ReWrite(F);
-    WriteLn(F, 'ver=', version);
+    WriteLn(F, 'ver=', saveVersion);
     for L := 0 to high(Levels) do
     begin
       WriteLn(F, 'level ', Levels[L].Name);
