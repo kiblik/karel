@@ -79,7 +79,7 @@ begin
     _lMsgSaveError :='Chyba pri ukladaní súboru.';
     _lMsgOpenError :='Chybný formát súboru.';
     _lMsgNoSavedWarn := 'Aktuálny projekt bude vymazaný. Mám pokračovať?';
-    _lMsgNoSavedTitle :='Neuložný projekt';
+    _lMsgNoSavedTitle :='Neuložený projekt';
     _lMsgOpenTitle := 'Otvorenie projektu.';
     _lMsgReadingError :='Problém s otvorením súboru';
     _lMenuSubor :='Projekt';
@@ -244,7 +244,7 @@ begin
     _lMenuUlozitProjekt := 'Save project';
     _lMenuNastavenia := 'Settings';
     _lMenuRozmeryMiestnosti := 'Dimensions of the room';
-    _lMenuPosunMiestnosti := 'Room''s shift';
+    _lMenuPosunMiestnosti := 'Move the room';
     _lMenuObmedzenieKarla := 'Karel''s restrictions';
     _lMenuLupa := 'Shrink/Enlarge';
     _lMenuSlovnik := 'Karel''s commands';
@@ -254,7 +254,7 @@ begin
     _lTBSave := 'Save project';
     _lMenuJazyk := 'Language';
     _lTBResize := 'Change dimensions of the room';
-    _lTBMove := 'Shift the room';
+    _lTBMove := 'Move the room';
     _lTBKarelLimit := 'Set Karel''s various restrictions';
     _lTBCommands := 'Open a dictionary with Karel''s commands';
     _lBNewCaption := 'New'#13'command';
