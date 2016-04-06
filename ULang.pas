@@ -454,6 +454,7 @@ begin
   else
     begin
       OK:=True;
+      LastTakenColor:=(DefColors.Objects[DefColors.IndexOf(S)] as TOColor).Color;
       Result.Color:=(DefColors.Objects[DefColors.IndexOf(S)] as TOColor).Color;
     end;
 end;

@@ -26,6 +26,7 @@
       <AutoIncrementBuild Value="True"/>
       <MajorVersionNr Value="2"/>
       <MinorVersionNr Value="99"/>
+      <BuildNr Value="2"/>
       <Language Value="041B"/>
       <Attributes pvaPreRelease="True"/>
       <StringTable CompanyName="GJH" FileDescription="Karel 3D" ProductName="Karel 3D" ProductVersion="2.99"/>
