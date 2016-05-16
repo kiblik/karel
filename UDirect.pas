@@ -39,6 +39,7 @@ begin
   SBpoloz.Caption:=_lPolozCmd;
   SBoznac.Caption:=_lOznacCmd;
   SBodznac.Caption:=_lOdznacCmd;
+  Caption:=_lFPriamyRezim;
 end;
 
 end.

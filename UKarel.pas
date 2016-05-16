@@ -781,7 +781,7 @@ procedure TForm1.Slovnik1Click(Sender: TObject);
 begin
   CmdForm.Position := poScreenCenter;
   CmdForm.Show;
-  CmdForm.HLEdit.SetFocus;
+//  CmdForm.HLEdit.SetFocus;
 end;
 
 procedure TForm1.FormCloseQuery(Sender: TObject; var CanClose: boolean);
@@ -1824,6 +1824,7 @@ var
   Cmd: TCmd;
   OKFile: boolean;
   firstlevel: boolean;
+  readingReq: boolean = false;
 
   procedure swapBricks;
     var tmpBricks: TBricks;
@@ -1844,6 +1845,7 @@ var
   var
     LS, PS, C1, C2: string;
     I: integer;
+
   begin
     case Status of
       0:
@@ -1915,10 +1917,12 @@ var
           Status := 2;
         if PS = 'reqbricks' then begin
           Status := 1;
+          readingReq:=true;
           swapBricks;
         end;
         if PS = 'reqmarks' then begin
           Status := 2;
+          readingReq:=true;
           swapMarks;
         end;
         if PS = 'description' then
@@ -1942,6 +1946,7 @@ var
         begin
           Status := 0;
           swapBricks;
+          readingReq:=false;
           Exit;
         end;
         C1 := First(S);
@@ -1952,12 +1957,14 @@ var
             Bricks[StrToInt(C1), StrToInt(C2)]) + 1);
           Bricks[StrToInt(C1), StrToInt(C2), Length(
             Bricks[StrToInt(C1), StrToInt(C2)]) - 1] := StrToInt(First(S));
-          SetLength(OrigBricks[StrToInt(C1), StrToInt(C2)], Length(
-            Bricks[StrToInt(C1), StrToInt(C2)]));
-          OrigBricks[StrToInt(C1), StrToInt(C2), Length(
-            OrigBricks[StrToInt(C1), StrToInt(C2)]) - 1] :=
-          Bricks[StrToInt(C1), StrToInt(C2), Length(
-            OrigBricks[StrToInt(C1), StrToInt(C2)]) - 1];
+          if not readingReq then begin
+            SetLength(OrigBricks[StrToInt(C1), StrToInt(C2)], Length(
+              Bricks[StrToInt(C1), StrToInt(C2)]));
+            OrigBricks[StrToInt(C1), StrToInt(C2), Length(
+              OrigBricks[StrToInt(C1), StrToInt(C2)]) - 1] :=
+            Bricks[StrToInt(C1), StrToInt(C2), Length(
+              OrigBricks[StrToInt(C1), StrToInt(C2)]) - 1];
+          end;
           UnSpace(S);
         until S = '';
       end;
@@ -1973,6 +1980,7 @@ var
         begin
           Status := 0;
           swapMarks;
+          readingReq:=false;
           Exit;
         end;
         I := 1;
@@ -1981,7 +1989,8 @@ var
         C1 := Copy(S, 1, I - 1);
         C2 := Copy(S, I + 1, MaxInt);
         Marks[StrToInt(C1), StrToInt(C2)] := True;
-        OrigMarks[StrToInt(C1), StrToInt(C2)] := True;
+        if not readingReq then
+          OrigMarks[StrToInt(C1), StrToInt(C2)] := True;
       end;
       3:
       begin  // closing cmds
@@ -2233,7 +2242,7 @@ begin
       OKFile := False
     else
     begin
-      if PS = '2.2' then
+      if not ((PS = '2.0') or (PS = '2.1')) then
         Status := 6;
       while not EOF(F) and OKFile do
       begin
@@ -2243,6 +2252,8 @@ begin
         if PS = '2.1' then
           Spracuj2_1(S);
         if PS = '2.2' then
+          Spracuj2_2(S);
+        if PS = '2.3' then
           Spracuj2_2(S);
       end;
     end;
@@ -2432,7 +2443,7 @@ end;
 procedure TForm1.startAdmin;
 
 begin
-  MLevelDescription.Enabled:=true;
+  MLevelDescription.ReadOnly:=false;
   SBRequest.Enabled:=true;
   SBRequest.Caption:=_lSBUpravZadanie;
   LBLevelList.PopupMenu:=PMLevelEdit;
