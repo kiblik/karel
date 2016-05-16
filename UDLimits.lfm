@@ -19,8 +19,8 @@ object DLimitKarel: TDLimitKarel
     Caption = 'Počet tehál, na ktoré vie Karel vykročiť'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
-    Font.Height = -13
-    Font.Name = 'MS Sans Serif'
+    Font.Height = -16
+    Font.Name = 'Arial Narrow'
     Font.Style = []
     ParentFont = False
     WordWrap = True
@@ -33,8 +33,8 @@ object DLimitKarel: TDLimitKarel
     Caption = 'Spomalenie Karla'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
-    Font.Height = -13
-    Font.Name = 'MS Sans Serif'
+    Font.Height = -16
+    Font.Name = 'Arial Narrow'
     Font.Style = []
     ParentFont = False
   end

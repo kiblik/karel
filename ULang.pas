@@ -95,7 +95,7 @@ var _lMsgKarel_NoPic: string='Nenašiel som obrázok Karla! Karel nebude zobraze
     _lButtonNastav : string = 'Nastaviť';
     _lButtonNenastav : string = 'Zrušiť';
     _lMoveCaption : string = 'Klikaj na šípky';
-    _lBStopCaption : string = 'zastavenie'#13#10'programu';
+    _lBStopCaption : string = 'zastavenie programu';
     _lLimitsCaption : string ='Obmedzenia Karla';
     _lLimitsVykrocit : string ='Počet tehál, na ktoré vie Karel vykročiť';
     _lLimitsSpomalit : string ='Rýchlosť Karla';
@@ -128,8 +128,8 @@ var _lMsgKarel_NoPic: string='Nenašiel som obrázok Karla! Karel nebude zobraze
     _lMsgNacitanie : string ='Načítanie projektu';
     _lMsgNeulozeny : string ='Neuložený projekt';
     _lSBZobrazZadanie : string = 'Zobraz zadanie';
-    _lSBUpravZadanie: string = 'Uprav zadanie';
-    _lSBUpravPlochu: string = 'Uprav plochu';
+    _lSBUpravZadanie: string = 'Uprav riešenie';
+    _lSBUpravPlochu: string = 'Uprav zadanie';
     _lMIAddLevel: string = 'Pridaj zadanie';
     _lMIRemoveLevel: string = 'Odstráň zadanie';
     _lMIRenameLevel: string = 'Premenuj zadanie';
@@ -147,6 +147,11 @@ var _lMsgKarel_NoPic: string='Nenašiel som obrázok Karla! Karel nebude zobraze
     _lZnackaDesc: string = 'JeZnacka?';
     _lVolnoDesc: string = 'JeVolno?';
     _lSBReset: string = 'Obnov zadanie';
+    _lBStop: string = 'Zastav';
+    _lBStep: string = 'Ďalší príkaz';
+    _lBContinue: string = 'Pokračuj';
+    _lFPriamyRezim: string = 'Priamy režím';
+    _LBPauseCaption: string = 'pozastavenie programu';
 
 function GetOpakuj(var Cmd : string; var OK : Boolean) : TOpakuj;
 function GetPresun(var Cmd : string; var OK : Boolean) : TPresun;

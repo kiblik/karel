@@ -1,7 +1,7 @@
 object DDebugWin: TDDebugWin
   Left = 171
   Height = 207
-  Top = 181
+  Top = 182
   Width = 248
   BorderIcons = [biSystemMenu]
   BorderStyle = bsDialog
@@ -47,7 +47,7 @@ object DDebugWin: TDDebugWin
     Left = 8
     Height = 15
     Top = 104
-    Width = 60
+    Width = 58
     Caption = 'LTehlaDesc'
     ParentColor = False
   end
@@ -63,7 +63,7 @@ object DDebugWin: TDDebugWin
     Left = 8
     Height = 15
     Top = 152
-    Width = 62
+    Width = 60
     Caption = 'LVolnoDesc'
     ParentColor = False
   end
@@ -103,7 +103,7 @@ object DDebugWin: TDDebugWin
     Left = 176
     Height = 15
     Top = 104
-    Width = 35
+    Width = 33
     Caption = 'LTehla'
     ParentColor = False
   end
@@ -119,7 +119,7 @@ object DDebugWin: TDDebugWin
     Left = 176
     Height = 15
     Top = 152
-    Width = 37
+    Width = 35
     Caption = 'LVolno'
     ParentColor = False
   end

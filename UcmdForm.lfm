@@ -1,7 +1,7 @@
 object CmdForm: TCmdForm
-  Left = 195
+  Left = 215
   Height = 392
-  Top = 192
+  Top = 254
   Width = 551
   BorderIcons = [biSystemMenu, biMinimize]
   BorderStyle = bsSingle
@@ -10,17 +10,17 @@ object CmdForm: TCmdForm
   ClientWidth = 551
   Color = clBtnFace
   Font.Color = clWindowText
-  Font.Height = -11
-  Font.Name = 'MS Sans Serif'
+  Font.Height = -16
+  Font.Name = 'Arial Narrow'
   OnClose = FormClose
   OnCloseQuery = FormCloseQuery
   OnCreate = FormCreate
-  LCLVersion = '1.4.4.0'
+  LCLVersion = '1.6.0.4'
   object BNew: TSpeedButton
     Left = 8
     Height = 40
     Top = 8
-    Width = 90
+    Width = 103
     Glyph.Data = {
       66060000424D6606000000000000360000002800000018000000160000000100
       1800000000003006000000000000000000000000000000000000C8DFE1CEE5E7
@@ -78,10 +78,10 @@ object CmdForm: TCmdForm
     OnClick = BNewClick
   end
   object BDelete: TSpeedButton
-    Left = 104
+    Left = 118
     Height = 40
     Top = 8
-    Width = 90
+    Width = 103
     Glyph.Data = {
       66070000424D660700000000000036000000280000001A000000170000000100
       18000000000030070000000000000000000000000000000000009F9FE74F4FD3
@@ -147,14 +147,14 @@ object CmdForm: TCmdForm
     OnClick = BDeleteClick
   end
   object BRename: TSpeedButton
-    Left = 200
+    Left = 227
     Height = 40
     Top = 8
-    Width = 90
+    Width = 103
     Font.CharSet = EASTEUROPE_CHARSET
     Font.Color = clWindowText
-    Font.Height = -11
-    Font.Name = 'MS Sans Serif'
+    Font.Height = -16
+    Font.Name = 'Arial Narrow'
     Glyph.Data = {
       360C0000424D360C000000000000360000002800000020000000200000000100
       180000000000000C000000000000000000000000000000000000A3D0A3A3D0A3
@@ -263,7 +263,7 @@ object CmdForm: TCmdForm
     Height = 333
     Top = 52
     Width = 121
-    ItemHeight = 13
+    ItemHeight = 18
     OnClick = CmdListClick
     OnDrawItem = CmdListDrawItem
     Sorted = True

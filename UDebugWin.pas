@@ -53,6 +53,9 @@ begin
   LTehlaDesc.Caption:=_lTehlaDesc;
   LZnackaDesc.Caption:=_lZnackaDesc;
   LVolnoDesc.Caption:=_lVolnoDesc;
+  BStop.Caption:=_lBStop;
+  BStep.Caption:=_lBStep;
+  BContinue.Caption:=_lBContinue;
 end;
 
 end.

@@ -1,16 +1,16 @@
 object Form1: TForm1
-  Left = 289
+  Left = 552
   Height = 600
-  Top = 83
-  Width = 819
+  Top = 69
+  Width = 820
   AlphaBlendValue = 100
   Caption = 'Neuložený projekt'
   ClientHeight = 580
-  ClientWidth = 819
+  ClientWidth = 820
   Color = clBtnFace
   Font.Color = clWindowText
   Font.Height = -11
-  Font.Name = 'MS Sans Serif'
+  Font.Name = 'Arial Narrow'
   Menu = MainMenu
   OnClose = FormClose
   OnCloseQuery = FormCloseQuery
@@ -25,10 +25,10 @@ object Form1: TForm1
     Width = 105
   end
   object LVersion: TLabel
-    Left = 462
-    Height = 13
+    Left = 465
+    Height = 15
     Top = 48
-    Width = 21
+    Width = 19
     Alignment = taRightJustify
     Anchors = [akTop, akRight]
     Caption = 'v2.1'
@@ -41,7 +41,7 @@ object Form1: TForm1
     Width = 600
     Font.Color = clNavy
     Font.Height = -16
-    Font.Name = 'MS Sans Serif'
+    Font.Name = 'Arial Narrow'
     Font.Style = [fsBold]
     OnKeyDown = EInputKeyDown
     OnKeyPress = EInputKeyPress
@@ -53,7 +53,7 @@ object Form1: TForm1
     Left = 0
     Height = 29
     Top = 0
-    Width = 819
+    Width = 820
     ButtonWidth = 28
     Caption = 'ToolBar'
     Color = clActiveCaption
@@ -174,11 +174,19 @@ object Form1: TForm1
     Height = 73
     Top = 120
     Width = 80
-    Enabled = False
+    Font.CharSet = EASTEUROPE_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -16
+    Font.Name = 'Arial Narrow'
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
     Lines.Strings = (
       'a'
     )
     OnKeyUp = MLevelDescriptionKeyUp
+    ParentFont = False
+    ReadOnly = True
+    ScrollBars = ssAutoVertical
     TabOrder = 2
   end
   object LBLevelList: TListBox
@@ -186,9 +194,16 @@ object Form1: TForm1
     Height = 128
     Top = 235
     Width = 142
+    Font.CharSet = EASTEUROPE_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -16
+    Font.Name = 'Arial Narrow'
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
     ItemHeight = 0
     OnClick = LBLevelListClick
     OnMouseDown = LBLevelListMouseDown
+    ParentFont = False
     ScrollWidth = 140
     TabOrder = 3
   end
@@ -200,8 +215,8 @@ object Form1: TForm1
     Color = clGradientInactiveCaption
     Font.CharSet = EASTEUROPE_CHARSET
     Font.Color = clWindowText
-    Font.Height = -13
-    Font.Name = 'MS Sans Serif'
+    Font.Height = -16
+    Font.Name = 'Arial Narrow'
     Font.Style = [fsBold]
     Lines.Strings = (
       'MHistory'
@@ -216,14 +231,20 @@ object Form1: TForm1
     Height = 22
     Top = 208
     Width = 112
+    Font.Height = -16
+    Font.Name = 'Arial Narrow'
     OnClick = SBRequestClick
+    ParentFont = False
   end
   object SBReset: TSpeedButton
     Left = 464
     Height = 22
     Top = 240
     Width = 88
+    Font.Height = -16
+    Font.Name = 'Arial Narrow'
     OnClick = SBResetClick
+    ParentFont = False
   end
   object MainMenu: TMainMenu
     Images = ILMainMenu
@@ -547,7 +568,7 @@ object Form1: TForm1
   end
   object ILMainMenu: TImageList
     DrawingStyle = dsTransparent
-    left = 16
+    left = 12
     top = 216
     Bitmap = {
       4C69090000001000000010000000000000000000000000000000000000000000
