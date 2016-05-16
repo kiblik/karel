@@ -11,7 +11,8 @@ uses
   Buttons, UDStop, FileUtil, UDebugWin, UDirect;
 
 const
-  version = '2.3';
+  version = '2.99';
+  saveVersion = '2.2';
 
 type
 
@@ -21,6 +22,9 @@ type
     EInput: TEdit;
     Img: TImage;
     LBLevelList: TListBox;
+    Jazyk1: TMenuItem;
+    LEng1: TMenuItem;
+    LSk1: TMenuItem;
     MIAddLevel: TMenuItem;
     MIRemoveLevel: TMenuItem;
     MIRenameLevel: TMenuItem;
@@ -58,10 +62,11 @@ type
     TBCmdList: TToolButton;
     N1: TMenuItem;
     LVersion: TLabel;
-
     procedure LBLevelListClick(Sender: TObject);
     procedure LBLevelListMouseDown(Sender: TObject; Button: TMouseButton;
       {%H-}Shift: TShiftState; X, Y: Integer);
+    procedure LEng1Click(Sender: TObject);
+    procedure LSk1Click(Sender: TObject);
     procedure MIAddLevelClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure EInputKeyPress(Sender: TObject; var Key: char);
@@ -152,7 +157,7 @@ type
     procedure startAdmin;
     procedure wrapperpoloz(Sender: TObject);
     procedure wrapperzober(Sender: TObject);
-
+    procedure reloadLang();
   public
     procedure RoomMoveClick(Sender: TObject);
     procedure ZoomChange(Sender: TObject);
@@ -164,7 +169,40 @@ type
 implementation
 
 {$R *.lfm}
-uses UDMiestnost, UDPosun, UDLimits, UDZoom, ULang;
+uses UDMiestnost, UDPosun, UDLimits, UDZoom, ULang, Ui18n;
+
+procedure TForm1.reloadLang();
+begin
+  Subor1.Caption := _lMenuSubor;
+  NovyProjekt1.Caption := _lMenuNovyProjekt;
+  OtvoritProjekt1.Caption := _lMenuOtvoritProjekt;
+  UlozitProjekt1.Caption := _lMenuUlozitProjekt;
+  Nastavenia1.Caption := _lMenuNastavenia;
+  RozmeryMiestnosti1.Caption := _lMenuRozmeryMiestnosti;
+  PosunMiestnosti1.Caption := _lMenuPosunMiestnosti;
+  ObmedzenieKarla1.Caption := _lMenuObmedzenieKarla;
+  Lupa1.Caption := _lMenuLupa;
+  Slovnik1.Caption := _lMenuSlovnik;
+  MIKoniec.Caption := _lMenuMIKoniec;
+  TBNew.Hint := _lTBNew;
+  TBOpen.Hint := _lTBOpen;
+  TBSave.Hint := _lTBSave;
+  TBResize.Hint := _lTBResize;
+  TBMove.Hint := _lTBMove;
+  TBKarelLimit.Hint := _lTBKarelLimit;
+  TBZoom.Hint := _lTBKarelLimit;
+  TBCommands.Hint := _lTBCommands;
+  SBRequest.Caption:= _lSBZobrazZadanie;
+  MIAddLevel.Caption := _lMIAddLevel;
+  MIRemoveLevel.Caption := _lMIRemoveLevel;
+  MIRenameLevel.Caption := _lMIRenameLevel;
+  Jazyk1.Caption:=_lMenuJazyk;
+  SBReset.Caption:= _lSBReset;
+  DStop.reloadLang;
+  DDebugWin.reloadLang;
+  if(cmdform <> nil) then
+    CmdForm.reloadLang;
+end;
 
 procedure TForm1.ReadKarelIni;
 var
@@ -194,17 +232,30 @@ var
       end
     until LowerCase(Line) = '*colors';
   end;
+  procedure NacitajJazyk;
+  begin
+    Line:=Copy(Line, Pos('=', Line) + 1,Length(Line)-Pos('=', Line));
+    if(line='sk') then
+      i18n.setLang(lang_sk)
+    else if (line='en') then
+      i18n.setLang(lang_en);
+  end;
 
 begin
   if not FileExists('karel.ini') then
     Exit;
   AssignFile(T, 'karel.ini');
   Reset(T);
+  Line:='';
   while not EOF(T) do
   begin
     ReadLn(T, Line);
     if LowerCase(Line) = 'colors' then
       NacitajFarby;
+    if (Pos('=', Line)<>0) then begin
+      if LowerCase(Copy(Line, 1, Pos('=', Line) - 1)) = 'lang' then
+        NacitajJazyk;
+    end;
   end;
   CloseFile(T);
 end;
@@ -215,30 +266,7 @@ var
 begin
   LVersion.Caption := 'v' + version;
   ReadKarelIni;
-  Subor1.Caption := _lMenuSubor;
-  NovyProjekt1.Caption := _lMenuNovyProjekt;
-  OtvoritProjekt1.Caption := _lMenuOtvoritProjekt;
-  UlozitProjekt1.Caption := _lMenuUlozitProjekt;
-  Nastavenia1.Caption := _lMenuNastavenia;
-  RozmeryMiestnosti1.Caption := _lMenuRozmeryMiestnosti;
-  PosunMiestnosti1.Caption := _lMenuPosunMiestnosti;
-  ObmedzenieKarla1.Caption := _lMenuObmedzenieKarla;
-  Lupa1.Caption := _lMenuLupa;
-  Slovnik1.Caption := _lMenuSlovnik;
-  MIKoniec.Caption := _lMenuMIKoniec;
-  TBNew.Hint := _lTBNew;
-  TBOpen.Hint := _lTBOpen;
-  TBSave.Hint := _lTBSave;
-  TBResize.Hint := _lTBResize;
-  TBMove.Hint := _lTBMove;
-  TBKarelLimit.Hint := _lTBKarelLimit;
-  TBZoom.Hint := _lTBKarelLimit;
-  TBCommands.Hint := _lTBCommands;
-  SBRequest.Caption:= _lSBZobrazZadanie;
-  MIAddLevel.Caption := _lMIAddLevel;
-  MIRemoveLevel.Caption := _lMIRemoveLevel;
-  MIRenameLevel.Caption := _lMIRenameLevel;
-  SBReset.Caption:= _lSBReset;
+
 
   Randomize;
   ShowGraphic := True;
@@ -261,6 +289,7 @@ begin
   DDebugWin.OnClose := BDebugCloseWrapper;
   DDebugWin.Hide;
 
+  reloadLang;
   EInput.Text := '';
   ELine := 0;
   MHistory.Clear;
@@ -327,6 +356,8 @@ begin
     loadlevel(LBLevelList.ItemIndex);
   end;
 end;
+
+
 // toto je skaredy hnustny kod inspirovany examplom z netu, len aby sa dalo right clickom mazat a premenovavat
 procedure TForm1.LBLevelListMouseDown(Sender: TObject; Button: TMouseButton;
   Shift: TShiftState; X, Y: Integer);
@@ -344,6 +375,19 @@ begin
       LBLevelList.ItemIndex:=OverItemIndex;
     end;
 end;
+
+procedure TForm1.LEng1Click(Sender: TObject);
+begin
+  i18n.setLang(lang_EN);
+  reloadLang;
+end;
+
+procedure TForm1.LSk1Click(Sender: TObject);
+begin
+  i18n.setLang(lang_SK);
+  reloadLang;
+end;
+
 // koniec skaredeho hnusneho kodu - ok, skaredy je aj dalej, ale aspon nerobi taku magiu ako toto
 
 procedure TForm1.MIAddLevelClick(Sender: TObject);
@@ -656,7 +700,7 @@ begin
   AssignFile(F, DSave.FileName);
   try
     ReWrite(F);
-    WriteLn(F, 'ver=', version);
+    WriteLn(F, 'ver=', saveVersion);
     for L := 0 to high(Levels) do
     begin
       WriteLn(F, 'level ', Levels[L].Name);

@@ -2,8 +2,8 @@ unit UDStop;
 
 interface
 
-uses LCLIntf, LCLType, SysUtils, Classes, Graphics, Forms, Controls,
-  Buttons, ExtCtrls;
+uses LCLIntf, LCLType, LMessages, SysUtils, Classes, Graphics, Forms, Controls, StdCtrls,
+  Buttons, ExtCtrls,Messages;
 
 type
 
@@ -13,6 +13,7 @@ type
     BStop: TBitBtn;
     BPause: TBitBtn;
     procedure FormCreate(Sender: TObject);
+    procedure reloadLang;
   private
     { Private declarations }
   public
@@ -24,10 +25,16 @@ implementation
 uses ULang;
 {$R *.lfm}
 
+procedure TDStop.reloadLang;
+begin
+  BStop.Caption :=_LBStopCaption;
+  BPause.Caption := _lBPauseCaption;
+end;
+
 procedure TDStop.FormCreate(Sender: TObject);
 begin
-  Width:=160;
-  BStop.Caption:=_LBStopCaption;
+  Width:=240;
+  reloadLang;
 end;
 
 
