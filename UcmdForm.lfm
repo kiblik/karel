@@ -1,7 +1,7 @@
 object CmdForm: TCmdForm
-  Left = 540
+  Left = 195
   Height = 392
-  Top = 424
+  Top = 192
   Width = 551
   BorderIcons = [biSystemMenu, biMinimize]
   BorderStyle = bsSingle
@@ -15,7 +15,7 @@ object CmdForm: TCmdForm
   OnClose = FormClose
   OnCloseQuery = FormCloseQuery
   OnCreate = FormCreate
-  LCLVersion = '1.6.0.4'
+  LCLVersion = '1.4.4.0'
   object BNew: TSpeedButton
     Left = 8
     Height = 40

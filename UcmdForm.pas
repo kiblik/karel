@@ -28,7 +28,6 @@ type
     procedure CmdListDrawItem({%H-}Control: TWinControl; Index: Integer;
       Rect: TRect; {%H-}State: TOwnerDrawState);
     procedure BGrapCmdClick(Sender: TObject);
-    procedure reloadLang;
   private
     EOL : Boolean;
     OldChange : TNotifyEvent;
@@ -45,7 +44,7 @@ type
     { Public declarations }
   end;
 
-var CmdForm: TCmdForm = nil;
+var CmdForm: TCmdForm;
 
 implementation
 uses UUtils,ULang;
@@ -89,17 +88,8 @@ begin
 end;
 *)
 
-procedure TCmdForm.reloadLang;
-begin
-  Caption:=_lMenuSlovnik;
-  BNew.Caption:=_lBNewCaption;
-  BDelete.Caption:=_lBDeleteCaption;
-  BRename.Caption:=_lBRenameCaption;
-end;
-
 procedure TCmdForm.FormCreate(Sender: TObject);
 begin
-
 {  HLEdit:=TMemo.Create(self);//Tmyeditor
   HLEdit.Parent:=self;
   HLEdit.Name:='memo';}
@@ -121,7 +111,9 @@ begin
 
   for I:=0 to BasicCnds.Count-1 do
     HlEdit.AddKey(BasicCnds[I],clGreen,[]);}
-  reloadLang;
+  BNew.Caption:=_lBNewCaption;
+  BDelete.Caption:=_lBDeleteCaption;
+  BRename.Caption:=_lBRenameCaption;
   BDelete.Glyph.TransparentColor:=clWhite;
   BDelete.Glyph.Transparent:=True;
   DoubleBuffered:=True;

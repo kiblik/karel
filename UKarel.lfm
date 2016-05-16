@@ -1,12 +1,12 @@
 object Form1: TForm1
-  Left = 419
-  Height = 435
-  Top = 564
-  Width = 722
+  Left = 289
+  Height = 600
+  Top = 83
+  Width = 819
   AlphaBlendValue = 100
   Caption = 'Neuložený projekt'
-  ClientHeight = 415
-  ClientWidth = 722
+  ClientHeight = 580
+  ClientWidth = 819
   Color = clBtnFace
   Font.Color = clWindowText
   Font.Height = -11
@@ -25,7 +25,7 @@ object Form1: TForm1
     Width = 105
   end
   object LVersion: TLabel
-    Left = 365
+    Left = 462
     Height = 13
     Top = 48
     Width = 21
@@ -53,7 +53,7 @@ object Form1: TForm1
     Left = 0
     Height = 29
     Top = 0
-    Width = 722
+    Width = 819
     ButtonWidth = 28
     Caption = 'ToolBar'
     Color = clActiveCaption
@@ -536,17 +536,6 @@ object Form1: TForm1
       Caption = 'Prikazy Karla'
       ShortCut = 115
       OnClick = Slovnik1Click
-    end
-    object Jazyk1: TMenuItem
-      Caption = 'Jazyk'
-      object LEng1: TMenuItem
-        Caption = 'English'
-        OnClick = LEng1Click
-      end
-      object LSk1: TMenuItem
-        Caption = 'Slovenčina'
-        OnClick = LSk1Click
-      end
     end
   end
   object Timer1: TTimer

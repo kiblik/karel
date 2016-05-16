@@ -1,0 +1,82 @@
+* Converting file /home/kiblik/karel/Karel.dpr *
+Added defines -dBorland -dVer150 -dDelphi7 -dCompiler6_Up -dPUREPASCAL in custom options
+Found all unit files
+* Fixing used units for file /home/kiblik/karel/Karel.dpr *
+
+*** Converting unit files belonging to project/package ***
+* Converting file /home/kiblik/karel/UKarel.pas *
+Changed encoding from ISO-8859-1 to UTF-8
+Fixed character case of unit "UCmdForm" to "UcmdForm".
+Replaced unit "Windows" with "LCLIntf, LCLType, LMessages" in uses section.
+Replaced call FileExists(FN) with FileExistsUTF8(FN) { *Converted from FileExists* }
+Added unit FileUtil to uses section
+Replaced call FileExists('karel.ini') with FileExistsUTF8('karel.ini') { *Converted from FileExists* }
+* Converting file /home/kiblik/karel/UcmdForm.pas *
+Changed encoding from ISO-8859-1 to UTF-8
+Replaced unit "Windows" with "LCLIntf, LCLType, LMessages" in uses section.
+Fixed unit name from UCmdForm to UcmdForm.
+
+*** Converting unit files found during conversion ***
+* Converting file /home/kiblik/karel/UDLimits.pas *
+Replaced unit "Windows" with "LCLIntf, LCLType, LMessages" in uses section.
+* Converting file /home/kiblik/karel/UDMiestnost.pas *
+Replaced unit "Mask" with "MaskEdit" in uses section.
+Replaced unit "Windows" with "LCLIntf, LCLType, LMessages" in uses section.
+* Converting file /home/kiblik/karel/UDPosun.pas *
+Replaced unit "Windows" with "LCLIntf, LCLType, LMessages" in uses section.
+* Converting file /home/kiblik/karel/UDStop.pas *
+Replaced unit "Windows" with "LCLIntf, LCLType, LMessages" in uses section.
+* Converting file /home/kiblik/karel/UDZoom.pas *
+Replaced unit "Windows" with "LCLIntf, LCLType, LMessages" in uses section.
+* Converting file /home/kiblik/karel/ugraphcmdform.pas *
+Replaced unit "Windows" with "LCLIntf, LCLType, LMessages" in uses section.
+* Converting file /home/kiblik/karel/ULang.pas *
+Changed encoding from ISO-8859-1 to UTF-8
+Fixed unit name from ulang to ULang.
+* Converting file /home/kiblik/karel/UMyEditor.pas *
+Replaced unit "Windows" with "LCLIntf, LCLType, LMessages" in uses section.
+* Converting file /home/kiblik/karel/UMyEditor.pas *
+Replaced unit "Windows" with "LCLIntf, LCLType, LMessages" in uses section.
+* Converting file /home/kiblik/karel/UStack.pas *
+
+*** Fixing used units and Repairing form files ***
+* Repairing form file /home/kiblik/karel/UKarel.lfm *
+Removed property "TextHeight".
+Removed property "DesignSize".
+Removed property "OldCreateOrder".
+* Fixing used units for file /home/kiblik/karel/UKarel.pas *
+* Repairing form file /home/kiblik/karel/UcmdForm.lfm *
+Removed property "TextHeight".
+Removed property "OldCreateOrder".
+Removed property "Icon.Data".
+* Fixing used units for file /home/kiblik/karel/UcmdForm.pas *
+* Repairing form file /home/kiblik/karel/UDLimits.lfm *
+Removed property "TextHeight".
+Removed property "OldCreateOrder".
+* Fixing used units for file /home/kiblik/karel/UDLimits.pas *
+* Repairing form file /home/kiblik/karel/UDMiestnost.lfm *
+Removed property "TextHeight".
+Removed property "OldCreateOrder".
+* Fixing used units for file /home/kiblik/karel/UDMiestnost.pas *
+* Repairing form file /home/kiblik/karel/UDPosun.lfm *
+Removed property "TextHeight".
+Removed property "OldCreateOrder".
+* Fixing used units for file /home/kiblik/karel/UDPosun.pas *
+* Repairing form file /home/kiblik/karel/UDStop.lfm *
+Removed property "TextHeight".
+Removed property "OldCreateOrder".
+* Fixing used units for file /home/kiblik/karel/UDStop.pas *
+* Repairing form file /home/kiblik/karel/UDZoom.lfm *
+Removed property "TextHeight".
+Removed property "OldCreateOrder".
+* Fixing used units for file /home/kiblik/karel/UDZoom.pas *
+* Repairing form file /home/kiblik/karel/ugraphcmdform.lfm *
+Removed property "TextHeight".
+Removed property "OldCreateOrder".
+* Fixing used units for file /home/kiblik/karel/ugraphcmdform.pas *
+* Fixing used units for file /home/kiblik/karel/ULang.pas *
+* Fixing used units for file /home/kiblik/karel/UMyEditor.pas *
+* Fixing used units for file /home/kiblik/karel/UMyEditor.pas *
+* Fixing used units for file /home/kiblik/karel/UStack.pas *
+Conversion took: 00:00:59
+Conversion Ready.
