@@ -2,156 +2,162 @@ unit ULang;
 
 interface
 uses UUtils;
-var _lMsgKarel_NoPic: string='Nenašiel som obrázok Karla! Karel nebude zobrazený!';
-    _lMsgCloseAppl : string ='Projekt bol zmenený a nie je uložený. Mám napriek tomu program ukončiť?';
-    _lMsgErrorUnknownCmd : string = 'Nepoznám príkaz ';
-    _lMsgErrorOpakuj : string = 'Chybná štruktúra príkazu opakuj';
-    _lMsgErrorOpakujCislo : string = 'za slovom opakuj by malo nasledovať číslo';
-    _lMsgErrorOpakujKrat : string ='chýba slovo ''krat'' v štruktúre príkazu opakuj';
-    _lMsgErrorOpakujEnd : string ='chybná štruktúra príkazu opakuj - nenašiel som ukončenie';
-    _lMsgErrorKym : string ='chybná štruktúra príkazu kym';
-    _lMsgErrorKymJe : string = 'za slovom kym musí nasledovať "je" alebo "nie je"';
-    _lMsgErrorKymJezanie : string = 'za slovom nie musí nasledovať "je"';
-    _lMsgErrorKymRob : string ='očakával som slovo rob';
-    _lMsgErrorKymEnd : string ='chybná štruktúra príkazu kym - nenašiel som ukončenie';
-    _lMsgErrorAk : string ='chybná štruktúra príkazu ak';
-    _lMsgErrorAkJe : string = 'za slovom ak musí nasledovať "je" alebo "nie je"';
-    _lMsgErrorAkJezanie : string = 'za slovom nie musí nasledovať "je"';
-    _lMsgErrorAkTak : string = 'očakával som slovo tak';
-    _lMsgErrorPresun : string ='Za príkazom presun očakávam dve čísla';
-    _lMsgErrorPrikaz : string ='Chybná štruktúra príkazu ';
-    _lMsgErrorPolozF : string ='Za príkazom polozf som očakával farbu.';
-    _lPrikazEndCmd : string = '*prikaz';
-    _lInakCmd : string = 'inak';
-    _lAkEndCmd : string = '*ak';
-    _lTakCmd : string = 'tak';
-    _lKymEndCmd : string ='*kym';
-    _lRobCmd : string = 'rob';
-    _lJeCmd : string = 'je';
-    _lNieCmd : string = 'nie';
-    _lKratCmd : string = 'krat';
-    _lKrokCmd : string = 'krok';
-    _lPolozCmd : string = 'poloz';
-    _lZoberCmd : string = 'zober';
-    _lVlavoCmd : string = 'vlavo';
-    _lZmazCmd : string = 'zmaz';
-    _lOpakujCmd : string = 'opakuj';
-    _lOpakujEndCmd : string = '*opakuj';
-    _lPresunCmd : string = 'presun';
-    _lKymCmd : string = 'kym';
-    _lStojCmd : string = 'stoj';
-    _lPomalyCmd : string = 'pomaly';
-    _lRychloCmd : string = 'rychlo';
-    _lAkCmd : string = 'ak';
-    _lTehlaCmd : string = 'tehla';
-    _lStenaCmd : string = 'stena';
-    _lNahodaCmd : string = 'nahoda';
-    _lPrikazCmd : string = 'prikaz';
-    _lVolnoCmd : string = 'volno';
-    _lMsgErrorUnknownCnd : string= 'Nepoznám podmienku ';
-    _lMsgSaveTitle : string='Uložnie projektu';
-    _lMsgSaveError : string='Chyba pri ukladaní súboru.';
-    _lMsgOpenError : string ='Chybný formát súboru.';
-    _lMsgNoSavedWarn : string = 'Aktuálny projekt bude vymazaný. Mám pokračovať?';
-    _lMsgNoSavedTitle : string='Neuložný projekt';
-    _lMsgOpenTitle : string = 'Otvorenie projektu.';
-    _lMsgReadingError : string ='Problém s otvorením súboru';
-    _lMenuSubor : string ='Projekt';
-    _lMenuNovyProjekt : string = 'Nový projekt';
-    _lMenuOtvoritProjekt : string = 'Otvoriť projekt';
-    _lMenuUlozitProjekt : string = 'Uložiť projekt';
-    _lMenuNastavenia : string = 'Nastavenia';
-    _lMenuRozmeryMiestnosti : string = 'Rozmery miestnosti';
-    _lMenuPosunMiestnosti : string = 'Posun miestnosti';
-    _lMenuObmedzenieKarla : string = 'Obmedzenia Karla';
-    _lMenuLupa : string = 'Zväčšenie/zmenšenie';
-    _lMenuSlovnik : string = 'Príkazy Karla';
-    _lMenuMIKoniec : string = 'Ukončenie programu';
-    _lTBNew : string = 'Nový projekt';
-    _lTBOpen : string = 'Otvoriť projekt';
-    _lTBSave : string = 'Uložiť projekt';
-    _lTBResize : string = 'Zmeniť rozmery miestnosti';
-    _lTBMove : string = 'Posunúť miestnosť';
-    _lTBKarelLimit : string = 'Nastaviť rôzne obmedzenia Karla';
-    _lTBCommands : string = 'Otvoriť slovník s príkazmi Karla';
-    _lBNewCaption : string = 'Nový'#13'príkaz';
-    _lBDeleteCaption : string ='Zmaž'#13'príkaz';
-    _lBRenameCaption : string ='Premenuj'#13'príkaz';
-    _lNovyPrikaz : string = 'Nový príkaz';
-    _lMsgZadajMeno : string = 'Zadaj meno nového príkazu';
-    _lMsgErrorRezSlovo1 : string =' nemôžeš použiť ako meno príkazu. ';
-    _lMsgErrorRezSlovo2 : string =' je zakladný príkaz alebo je jeho súčasťou.';
-    _lMsgErrorJednoSlovo : string ='Meno príkazu musí byť jedno slovo (bez medzier)';
-    _lZmazatPrikaz : string = 'Mám zmazať príkaz';
-    _lPremenovaniePrikazu : string = 'Premenovanie príkazu ';
-    _lZadajMeno : string ='Zadaj nové meno príkazu:';
-    _MsgErrorRovnakeMeno : string = 'Pôvodné a nové meno su rovnaké.';
-    _MsgErrorUzExistuje : string = 'Nemôžem zmeniť meno na meno už existujúceho príkazu';
-    _lRozmeryCaption : string = 'Nastavenie rozmerov miestnosti';
-    _lRozmeryLBCaption : string = 'Rozmery miestnosti';
-    _lRozmeryVyska : string ='Výška';
-    _lRozmerySirka : string ='Šírka';
-    _lRozmeryDlzka : string ='Dĺžka';
-    _lButtonNastav : string = 'Nastaviť';
-    _lButtonNenastav : string = 'Zrušiť';
-    _lMoveCaption : string = 'Klikaj na šípky';
-    _lBStopCaption : string = 'zastavenie programu';
-    _lLimitsCaption : string ='Obmedzenia Karla';
-    _lLimitsVykrocit : string ='Počet tehál, na ktoré vie Karel vykročiť';
-    _lLimitsSpomalit : string ='Rýchlosť Karla';
-    _lZoomCaption : string ='Klikni na šípky na okrajoch posuvníka';
-    _lMsgErrorPresun2 : string = 'Nesprávne súradnice za príkazom presun';
-    _lMsgStop : string ='program zastavený';
-    _lMsgErrorKrok : string ='Karel nemá voľno, nemôže urobiť krok.';
-    _lMsgErrorPolozPriStene : string = 'Karel stojí pred stenou, nemá kam položiť tehlu.';
-    _lMsgErrorPolozVyska : string = 'Karel nemôže položiť tehlu vyššie ako je výška miestnosti.';
-    _lMsgErrorZoberNietco : string ='Pred Karlom nie je žiadna tehla na zobratie.';
-    _lOznacCmd : string ='oznac';
-    _lOdznacCmd : string ='odznac';
-    _lZnackaCmd : string ='znacka';
-    _lPodmienkaCmd : string ='podmienka';
-    _lErrorMsgPrikazZly : string ='Nesprávny formát príkazu';
-    _lVysledokCnd : string = 'vysledok';
-    _lMsgErrorCnd : string = 'Problém so spracovaním podmienky';
-    _lPodmienkaEndCmd : string = '*podmienka';
-    _lResultCmd : string ='vysledok';
-    _lPravdaCmd : string ='pravda';
-    _lNepravdaCmd : string ='nepravda';
-    _lPolozFCmd : string ='polozf';
-    _lYesButton : string ='Án&o';
-    _lNoButton : string ='&Nie';
-    _lCancelButton : string ='&Zrušiť';
-    _lMsgUkoncenieProgramu : string ='Ukončenie programu';
-    _lMsgRunError : string ='Chyba pri spustení programu.';
-    _lErrorMsgRuntime : string ='Chyba v programe';
-    _lMsgUkladanie : string ='Ukladanie projektu';
-    _lMsgNacitanie : string ='Načítanie projektu';
-    _lMsgNeulozeny : string ='Neuložený projekt';
-    _lSBZobrazZadanie : string = 'Zobraz zadanie';
-    _lSBUpravZadanie: string = 'Uprav riešenie';
-    _lSBUpravPlochu: string = 'Uprav zadanie';
-    _lMIAddLevel: string = 'Pridaj zadanie';
-    _lMIRemoveLevel: string = 'Odstráň zadanie';
-    _lMIRenameLevel: string = 'Premenuj zadanie';
-    _lLevelName: string = 'Názov zadania';
-    _lWriteLevelName: string = 'Napíš názov zadania';
-    _lLevelNameCannotBeEmpty: string = 'Názov zadania nemôže byť prázdny';
-    _lCannotBeRemovedLastLevel: string = 'Posledný level nemôže byť zmazaný';
-    _lPozastavCmd: string = 'pozastav';
-    _lDebugWin: string = 'Ladenie';
-    _lLastCmdDesc: string = 'Posledný príkaz';
-    _lNextCmdDesc: string = 'Nasledujúcu príkaz';
-    _lIterationDesc: string = 'Zostavajúci počet cyklov';
-    _lStenaDesc: string = 'JeStena?';
-    _lTehlaDesc: string = 'JeTehla?';
-    _lZnackaDesc: string = 'JeZnacka?';
-    _lVolnoDesc: string = 'JeVolno?';
-    _lSBReset: string = 'Obnov zadanie';
-    _lBStop: string = 'Zastav';
-    _lBStep: string = 'Ďalší príkaz';
-    _lBContinue: string = 'Pokračuj';
-    _lFPriamyRezim: string = 'Priamy režím';
-    _LBPauseCaption: string = 'pozastavenie programu';
+
+var _lMsgKarel_NoPic: string='';
+    _lMsgCloseAppl : string ='';
+    _lMsgErrorUnknownCmd : string = '';
+    _lMsgErrorOpakuj : string = '';
+    _lMsgErrorOpakujCislo : string = '';
+    _lMsgErrorOpakujKrat : string ='';
+    _lMsgErrorOpakujEnd : string ='';
+    _lMsgErrorKym : string ='';
+    _lMsgErrorKymJe : string = '';
+    _lMsgErrorKymJezanie : string = '';
+    _lMsgErrorKymRob : string ='';
+    _lMsgErrorKymEnd : string ='';
+    _lMsgErrorAk : string ='';
+    _lMsgErrorAkJe : string = '';
+    _lMsgErrorAkJezanie : string = '';
+    _lMsgErrorAkTak : string = '';
+    _lMsgErrorPresun : string ='';
+    _lMsgErrorPrikaz : string ='';
+    _lMsgErrorPolozF : string ='';
+    _lMsgErrorPodmienka : string = '';
+    _lPrikazEndCmd : string = '';
+    _lInakCmd : string = '';
+    _lAkEndCmd : string = '';
+    _lTakCmd : string = '';
+    _lKymEndCmd : string ='';
+    _lRobCmd : string = '';
+    _lJeCmd : string = '';
+    _lNieCmd : string = '';
+    _lKratCmd : string = '';
+    _lKrokCmd : string = '';
+    _lPolozCmd : string = '';
+    _lZoberCmd : string = '';
+    _lVlavoCmd : string = '';
+    _lZmazCmd : string = '';
+    _lOpakujCmd : string = '';
+    _lOpakujEndCmd : string = '';
+    _lPresunCmd : string = '';
+    _lKymCmd : string = '';
+    _lStojCmd : string = '';
+    _lPomalyCmd : string = '';
+    _lRychloCmd : string = '';
+    _lAkCmd : string = '';
+    _lTehlaCmd : string = '';
+    _lStenaCmd : string = '';
+    _lNahodaCmd : string = '';
+    _lPrikazCmd : string = '';
+    _lVolnoCmd : string = '';
+    _lPoslednaFCmd : string = '';
+    _lPodmienkaCmd : string = '';
+    _lPodmienkaEndCmd : string = '';
+    _lMsgErrorUnknownCnd : string= '';
+    _lMsgSaveTitle : string='';
+    _lMsgSaveError : string='';
+    _lMsgOpenError : string ='';
+    _lMsgNoSavedWarn : string = '';
+    _lMsgNoSavedTitle : string='';
+    _lMsgOpenTitle : string = '';
+    _lMsgReadingError : string ='';
+    _lMenuSubor : string ='';
+    _lMenuNovyProjekt : string = '';
+    _lMenuOtvoritProjekt : string = '';
+    _lMenuUlozitProjekt : string = '';
+    _lMenuNastavenia : string = '';
+    _lMenuRozmeryMiestnosti : string = '';
+    _lMenuPosunMiestnosti : string = '';
+    _lMenuObmedzenieKarla : string = '';
+    _lMenuLupa : string = '';
+    _lMenuSlovnik : string = '';
+    _lMenuMIKoniec : string = '';
+    _lTBNew : string = '';
+    _lTBOpen : string = '';
+    _lTBSave : string = '';
+    _lMenuJazyk : string = '';
+    _lTBResize : string = '';
+    _lTBMove : string = '';
+    _lTBKarelLimit : string = '';
+    _lTBCommands : string = '';
+    _lBNewCaption : string = '';
+    _lBDeleteCaption : string ='';
+    _lBRenameCaption : string ='';
+    _lNovyPrikaz : string = '';
+    _lMsgZadajMeno : string = '';
+    _lMsgErrorRezSlovo1 : string ='';
+    _lMsgErrorRezSlovo2 : string ='';
+    _lMsgErrorJednoSlovo : string ='';
+    _lZmazatPrikaz : string = '';
+    _lPremenovaniePrikazu : string = '';
+    _lZadajMeno : string ='';
+    _MsgErrorRovnakeMeno : string = '';
+    _MsgErrorUzExistuje : string = '';
+    _lRozmeryCaption : string = '';
+    _lRozmeryLBCaption : string = '';
+    _lRozmeryVyska : string ='';
+    _lRozmerySirka : string ='';
+    _lRozmeryDlzka : string ='';
+    _lButtonNastav : string = '';
+    _lButtonNenastav : string = '';
+    _lMoveCaption : string = '';
+    _lBStopCaption : string = '';
+    _lLimitsCaption : string ='';
+    _lLimitsVykrocit : string ='';
+    _lLimitsSpomalit : string ='';
+    _lZoomCaption : string ='';
+    _lMsgErrorPresun2 : string = '';
+    _lMsgStop : string ='';
+    _lMsgErrorKrok : string ='';
+    _lMsgErrorPolozPriStene : string = '';
+    _lMsgErrorPolozVyska : string = '';
+    _lMsgErrorZoberNietco : string ='';
+    _lOznacCmd : string ='';
+    _lOdznacCmd : string ='';
+    _lZnackaCmd : string ='';
+    _lErrorMsgPrikazZly : string ='';
+    _lVysledokCnd : string = '';
+    _lMsgErrorCnd : string = '';
+    _lResultCmd : string ='';
+    _lPravdaCmd : string ='';
+    _lNepravdaCmd : string ='';
+    _lPolozFCmd : string ='';
+    _lYesButton : string ='';
+    _lNoButton : string ='';
+    _lCancelButton : string ='';
+    _lMsgUkoncenieProgramu : string ='';
+    _lMsgRunError : string ='';
+    _lErrorMsgRuntime : string ='';
+    _lMsgUkladanie : string ='';
+    _lMsgNacitanie : string ='';
+    _lMsgNeulozeny : string ='';
+    _lSBZobrazZadanie : string = '';
+    _lSBUpravZadanie: string = '';
+    _lSBUpravPlochu: string = '';
+    _lMIAddLevel: string = '';
+    _lMIRemoveLevel: string = '';
+    _lMIRenameLevel: string = '';
+    _lLevelName: string = '';
+    _lWriteLevelName: string = '';
+    _lLevelNameCannotBeEmpty: string = '';
+    _lCannotBeRemovedLastLevel: string = '';
+    _lPozastavCmd: string = '';
+    _lPokracujCmd: string = '';
+    _lBPauseCaption: string = '';
+    _lBContinueCaption: string = '';
+	_lDebugWin: string = '';
+    _lLastCmdDesc: string = '';
+    _lNextCmdDesc: string = '';
+    _lIterationDesc: string = '';
+    _lStenaDesc: string = '';
+    _lTehlaDesc: string = '';
+    _lZnackaDesc: string = '';
+    _lVolnoDesc: string = '';
+    _lSBReset: string = '';
+    _lBStop: string = '';
+    _lBStep: string = '';
+    _lBContinue: string = '';
+    _lFPriamyRezim: string = '';
 
 function GetOpakuj(var Cmd : string; var OK : Boolean) : TOpakuj;
 function GetPresun(var Cmd : string; var OK : Boolean) : TPresun;
@@ -162,7 +168,7 @@ function GetCond(Cond : array of string;var OK : Boolean) :TCond;
 function GetPolozF(var Cmd : string; var OK : Boolean) :TPolozF;
 
 implementation
-uses SysUtils;
+uses Ui18n,SysUtils;
 
 function GetCond(Cond : array of string;var OK : Boolean) :TCond;
 var S : string;
@@ -173,15 +179,15 @@ begin
   OK:=False;
   for I:=0 to Length(Cond)-1 do S:=S+' '+Cond[I];
   UnSpace(S);
-  if LowerCase(First(S))<>'podmienka' then
+  if LowerCase(First(S))<>_lPodmienkaCmd then
     begin
-      ErrorMsg:='Chybna štruktúra podmienky';
+      ErrorMsg:= _lMsgErrorPodmienka;
       Exit
     end;
   First(S);
-  if Last(S)<>'*podmienka' then
+  if Last(S)<>_lPodmienkaEndCmd then
     begin
-      ErrorMsg:='Chybná štruktúra podmienky';
+      ErrorMsg:= _lMsgErrorPodmienka;
       Exit
     end;
   OK:=True;
@@ -251,23 +257,39 @@ begin
     end;
   {cislo}
   S:=LowerCase(First(Cmd));
-  if (S<>_lJeCmd)and(S<>_lNieCmd) then
-    begin
-      ErrorMsg:=_lMsgErrorKymJe;
-      Exit
-    end;
-  Result.Je:=True;
-  if S=_lNieCmd then
-    begin
-      S:=LowerCase(First(Cmd));
-      if S<>_lJeCmd then
+  if (currentLang=lang_SK) then begin
+       if (S<>_lJeCmd)and(S<>_lNieCmd) then
+          begin
+  	  ErrorMsg:=_lMsgErrorKymJe;
+  	  Exit
+          end;
+        Result.Je:=True;
+        if S=_lNieCmd then
         begin
-          ErrorMsg:=_lMsgErrorKymJezanie;
-          Exit
+          S:=LowerCase(First(Cmd));
+  	if S<>_lJeCmd then
+  	begin
+  	     ErrorMsg:=_lMsgErrorKymJezanie;
+  	     Exit
+  	end;
+          Result.Je:=False;
         end;
-      Result.Je:=False;
-    end;
-  S:=LowerCase(First(Cmd));
+        S:=LowerCase(First(Cmd));
+  end
+  else if (currentLang=lang_EN) then begin
+         if (S<>_lJeCmd) then
+         begin
+              ErrorMsg:=_lMsgErrorKymJe;
+  	    Exit
+         end;
+         Result.Je:=True;
+         S:=LowerCase(First(Cmd));
+         if S=_lNieCmd then
+         begin
+              S:=LowerCase(First(Cmd));
+  	    Result.Je:=False;
+         end;
+  end;
   if BasicCnds.IndexOf(S)=-1 then S:='%'+S;
   Result.Cond:=S;
   S:=LowerCase(First(Cmd));
@@ -314,23 +336,39 @@ begin
     end;
   {cislo}
   S:=LowerCase(First(Cmd));
-  if (S<>_lJeCmd)and(S<>_lNieCmd) then
-    begin
-      ErrorMsg:=_lMsgErrorAkJe;
-      Exit
-    end;
-  Result.Je:=True;
-  if S=_lNieCmd then
-    begin
-      S:=LowerCase(First(Cmd));
-      if S<>_lJeCmd then
+  if (currentLang=lang_SK) then begin
+     if (S<>_lJeCmd)and(S<>_lNieCmd) then
         begin
-          ErrorMsg:=_lMsgErrorAkJezanie;
-          Exit
+	  ErrorMsg:=_lMsgErrorKymJe;
+	  Exit
         end;
-      Result.Je:=False;
-    end;
-  S:=LowerCase(First(Cmd));
+      Result.Je:=True;
+      if S=_lNieCmd then
+      begin
+        S:=LowerCase(First(Cmd));
+	if S<>_lJeCmd then
+	begin
+	     ErrorMsg:=_lMsgErrorKymJezanie;
+	     Exit
+	end;
+        Result.Je:=False;
+      end;
+      S:=LowerCase(First(Cmd));
+  end
+  else if (currentLang=lang_EN) then begin
+       if (S<>_lJeCmd) then
+       begin
+            ErrorMsg:=_lMsgErrorKymJe;
+	    Exit
+       end;
+       Result.Je:=True;
+       S:=LowerCase(First(Cmd));
+       if S=_lNieCmd then
+       begin
+            S:=LowerCase(First(Cmd));
+	    Result.Je:=False;
+       end;
+  end;
   Result.Cond:=S;
   S:=LowerCase(First(Cmd));
   if S<>_lTakCmd then
@@ -399,14 +437,14 @@ function GetPolozF(var Cmd : string; var OK : Boolean) : TPolozF;
 var S : string;
 begin
   S:=First(Cmd);
-  if LowerCase(S)='nahoda' then
+  if LowerCase(S)=_lNahodaCmd then
     begin
       if DefColors.Count=0 then Result.Color:=BrickColor
                            else Result.Color:=(DefColors.Objects[Random(DefColors.Count)] as TOColor).Color;
       OK:=True;
       Exit;
     end;
-  if LowerCase(S)='poslednaf' then
+  if LowerCase(S)=_lPoslednaFCmd then
     begin
       Result.Color:=LastTakenColor;
       OK:=True;
@@ -456,5 +494,9 @@ begin
   {este treba odrezat koniec prikazu *prikaz}
 end;
 
+initialization
+begin
+     setLang(lang_EN);
+end;
 
 end.

@@ -6,6 +6,9 @@ uses LCLIntf, LCLType, SysUtils, Classes, Graphics, Forms, Controls, StdCtrls,
   Buttons, ExtCtrls, ComCtrls;
 
 type
+
+  { TDMiestnost }
+
   TDMiestnost = class(TForm)
     GroupBox1: TGroupBox;
     LVyska: TLabel;
