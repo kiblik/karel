@@ -1,0 +1,37 @@
+ver=2.1
+roomx=20
+roomy=10
+roomh=10
+OX=150
+OY=212
+karelx=1
+karely=1
+karelo=0
+klimitup=1
+zoom=3
+bricks
+0 2 65535
+2 1 65535
+*bricks
+cmds
+bbb 5
+prikaz bbb
+ vlavo
+krok
+poloz 
+*prikaz
+*cmds
+colors
+modra 0 0 255
+zelenomodra 0 255 255
+hneda 165 42 42
+zelena 0 255 0
+olivova 128 128 128
+kaki 240 230 140
+pomarancova 255 127 0
+cervena 255 0 0
+fialova 208 32 144
+ruzova 255 192 203
+rajcinova 255 99 71
+zlta 255 255 0
+*colors

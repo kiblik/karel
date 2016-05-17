@@ -8,40 +8,25 @@
         <MainUnitHasCreateFormStatements Value="False"/>
         <MainUnitHasTitleStatement Value="False"/>
       </Flags>
-      <SessionStorage Value="None"/>
+      <SessionStorage Value="InProjectDir"/>
       <MainUnit Value="0"/>
       <Title Value="Karel"/>
+      <UseAppBundle Value="False"/>
       <ResourceType Value="res"/>
-      <UseXPManifest Value="True"/>
-      <XPManifest>
-        <DpiAware Value="True"/>
-      </XPManifest>
-      <Icon Value="0"/>
     </General>
     <i18n>
       <EnableI18N LFM="False"/>
     </i18n>
     <VersionInfo>
-      <UseVersionInfo Value="True"/>
-      <AutoIncrementBuild Value="True"/>
-      <MajorVersionNr Value="2"/>
-      <MinorVersionNr Value="99"/>
-      <BuildNr Value="5"/>
-      <Language Value="041B"/>
-      <Attributes pvaPreRelease="True"/>
-      <StringTable CompanyName="GJH" FileDescription="Karel 3D" ProductName="Karel 3D" ProductVersion="2.99"/>
+      <StringTable ProductVersion=""/>
     </VersionInfo>
     <BuildModes Count="3">
       <Item1 Name="Default" Default="True"/>
       <Item2 Name="Debug">
         <CompilerOptions>
           <Version Value="11"/>
-          <Target>
-            <Filename Value="bin/karel"/>
-          </Target>
           <SearchPaths>
             <IncludeFiles Value="$(ProjOutDir)"/>
-            <UnitOutputDirectory Value="lib"/>
           </SearchPaths>
           <Parsing>
             <SyntaxOptions>
@@ -56,6 +41,7 @@
               <OverflowChecks Value="True"/>
               <StackChecks Value="True"/>
             </Checks>
+            <VerifyObjMethodCallValidity Value="True"/>
           </CodeGeneration>
           <Linking>
             <Debugging>
@@ -80,12 +66,8 @@
       <Item3 Name="Release">
         <CompilerOptions>
           <Version Value="11"/>
-          <Target>
-            <Filename Value="bin/karel"/>
-          </Target>
           <SearchPaths>
             <IncludeFiles Value="$(ProjOutDir)"/>
-            <UnitOutputDirectory Value="lib"/>
           </SearchPaths>
           <Parsing>
             <SyntaxOptions>
@@ -131,7 +113,7 @@
         <PackageName Value="LCL"/>
       </Item1>
     </RequiredPackages>
-    <Units Count="17">
+    <Units Count="14">
       <Unit0>
         <Filename Value="Karel.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -153,16 +135,12 @@
       <Unit3>
         <Filename Value="UDLimits.pas"/>
         <IsPartOfProject Value="True"/>
-        <ComponentName Value="DLimitKarel"/>
         <HasResources Value="True"/>
-        <ResourceBaseClass Value="Form"/>
       </Unit3>
       <Unit4>
         <Filename Value="UDMiestnost.pas"/>
         <IsPartOfProject Value="True"/>
-        <ComponentName Value="DMiestnost"/>
         <HasResources Value="True"/>
-        <ResourceBaseClass Value="Form"/>
       </Unit4>
       <Unit5>
         <Filename Value="UDPosun.pas"/>
@@ -201,39 +179,25 @@
         <IsPartOfProject Value="True"/>
       </Unit11>
       <Unit12>
-        <Filename Value="Ui18n.pas"/>
-        <IsPartOfProject Value="True"/>
-      </Unit12>
-      <Unit13>
-        <Filename Value="UCommands.pas"/>
-        <IsPartOfProject Value="True"/>
-      </Unit13>
-      <Unit14>
         <Filename Value="UDebugWin.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="DDebugWin"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-      </Unit14>
-      <Unit15>
+      </Unit12>
+      <Unit13>
         <Filename Value="UDirect.pas"/>
         <IsPartOfProject Value="True"/>
+        <ComponentName Value="DirectForm"/>
         <HasResources Value="True"/>
-      </Unit15>
-      <Unit16>
-        <Filename Value="ULex.pas"/>
-        <IsPartOfProject Value="True"/>
-      </Unit16>
+        <ResourceBaseClass Value="Form"/>
+      </Unit13>
     </Units>
   </ProjectOptions>
   <CompilerOptions>
     <Version Value="11"/>
-    <Target>
-      <Filename Value="bin/karel"/>
-    </Target>
     <SearchPaths>
       <IncludeFiles Value="$(ProjOutDir)"/>
-      <UnitOutputDirectory Value="lib"/>
     </SearchPaths>
     <Parsing>
       <SyntaxOptions>

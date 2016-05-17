@@ -7,8 +7,6 @@ uses
  var
   Form1: TForm1;
 
-{$R *.res}
-
 begin
   Application.Initialize;
   Application.CreateForm(TForm1, Form1);
