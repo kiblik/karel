@@ -79,6 +79,7 @@ var _lMsgKarel_NoPic: string='';
     _lTBResize : string = '';
     _lTBMove : string = '';
     _lTBKarelLimit : string = '';
+    _lTBZoom : string = '';
     _lTBCommands : string = '';
     _lBNewCaption : string = '';
     _lBDeleteCaption : string ='';

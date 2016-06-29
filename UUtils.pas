@@ -1,6 +1,6 @@
 unit UUtils;
 interface
-uses Graphics,Classes,Dialogs;
+uses Graphics,Classes,Dialogs,Buttons;
 type
   TBricks = array of array of array of TColor;
   TMarks = array of array of Boolean;
@@ -149,7 +149,7 @@ end;
 
 function MyMessageDlg(const Title : string; const Msg: string; DlgType: TMsgDlgType; Buttons: TMsgDlgButtons; DefButton : Integer; HelpCtx: Longint): Word;
 var Cnt : Integer;
-    Btn : TButton;
+    Btn : TBitBtn;
     Lab : TLabel;
 begin
   with CreateMessageDialog(Msg,DlgType,Buttons) do
@@ -158,9 +158,9 @@ begin
       HelpContext:=HelpCtx;
       for Cnt:=0 to ComponentCount-1 do
         begin
-          if Components[Cnt] is TButton then
+          if Components[Cnt] is TBitbtn then
             begin
-              Btn:=TButton(Components[Cnt]);
+              Btn:=TBitBtn(Components[Cnt]);
               Btn.Default :=Btn.ModalResult=DefButton;
               if Btn.Caption='&Yes' then Btn.Caption:=_lYesButton;
               if Btn.Caption='&No' then Btn.Caption:=_LNoButton;

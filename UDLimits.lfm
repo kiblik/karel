@@ -2,21 +2,21 @@ object DLimitKarel: TDLimitKarel
   Left = 465
   Height = 201
   Top = 372
-  Width = 239
+  Width = 255
   BorderStyle = bsToolWindow
   Caption = 'Obmedzenie Karla'
   ClientHeight = 201
-  ClientWidth = 239
+  ClientWidth = 255
   Color = clBtnFace
   OnCreate = FormCreate
   ParentFont = True
   Position = poScreenCenter
-  LCLVersion = '1.6.0.2'
+  LCLVersion = '1.6.0.4'
   object LVykrocit: TLabel
     Left = 8
-    Height = 16
+    Height = 20
     Top = 0
-    Width = 226
+    Width = 232
     Alignment = taCenter
     Caption = 'Počet tehál, na ktoré vie Karel vykročiť'
     Font.Color = clWindowText
@@ -27,10 +27,10 @@ object DLimitKarel: TDLimitKarel
     WordWrap = True
   end
   object LSpomalit: TLabel
-    Left = 52
-    Height = 16
+    Left = 72
+    Height = 20
     Top = 96
-    Width = 107
+    Width = 106
     Caption = 'Spomalenie Karla'
     Font.Color = clWindowText
     Font.Height = -16
@@ -68,7 +68,7 @@ object DLimitKarel: TDLimitKarel
     TabOrder = 0
   end
   object BNenastav: TBitBtn
-    Left = 144
+    Left = 146
     Height = 30
     Top = 164
     Width = 90
@@ -97,19 +97,19 @@ object DLimitKarel: TDLimitKarel
     TabOrder = 1
   end
   object EUp: TEdit
-    Left = 100
+    Left = 108
     Height = 23
-    Top = 36
+    Top = 32
     Width = 29
     NumbersOnly = True
     TabOrder = 2
     Text = '999'
   end
   object SBTimer: TScrollBar
-    Left = 20
+    Left = 8
     Height = 17
     Top = 116
-    Width = 197
+    Width = 228
     Max = 10
     Min = 1
     PageSize = 0
@@ -117,9 +117,9 @@ object DLimitKarel: TDLimitKarel
     TabOrder = 3
   end
   object BMinus: TBitBtn
-    Left = 56
+    Left = 64
     Height = 25
-    Top = 36
+    Top = 32
     Width = 29
     Glyph.Data = {
       36030000424D3603000000000000360000002800000010000000100000000100
@@ -153,9 +153,9 @@ object DLimitKarel: TDLimitKarel
     TabOrder = 4
   end
   object BPlus: TBitBtn
-    Left = 144
+    Left = 152
     Height = 25
-    Top = 36
+    Top = 32
     Width = 29
     Glyph.Data = {
       36030000424D3603000000000000360000002800000010000000100000000100

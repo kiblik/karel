@@ -193,7 +193,7 @@ begin
   TBResize.Hint := _lTBResize;
   TBMove.Hint := _lTBMove;
   TBKarelLimit.Hint := _lTBKarelLimit;
-  TBZoom.Hint := _lTBKarelLimit;
+  TBZoom.Hint := _lTBZoom;
   TBCommands.Hint := _lTBCommands;
   SBRequest.Caption:= _lSBZobrazZadanie;
   MIAddLevel.Caption := _lMIAddLevel;

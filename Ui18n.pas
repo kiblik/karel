@@ -90,6 +90,7 @@ begin
     _lTBResize := 'Zmeniť rozmery miestnosti';
     _lTBMove := 'Posunúť miestnosť';
     _lTBKarelLimit := 'Nastaviť rôzne obmedzenia Karla';
+    _lTBZoom := 'Zväčšiť a zmenšiť miestnost';
     _lTBCommands := 'Otvoriť slovník s príkazmi Karla';
     _lBNewCaption := 'Nový'#13'príkaz';
     _lBDeleteCaption :='Zmaž'#13'príkaz';
@@ -254,6 +255,7 @@ begin
     _lTBResize := 'Change dimensions of the room';
     _lTBMove := 'Shift the room';
     _lTBKarelLimit := 'Set Karel''s various restrictions';
+    _lTBZoom := 'Zoom in and zoom out room';
     _lTBCommands := 'Open a dictionary with Karel''s commands';
     _lBNewCaption := 'New'#13'command';
     _lBDeleteCaption :='Delete'#13'command';
