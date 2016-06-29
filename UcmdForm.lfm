@@ -1,7 +1,7 @@
 object CmdForm: TCmdForm
-  Left = 540
+  Left = 810
   Height = 392
-  Top = 424
+  Top = 616
   Width = 551
   BorderIcons = [biSystemMenu, biMinimize]
   BorderStyle = bsSingle
@@ -78,7 +78,7 @@ object CmdForm: TCmdForm
     OnClick = BNewClick
   end
   object BDelete: TSpeedButton
-    Left = 104
+    Left = 128
     Height = 40
     Top = 8
     Width = 90
@@ -147,7 +147,7 @@ object CmdForm: TCmdForm
     OnClick = BDeleteClick
   end
   object BRename: TSpeedButton
-    Left = 227
+    Left = 232
     Height = 40
     Top = 8
     Width = 103

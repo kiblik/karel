@@ -9,7 +9,7 @@ var currentLang : TLang;
 procedure setLang(lang: TLang);
 
 implementation
-uses SysUtils,ULang;
+uses SysUtils,ULang,UUtils;
 
 procedure setLangSK;
 begin
@@ -159,16 +159,16 @@ begin
 	_lDebugWin:= 'Ladenie';
     _lLastCmdDesc:= 'Posledný príkaz';
     _lNextCmdDesc:= 'Nasledujúcu príkaz';
-    _lIterationDesc := 'Zostavajúci počet cyklov';
-    _lStenaDesc:= 'JeStena?';
-    _lTehlaDesc:= 'JeTehla?';
-    _lZnackaDesc:= 'JeZnacka?';
-    _lVolnoDesc:= 'JeVolno?';
+    _lIterationDesc := 'Zostavajúci počet opakovaní';
+    _lStenaDesc:= 'je stena';
+    _lTehlaDesc:= 'je tehla';
+    _lZnackaDesc:= 'je značka';
+    _lVolnoDesc:= 'je voľno';
     _lSBReset:= 'Obnov zadanie';
     _lBStop:= 'Zastav';
     _lBStep:= 'Ďalší príkaz';
     _lBContinue:= 'Pokračuj';
-    _lFPriamyRezim:= 'Priamy režím';
+    _lFPriamyRezim:= 'Priamy režim';
 end;
 
 procedure setLangEN;
@@ -320,14 +320,14 @@ begin
     _lPokracujCmd:= 'continue';
     _lBPauseCaption:= 'Pause';
     _lBContinueCaption:= 'Continue';
-	_lDebugWin:= 'Debugging';
+    _lDebugWin:= 'Debugging';
     _lLastCmdDesc:= 'Last command';
     _lNextCmdDesc:= 'Next command';
     _lIterationDesc := 'Remaining iteration count';
-    _lStenaDesc:= 'IsWall?';
-    _lTehlaDesc:= 'IsBrick?';
-    _lZnackaDesc:= 'IsMarker?';
-    _lVolnoDesc:= 'IsFree?';
+    _lStenaDesc:= 'is wall';
+    _lTehlaDesc:= 'is brick';
+    _lZnackaDesc:= 'is marker';
+    _lVolnoDesc:= 'is free';
     _lSBReset:= 'Refresh task';
     _lBStop:= 'Stop';
     _lBStep:= 'Next command';
@@ -344,6 +344,7 @@ begin
 	//Nemalo by nikdy nastat
     Raise Exception.Create('Internal Error: Unknown Language code');
   end;
+  setUtilsLang();
 end;
 
 end.

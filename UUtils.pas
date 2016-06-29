@@ -114,6 +114,7 @@ function Last(var Sentence : string) : string;
 procedure UnSpace(var Sentence : string);
 function Empty(Cmd : string) : Boolean;
 procedure CenterText(Text : string;Canvas : TCanvas;var Rect : TRect);
+procedure setUtilsLang();
 implementation
 uses ULang,SysUtils,StdCtrls;
 
@@ -274,9 +275,8 @@ begin
     Sentence:=Copy(Sentence,1,Length(Sentence)-1);
 end;
 
-
-//var NColor : TOColor;
-initialization
+procedure setUtilsLang();
+begin
   Zoom:=3;
   WasChanged:=False;
   O:=DefO;
@@ -287,6 +287,7 @@ initialization
   UY.X:=Zoom*DefUY.X;
   UY.Y:=Zoom*DefUY.Y;
 
+  BasicCmds.Free;
   BasicCmds:=TStringList.Create;
   BasicCmds.Add(_lKrokCmd);
   BasicCmds.Add(_lPomalyCmd);
@@ -316,6 +317,7 @@ initialization
   BasicCmds.Add(_lPodmienkaCmd);
   BasicCmds.Add(_lPodmienkaEndCmd);
 
+  BasicCnds.Free;
   BasicCnds:=TStringList.Create;
   BasicCnds.Add(_lZnackaCmd);
   BasicCnds.Add(_ltehlaCmd);
@@ -326,10 +328,14 @@ initialization
   BasicCnds.Add(_lVysledokCnd);
   BasicCnds.Add(_lResultCmd);
 
+  EndOfAppl:=False;
+
+end;
+
+//var NColor : TOColor;
+initialization
   DefColors:=TColorStringList.Create;
 
-
-  EndOfAppl:=False;
 finalization
   BasicCmds.Free;
   BasicCnds.Free;

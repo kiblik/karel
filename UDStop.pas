@@ -33,9 +33,8 @@ end;
 
 procedure TDStop.FormCreate(Sender: TObject);
 begin
-  Width:=240;
+  Width:=305;
   reloadLang;
-  BPause.Caption:=_LBPauseCaption;
 end;
 
 

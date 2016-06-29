@@ -257,21 +257,21 @@ begin
     end;
   {cislo}
   S:=LowerCase(First(Cmd));
-  if (currentLang=lang_SK) then begin
+    if (currentLang=lang_SK) then begin
        if (S<>_lJeCmd)and(S<>_lNieCmd) then
           begin
-  	  ErrorMsg:=_lMsgErrorKymJe;
-  	  Exit
+  	    ErrorMsg:=_lMsgErrorKymJe;
+  	    Exit
           end;
         Result.Je:=True;
         if S=_lNieCmd then
         begin
           S:=LowerCase(First(Cmd));
-  	if S<>_lJeCmd then
-  	begin
-  	     ErrorMsg:=_lMsgErrorKymJezanie;
-  	     Exit
-  	end;
+  	  if S<>_lJeCmd then
+  	  begin
+  	       ErrorMsg:=_lMsgErrorKymJezanie;
+  	       Exit
+  	  end;
           Result.Je:=False;
         end;
         S:=LowerCase(First(Cmd));
@@ -435,7 +435,11 @@ end;
 
 function GetPolozF(var Cmd : string; var OK : Boolean) : TPolozF;
 var S : string;
+      i:integer;
+      x:string;
 begin
+  for i := 0 to 10 do
+    x := DefColors.Strings[i];
   S:=First(Cmd);
   if LowerCase(S)=_lNahodaCmd then
     begin

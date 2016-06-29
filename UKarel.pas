@@ -72,6 +72,7 @@ type
     procedure FormClose(Sender: TObject; var {%H-}Action: TCloseAction);
     procedure MIRemoveLevelClick(Sender: TObject);
     procedure MIRenameLevelClick(Sender: TObject);
+    procedure MLevelDescriptionChange(Sender: TObject);
     procedure MLevelDescriptionKeyUp(Sender: TObject; var {%H-}Key: Word;
       {%H-}Shift: TShiftState);
     procedure SBRequestClick(Sender: TObject);
@@ -123,6 +124,8 @@ type
     Pause: boolean;
     Iteracia: integer;
     DirectForm: TDirectForm;
+    PomCmdStr: string;
+
 
     procedure DrawAxis;
     procedure ReDrawAll(const FromY: integer = 0);
@@ -157,6 +160,7 @@ type
     procedure wrapperpoloz(Sender: TObject);
     procedure wrapperzober(Sender: TObject);
     procedure reloadLang();
+    procedure redrawdebug();
   public
     procedure RoomMoveClick(Sender: TObject);
     procedure ZoomChange(Sender: TObject);
@@ -567,6 +571,11 @@ begin
     Levels[LBLevelList.ItemIndex].Name:=newname;
     LBLevelList.Items.Strings[LBLevelList.ItemIndex]:=newname;
   end;
+end;
+
+procedure TForm1.MLevelDescriptionChange(Sender: TObject);
+begin
+
 end;
 
 procedure TForm1.MIRemoveLevelClick(Sender: TObject);
@@ -1156,7 +1165,6 @@ var
   Cond: TCond;
   II: integer;
   PolozF: TPolozF;
-  PomCmdStr: string;
 begin
   PomCmdStr:=Cmd;
   repeat
@@ -1266,7 +1274,10 @@ begin
             if Cmd <> '' then
               Stack.Push(Cmd);
             if not Kym.Je then
-              Back := _lKymCmd + ' ' + _lNieCmd + ' ' + _lJeCmd
+              if (currentLang=lang_SK) then
+                Back := _lKymCmd + ' ' + _lNieCmd + ' ' + _lJeCmd
+              else
+                Back := _lKymCmd + ' ' + _lJeCmd + ' ' + _lNieCmd
             else
               Back := _lKymCmd + ' ' + _lJeCmd;
 
@@ -1278,14 +1289,28 @@ begin
             if Kym.Je then
               BackOld := _lAkCmd + ' ' + _lJeCmd + ' ' + _lResultCmd + ' ' + _lTakCmd + ' ' + BackOld + ' ' + _lAkEndCmd
             else
+            if (currentLang=lang_SK) then
               BackOld := _lAkCmd + ' ' + _lNieCmd + ' ' + _lJeCmd + ' ' + _lResultCmd + ' ' + _lTakCmd + ' ' +
+                BackOld + ' ' + _lAkEndCmd
+            else
+              BackOld := _lAkCmd + ' ' + _lJeCmd + ' ' + _lNieCmd + ' ' + _lResultCmd + ' ' + _lTakCmd + ' ' +
                 BackOld + ' ' + _lAkEndCmd;
             Stack.Push(BackOld);
             Back := _lAkCmd + ' ';
-            if not Kym.Je then
-              Back := Back + _lNieCmd + ' ';
-            Back := Back + _lJeCmd + ' ' + _lResultCmd + ' ' + _lTakCmd +
-              ' ' + Kym.Commands + ' ' + _lAkEndCmd;
+            if (currentLang=lang_SK) then begin
+              if not Kym.Je then
+                Back := Back + _lNieCmd + ' ';
+              Back := Back + _lJeCmd + ' ' + _lResultCmd + ' ' + _lTakCmd +
+                ' ' + Kym.Commands + ' ' + _lAkEndCmd;
+            end
+            else begin
+              if not Kym.Je then
+                Back := Back + ' ' + _lJeCmd + ' ' + _lNieCmd + ' '
+              else
+                Back := Back + ' ' + _lJeCmd;
+              Back := Back + ' ' + _lResultCmd + ' ' + _lTakCmd +
+                ' ' + Kym.Commands + ' ' + _lAkEndCmd;
+            end;
             Stack.Push(Back);
             Stack.Push(Cond.Cmds);
           end
@@ -1304,7 +1329,10 @@ begin
             if not (KymCond xor Kym.Je) then
             begin
               if not Kym.Je then
-                Back := _lKymCmd + ' ' + _lNieCmd + ' ' + _lJeCmd
+                if (currentLang=lang_SK) then
+                  Back := _lKymCmd + ' ' + _lNieCmd + ' ' + _lJeCmd
+                else
+                  Back := _lKymCmd + ' ' + _lJeCmd + ' ' + _lNieCmd
               else
                 Back := _lKymCmd + ' ' + _lJeCmd;
               Back := Back + ' ' + Kym.Cond + ' ' + _lRobCmd + ' ' +
@@ -1377,9 +1405,19 @@ begin
             if Cmd <> '' then
               Stack.Push(Cmd);
             Back := _lAkCmd + ' ';
-            if not Ak.Je then
-              Back := Back + _lNieCmd + ' ';
-            Back := Back + _lJeCmd + ' ' + _lResultCmd + ' ' + _lTakCmd + ' ';
+            if (currentLang=lang_SK) then begin
+              if not Ak.Je then
+                Back := Back + _lNieCmd + ' ';
+              Back := Back + _lJeCmd + ' ' + _lResultCmd + ' ' + _lTakCmd + ' ';
+            end
+            else begin
+              if not Ak.Je then
+                Back := Back + _lJeCmd + ' ' + _lNieCmd + ' '
+              else
+                Back := Back + _lJeCmd + ' ';
+              Back := Back +  _lResultCmd + ' ' + _lTakCmd + ' ';
+            end;
+
             Back := Back + Ak.TrueCmd;
             if Ak.FalseCmd <> '' then
               Back := Back + ' ' + _lInakCmd + ' ' + Ak.FalseCmd;
@@ -1449,32 +1487,7 @@ begin
       Application.ProcessMessages;
     end;
   until ShowGraphic or (Cmd = '') or Pause;
-  If Pause then begin
-    If CmdCond(_lStenaCmd,OK) then
-      DDebugWin.LStena.Caption := _lPravdaCmd
-    else
-      DDebugWin.LStena.Caption := _lNepravdaCmd;
-    If CmdCond(_lVolnoCmd,OK) then
-      DDebugWin.LVolno.Caption := _lPravdaCmd
-    else
-      DDebugWin.LVolno.Caption := _lNepravdaCmd;
-    If CmdCond(_lTehlaCmd,OK) then
-      DDebugWin.LTehla.Caption := _lPravdaCmd
-    else
-      DDebugWin.LTehla.Caption := _lNepravdaCmd;
-    If CmdCond(_lZnackaCmd,OK) then
-      DDebugWin.LZnacka.Caption := _lPravdaCmd
-    else
-      DDebugWin.LZnacka.Caption := _lNepravdaCmd;
-    DDebugWin.LLastCmd.Caption:=First(PomCmdStr);  // vyuzivame, ze sme si na zaciatku odlozili obsah Cmd
-    if not Stack.IsEmpty then begin
-      PomCmdStr := Stack.Pop;
-      Stack.Push(PomCmdStr);
-      DDebugWin.LNextCmd.Caption:=First(PomCmdStr);
-    end;
-    DDebugWin.LIteration.Caption:=inttostr(Iteracia);
-  end;
-
+  If Pause then redrawdebug;
   if Stack.IsEmpty then
     EndProgram;
 end;
@@ -1751,6 +1764,7 @@ procedure TForm1.CmdPozastav;
 begin
   Pause:=true;
   Timer1.Enabled:=false;
+  redrawdebug;
   DDebugWin.Show;
   DStop.Hide;
 end;
@@ -1887,7 +1901,7 @@ var
   var
     LS, PS, C1, C2: string;
     I: integer;
-
+    ix,iy: integer;
   begin
     case Status of
       0:
@@ -1903,6 +1917,15 @@ var
           SetLength(RequestMarks, RoomX, RoomY);
           SetLength(OrigBricks, RoomX, RoomY);
           SetLength(OrigMarks, RoomX, RoomY);
+          for ix:= 0 to RoomX-1 do
+            for iy:= 0 to RoomY-1 do begin
+              Marks[ix,iy]:=false;
+              RequestMarks[ix,iy]:=false;
+              OrigMarks[ix,iy]:=false;
+              SetLength(Bricks[ix,iy], 0);
+              SetLength(RequestBricks[ix,iy], 0);
+              SetLength(OrigBricks[ix,iy], 0);
+            end;
         end;
         if LS = 'roomy' then
         begin
@@ -1913,6 +1936,15 @@ var
           SetLength(RequestMarks, RoomX, RoomY);
           SetLength(OrigBricks, RoomX, RoomY);
           SetLength(OrigMarks, RoomX, RoomY);
+          for ix:= 0 to RoomX-1 do
+            for iy:= 0 to RoomY-1 do begin
+              Marks[ix,iy]:=false;
+              RequestMarks[ix,iy]:=false;
+              OrigMarks[ix,iy]:=false;
+              SetLength(Bricks[ix,iy], 0);
+              SetLength(RequestBricks[ix,iy], 0);
+              SetLength(OrigBricks[ix,iy], 0);
+            end;
         end;
         if LS = 'roomh' then
           RoomH := StrToInt(PS);
@@ -2502,7 +2534,34 @@ begin
   DirectForm.Show;
 end;
 
+procedure TForm1.redrawdebug();
+  var OK:boolean = false;
+begin
+      If CmdCond(_lStenaCmd,OK) then
+      DDebugWin.LStena.Caption := _lPravdaCmd
+    else
+      DDebugWin.LStena.Caption := _lNepravdaCmd;
+    If CmdCond(_lVolnoCmd,OK) then
+      DDebugWin.LVolno.Caption := _lPravdaCmd
+    else
+      DDebugWin.LVolno.Caption := _lNepravdaCmd;
+    If CmdCond(_lTehlaCmd,OK) then
+      DDebugWin.LTehla.Caption := _lPravdaCmd
+    else
+      DDebugWin.LTehla.Caption := _lNepravdaCmd;
+    If CmdCond(_lZnackaCmd,OK) then
+      DDebugWin.LZnacka.Caption := _lPravdaCmd
+    else
+      DDebugWin.LZnacka.Caption := _lNepravdaCmd;
+    DDebugWin.LLastCmd.Caption:=First(PomCmdStr);  // vyuzivame, ze sme si na zaciatku odlozili obsah Cmd
+    if not Stack.IsEmpty then begin
+      PomCmdStr := Stack.Pop;
+      Stack.Push(PomCmdStr);
+      DDebugWin.LNextCmd.Caption:=First(PomCmdStr);
+    end;
+    DDebugWin.LIteration.Caption:=inttostr(Iteracia);
 
+end;
 
 end.
 

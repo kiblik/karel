@@ -95,12 +95,16 @@
       <Unit7>
         <Filename Value="UDZoom.pas"/>
         <IsPartOfProject Value="True"/>
+        <ComponentName Value="DZoom"/>
         <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
       </Unit7>
       <Unit8>
         <Filename Value="ugraphcmdform.pas"/>
         <IsPartOfProject Value="True"/>
+        <ComponentName Value="GraphCmdForm"/>
         <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
       </Unit8>
       <Unit9>
         <Filename Value="ULang.pas"/>
@@ -125,12 +129,16 @@
       <Unit14>
         <Filename Value="UDebugWin.pas"/>
         <IsPartOfProject Value="True"/>
+        <ComponentName Value="DDebugWin"/>
         <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
       </Unit14>
       <Unit15>
         <Filename Value="UDirect.pas"/>
         <IsPartOfProject Value="True"/>
+        <ComponentName Value="DirectForm"/>
         <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
       </Unit15>
       <Unit16>
         <Filename Value="ULex.pas"/>
