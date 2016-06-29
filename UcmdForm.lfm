@@ -1,7 +1,7 @@
 object CmdForm: TCmdForm
-  Left = 215
+  Left = 810
   Height = 392
-  Top = 254
+  Top = 616
   Width = 551
   BorderIcons = [biSystemMenu, biMinimize]
   BorderStyle = bsSingle
@@ -78,10 +78,10 @@ object CmdForm: TCmdForm
     OnClick = BNewClick
   end
   object BDelete: TSpeedButton
-    Left = 118
+    Left = 128
     Height = 40
     Top = 8
-    Width = 103
+    Width = 90
     Glyph.Data = {
       66070000424D660700000000000036000000280000001A000000170000000100
       18000000000030070000000000000000000000000000000000009F9FE74F4FD3
@@ -147,7 +147,7 @@ object CmdForm: TCmdForm
     OnClick = BDeleteClick
   end
   object BRename: TSpeedButton
-    Left = 227
+    Left = 232
     Height = 40
     Top = 8
     Width = 103

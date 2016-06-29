@@ -1,7 +1,7 @@
 object DDebugWin: TDDebugWin
-  Left = 171
+  Left = 257
   Height = 207
-  Top = 182
+  Top = 273
   Width = 248
   BorderIcons = [biSystemMenu]
   BorderStyle = bsDialog

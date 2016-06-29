@@ -31,6 +31,7 @@ type
     LVolnoDesc: TLabel;
     LZnacka: TLabel;
     procedure FormCreate(Sender: TObject);
+    procedure reloadLang;
   private
     { private declarations }
   public
@@ -43,7 +44,7 @@ implementation
 
 { TDDebugWin }
 
-procedure TDDebugWin.FormCreate(Sender: TObject);
+procedure TDDebugWin.reloadLang;
 begin
   Caption:=_lDebugWin;
   LLastCmdDesc.Caption:=_lLastCmdDesc;
@@ -56,6 +57,11 @@ begin
   BStop.Caption:=_lBStop;
   BStep.Caption:=_lBStep;
   BContinue.Caption:=_lBContinue;
+end;
+
+procedure TDDebugWin.FormCreate(Sender: TObject);
+begin
+  reloadLang;
 end;
 
 end.

@@ -61,10 +61,9 @@ __history/
 #Karel
 
 #*.lpi
-#*.lps
+*.lps
 
 backup/
 lib/
 bin/
 *.bak
-

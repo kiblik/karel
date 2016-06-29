@@ -11,14 +11,23 @@
       <SessionStorage Value="InProjectDir"/>
       <MainUnit Value="0"/>
       <Title Value="Karel"/>
-      <UseAppBundle Value="False"/>
       <ResourceType Value="res"/>
+      <UseXPManifest Value="True"/>
+      <XPManifest>
+        <DpiAware Value="True"/>
+      </XPManifest>
+      <Icon Value="0"/>
     </General>
     <i18n>
       <EnableI18N LFM="False"/>
     </i18n>
     <VersionInfo>
-      <StringTable ProductVersion=""/>
+      <UseVersionInfo Value="True"/>
+      <AutoIncrementBuild Value="True"/>
+      <MajorVersionNr Value="2"/>
+      <MinorVersionNr Value="3"/>
+      <Language Value="041B"/>
+      <StringTable CompanyName="GJH" FileDescription="Karel 3D" ProductVersion=""/>
     </VersionInfo>
     <BuildModes Count="1">
       <Item1 Name="Default" Default="True"/>
@@ -36,7 +45,7 @@
         <PackageName Value="LCL"/>
       </Item1>
     </RequiredPackages>
-    <Units Count="14">
+    <Units Count="17">
       <Unit0>
         <Filename Value="Karel.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -58,12 +67,16 @@
       <Unit3>
         <Filename Value="UDLimits.pas"/>
         <IsPartOfProject Value="True"/>
+        <ComponentName Value="DLimitKarel"/>
         <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
       </Unit3>
       <Unit4>
         <Filename Value="UDMiestnost.pas"/>
         <IsPartOfProject Value="True"/>
+        <ComponentName Value="DMiestnost"/>
         <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
       </Unit4>
       <Unit5>
         <Filename Value="UDPosun.pas"/>
@@ -82,12 +95,16 @@
       <Unit7>
         <Filename Value="UDZoom.pas"/>
         <IsPartOfProject Value="True"/>
+        <ComponentName Value="DZoom"/>
         <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
       </Unit7>
       <Unit8>
         <Filename Value="ugraphcmdform.pas"/>
         <IsPartOfProject Value="True"/>
+        <ComponentName Value="GraphCmdForm"/>
         <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
       </Unit8>
       <Unit9>
         <Filename Value="ULang.pas"/>
@@ -102,25 +119,41 @@
         <IsPartOfProject Value="True"/>
       </Unit11>
       <Unit12>
+        <Filename Value="Ui18n.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit12>
+      <Unit13>
+        <Filename Value="UCommands.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit13>
+      <Unit14>
         <Filename Value="UDebugWin.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="DDebugWin"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-      </Unit12>
-      <Unit13>
+      </Unit14>
+      <Unit15>
         <Filename Value="UDirect.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="DirectForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-      </Unit13>
+      </Unit15>
+      <Unit16>
+        <Filename Value="ULex.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit16>
     </Units>
   </ProjectOptions>
   <CompilerOptions>
     <Version Value="11"/>
+    <Target>
+      <Filename Value="bin/karel"/>
+    </Target>
     <SearchPaths>
       <IncludeFiles Value="$(ProjOutDir)"/>
+      <UnitOutputDirectory Value="lib"/>
     </SearchPaths>
     <Parsing>
       <SyntaxOptions>

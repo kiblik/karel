@@ -1,16 +1,16 @@
 object Form1: TForm1
-  Left = 552
-  Height = 600
-  Top = 69
-  Width = 820
+  Left = 0
+  Height = 693
+  Top = 258
+  Width = 1168
   AlphaBlendValue = 100
   Caption = 'Neuložený projekt'
-  ClientHeight = 580
-  ClientWidth = 820
+  ClientHeight = 673
+  ClientWidth = 1168
   Color = clBtnFace
   Font.Color = clWindowText
   Font.Height = -11
-  Font.Name = 'Arial Narrow'
+  Font.Name = 'MS Sans Serif'
   Menu = MainMenu
   OnClose = FormClose
   OnCloseQuery = FormCloseQuery
@@ -25,10 +25,10 @@ object Form1: TForm1
     Width = 105
   end
   object LVersion: TLabel
-    Left = 465
-    Height = 15
+    Left = 714
+    Height = 13
     Top = 48
-    Width = 19
+    Width = 21
     Alignment = taRightJustify
     Anchors = [akTop, akRight]
     Caption = 'v2.1'
@@ -41,7 +41,7 @@ object Form1: TForm1
     Width = 600
     Font.Color = clNavy
     Font.Height = -16
-    Font.Name = 'Arial Narrow'
+    Font.Name = 'MS Sans Serif'
     Font.Style = [fsBold]
     OnKeyDown = EInputKeyDown
     OnKeyPress = EInputKeyPress
@@ -53,7 +53,7 @@ object Form1: TForm1
     Left = 0
     Height = 29
     Top = 0
-    Width = 820
+    Width = 1168
     ButtonWidth = 28
     Caption = 'ToolBar'
     Color = clActiveCaption
@@ -183,6 +183,7 @@ object Form1: TForm1
     Lines.Strings = (
       'a'
     )
+    OnChange = MLevelDescriptionChange
     OnKeyUp = MLevelDescriptionKeyUp
     ParentFont = False
     ReadOnly = True
@@ -558,6 +559,17 @@ object Form1: TForm1
       ShortCut = 115
       OnClick = Slovnik1Click
     end
+    object Jazyk1: TMenuItem
+      Caption = 'Jazyk'
+      object LEng1: TMenuItem
+        Caption = 'English'
+        OnClick = LEng1Click
+      end
+      object LSk1: TMenuItem
+        Caption = 'Slovenský'
+        OnClick = LSk1Click
+      end
+    end
   end
   object Timer1: TTimer
     Enabled = False
@@ -568,7 +580,7 @@ object Form1: TForm1
   end
   object ILMainMenu: TImageList
     DrawingStyle = dsTransparent
-    left = 12
+    left = 16
     top = 216
     Bitmap = {
       4C69090000001000000010000000000000000000000000000000000000000000
