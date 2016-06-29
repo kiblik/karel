@@ -831,7 +831,7 @@ end;
 procedure TForm1.Slovnik1Click(Sender: TObject);
 begin
   CmdForm.Position := poScreenCenter;
-  CmdForm.Show;
+  CmdForm.ShowModal;
 //  CmdForm.HLEdit.SetFocus;
 end;
 

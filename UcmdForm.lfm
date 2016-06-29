@@ -13,7 +13,6 @@ object CmdForm: TCmdForm
   Font.Height = -16
   Font.Name = 'Arial Narrow'
   OnClose = FormClose
-  OnCloseQuery = FormCloseQuery
   OnCreate = FormCreate
   LCLVersion = '1.6.0.4'
   object BNew: TSpeedButton

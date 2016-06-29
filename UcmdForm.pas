@@ -19,7 +19,6 @@ type
     procedure FormCreate(Sender: TObject);
     procedure BNewClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var {%H-}Action: TCloseAction);
-    procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
     procedure HLEditChange(Sender: TObject);
     procedure HLEditKeyPress(Sender: TObject; var Key: Char);
     procedure CmdListClick(Sender: TObject);
@@ -203,17 +202,12 @@ end;
 
 procedure TCmdForm.FormClose(Sender: TObject; var Action: TCloseAction);
 var I : Integer;
-begin
-  for I:=0 to CmdList.Count-1 do CmdList.Items.Objects[I].Free;
-  GraphCmdForm.Free;
-end;
-
-procedure TCmdForm.FormCloseQuery(Sender: TObject; var CanClose: Boolean);
-var I : Integer;
     Cmd : TCmd;
 begin
-  CanClose:=EndOfAppl;
-  if not EndOfAppl then Hide;
+  if EndOfAppl then begin
+    for I:=0 to CmdList.Count-1 do CmdList.Items.Objects[I].Free;
+    GraphCmdForm.Free;
+  end;
   if CmdList.ItemIndex=-1 then Exit;
   Cmd:=CmdList.Items.Objects[CmdList.ItemIndex] as TCmd;
   SetLength(Cmd.Lines,HlEdit.Lines.Count);

@@ -435,11 +435,7 @@ end;
 
 function GetPolozF(var Cmd : string; var OK : Boolean) : TPolozF;
 var S : string;
-      i:integer;
-      x:string;
 begin
-  for i := 0 to 10 do
-    x := DefColors.Strings[i];
   S:=First(Cmd);
   if LowerCase(S)=_lNahodaCmd then
     begin
