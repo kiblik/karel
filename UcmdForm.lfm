@@ -1,9 +1,9 @@
 object CmdForm: TCmdForm
-  Left = 810
+  Left = 858
   Height = 392
-  Top = 616
+  Top = 462
   Width = 551
-  BorderIcons = [biSystemMenu, biMinimize]
+  BorderIcons = [biSystemMenu]
   BorderStyle = bsSingle
   Caption = 'Príkazy Karla'
   ClientHeight = 392
