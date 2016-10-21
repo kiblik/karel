@@ -277,15 +277,6 @@ end;
 
 procedure setUtilsLang();
 begin
-  Zoom:=3;
-  WasChanged:=False;
-  O:=DefO;
-  UX.X:=Zoom*DefUX.X;
-  UX.Y:=Zoom*DefUX.Y;
-  UZ.X:=Zoom*DefUZ.X;
-  UZ.Y:=Zoom*DefUZ.Y;
-  UY.X:=Zoom*DefUY.X;
-  UY.Y:=Zoom*DefUY.Y;
 
   BasicCmds.Free;
   BasicCmds:=TStringList.Create;
@@ -335,6 +326,15 @@ end;
 //var NColor : TOColor;
 initialization
   DefColors:=TColorStringList.Create;
+  Zoom:=3;
+  WasChanged:=False;
+  O:=DefO;
+  UX.X:=Zoom*DefUX.X;
+  UX.Y:=Zoom*DefUX.Y;
+  UZ.X:=Zoom*DefUZ.X;
+  UZ.Y:=Zoom*DefUZ.Y;
+  UY.X:=Zoom*DefUY.X;
+  UY.Y:=Zoom*DefUY.Y;
 
 finalization
   BasicCmds.Free;
