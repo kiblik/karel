@@ -149,7 +149,7 @@
   <CompilerOptions>
     <Version Value="11"/>
     <Target>
-      <Filename Value="bin/karel"/>
+      <Filename Value="bin/$(TargetCPU)-$(TargetOS)/karel"/>
     </Target>
     <SearchPaths>
       <IncludeFiles Value="$(ProjOutDir)"/>
@@ -161,8 +161,12 @@
       </SyntaxOptions>
     </Parsing>
     <CodeGeneration>
+      <Checks>
+        <RangeChecks Value="True"/>
+        <OverflowChecks Value="True"/>
+      </Checks>
       <Optimizations>
-        <OptimizationLevel Value="0"/>
+        <OptimizationLevel Value="2"/>
       </Optimizations>
     </CodeGeneration>
     <Linking>
