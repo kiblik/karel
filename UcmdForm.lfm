@@ -285,7 +285,9 @@ object CmdForm: TCmdForm
     Height = 89
     Top = 104
     Width = 185
+    OnChange = HLEditChange
     TabOrder = 2
+    WantTabs = True
   end
   object IL: TImageList
     left = 496

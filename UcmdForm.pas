@@ -4,9 +4,12 @@ interface
 
 uses
   LCLIntf, LCLType, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, StdCtrls, Buttons, Menus, UGraphCmdForm;
+  Dialogs, StdCtrls, Buttons, Menus, UGraphCmdForm, strutils;
 
 type
+
+  { TCmdForm }
+
   TCmdForm = class(TForm)
     CmdList: TListBox;
 
@@ -20,7 +23,6 @@ type
     procedure BNewClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var {%H-}Action: TCloseAction);
     procedure HLEditChange(Sender: TObject);
-    procedure HLEditKeyPress(Sender: TObject; var Key: Char);
     procedure CmdListClick(Sender: TObject);
     procedure BDeleteClick(Sender: TObject);
     procedure BRenameClick(Sender: TObject);
@@ -29,7 +31,7 @@ type
     procedure BGrapCmdClick(Sender: TObject);
     procedure reloadLang;
   private
-    EOL : Boolean;
+//    EOL : Boolean;
     OldChange : TNotifyEvent;
     OldKeyPressed : TKeyPressEvent;
     function GetLine : Integer;
@@ -229,10 +231,12 @@ begin
 end;
 
 procedure TCmdForm.HLEditChange(Sender: TObject);
-var SC,AL,I : Integer;
-    S : string;
+var //SC,AL,I : Integer;
+    //S : string;
+    CurPos: TPoint;
+
 begin
-  if EOL then
+{  if EOL then
     begin
       EOL:=False;
       AL:=GetLine;
@@ -243,18 +247,15 @@ begin
       HlEdit.Lines[AL]:=S+HlEdit.Lines[AL];
     end;
   OldChange(Sender);
-  WasChanged:=True;
-end;
-
-procedure TCmdForm.HLEditKeyPress(Sender: TObject; var Key: Char);
-begin
-  if Key=#13 then
+  }
+  CurPos := HLEdit.CaretPos;
+  if(Pos(#9,HLEdit.Lines[CurPos.y])>0)then
     begin
-      EOL:=True;
-      HLEditChange(sender)
+      HLEdit.Lines[CurPos.y]:=ReplaceStr(HLEdit.Lines[CurPos.y],#9,'    ');
+      CurPos.x:=CurPos.x+3;
+      HLEdit.CaretPos:=CurPos;
     end;
-  OldKeyPressed(Sender,Key);
-  WasChanged:=True;          
+  WasChanged:=True;
 end;
 
 procedure TCmdForm.CmdListClick(Sender: TObject);
