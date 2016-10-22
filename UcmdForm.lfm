@@ -265,7 +265,7 @@ object CmdForm: TCmdForm
     ItemHeight = 18
     OnClick = CmdListClick
     OnDrawItem = CmdListDrawItem
-    Sorted = True
+    ParentShowHint = False
     Style = lbOwnerDrawFixed
     TabOrder = 1
     TabStop = False
