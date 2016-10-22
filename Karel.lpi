@@ -25,7 +25,7 @@
       <UseVersionInfo Value="True"/>
       <AutoIncrementBuild Value="True"/>
       <MajorVersionNr Value="2"/>
-      <MinorVersionNr Value="3"/>
+      <MinorVersionNr Value="4"/>
       <Language Value="041B"/>
       <StringTable CompanyName="GJH" FileDescription="Karel 3D" ProductVersion=""/>
     </VersionInfo>

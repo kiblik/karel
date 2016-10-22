@@ -11,7 +11,7 @@ uses
   Buttons, UDStop, FileUtil, UDebugWin, UDirect;
 
 const
-  version = '2.3';
+  version = '2.4';
 
 type
 
