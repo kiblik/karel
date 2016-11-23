@@ -72,7 +72,6 @@ type
     procedure FormClose(Sender: TObject; var {%H-}Action: TCloseAction);
     procedure MIRemoveLevelClick(Sender: TObject);
     procedure MIRenameLevelClick(Sender: TObject);
-    procedure MLevelDescriptionChange(Sender: TObject);
     procedure MLevelDescriptionKeyUp(Sender: TObject; var {%H-}Key: Word;
       {%H-}Shift: TShiftState);
     procedure SBRequestClick(Sender: TObject);
@@ -571,11 +570,6 @@ begin
     Levels[LBLevelList.ItemIndex].Name:=newname;
     LBLevelList.Items.Strings[LBLevelList.ItemIndex]:=newname;
   end;
-end;
-
-procedure TForm1.MLevelDescriptionChange(Sender: TObject);
-begin
-
 end;
 
 procedure TForm1.MIRemoveLevelClick(Sender: TObject);
@@ -1748,6 +1742,7 @@ begin
   Timer1.Enabled := False;
 end;
 
+
 procedure TForm1.CmdOznac;
 begin
   Marks[Karel.Pos.X, Karel.Pos.Y] := True;
@@ -2301,6 +2296,7 @@ var
   S: string;
   I: integer;
   LS, PS: string;
+  vMajor, vMinor: integer;
 begin
   Status := 0;
   DeleteProject;
@@ -2312,25 +2308,24 @@ begin
     ReadLn(F, S);
     LS := Copy(S, 1, Pos('=', S) - 1);
     PS := Copy(S, Pos('=', S) + 1, MaxInt);
+    vMajor := strtoint(Copy(PS, 1,Pos('.', PS)-1));
+    vMinor := strtoint(Copy(PS, Pos('.', PS)+1, MaxInt));
     if LowerCase(LS) <> 'ver' then
       OKFile := False
     else
     begin
-      if not ((PS = '2.0') or (PS = '2.1')) then
+      if not ((vMajor = 2) and ((vMinor = 0) or (vMinor = 1))) then
         Status := 6;
       while not EOF(F) and OKFile do
       begin
         ReadLn(F, S);
-        if PS = '2.0' then
-          Spracuj2_0(S);
-        if PS = '2.1' then
-          Spracuj2_1(S);
-        if PS = '2.2' then
-          Spracuj2_2(S);
-        if PS = '2.3' then
-          Spracuj2_2(S);
-        if PS = '2.4' then
-          Spracuj2_2(S);
+        if vMajor = 2 then begin
+          case vMinor of
+            0: Spracuj2_0(S);
+            1: Spracuj2_1(S);
+            else Spracuj2_2(S);
+          end;
+        end;
       end;
     end;
     CloseFile(F);
