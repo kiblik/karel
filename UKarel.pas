@@ -2330,6 +2330,7 @@ begin
         if PS = '2.3' then
           Spracuj2_2(S);
         if PS = '2.4' then
+          Spracuj2_2(S);
       end;
     end;
     CloseFile(F);
